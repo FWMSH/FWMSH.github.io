@@ -1,3 +1,319 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <h1>Hello, world
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+@font-face {
+  font-family: Gotham-Bold;
+  src: url(Gotham-Bold.otf);
+}
+@font-face {
+  font-family: Gotham-Book;
+  src: url(Gotham-Book.otf);
+}
+
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: white; //#002f65;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 25px;
+  font-family: Gotham-Book;
+  width: 50%;
+  height: 10%;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: black;
+  display: none;
+  padding-bottom: 0px;
+  height: 92%;
+}
+
+.slider{
+  height: 7%;
+  width: 20%;
+}
+.label{
+  height: 7%;
+  width: 500px;
+}
+.langSwitch{
+  font-size: 20px;
+  font-family: Gotham-Book;
+  height: 7%;
+  width: 100px;
+  vertical-align: top;
+  background-color: #555;//#6e298d;
+  color: white;
+  //display: none;
+}
+
+.sizeLabel{
+  font-size: 30px;
+  font-family: Gotham-Book;
+  height: 7%;
+  width: 70px;
+  vertical-align: top;
+  background-color: #555;//#6e298d;
+  color: white;
+  //display: none;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#titleText{
+    font-size: 20px;
+    font-family: Gotham-Bold;
+}
+
+#imageCell{
+  vertical-align: top;
+}
+
+#masthead{
+    height: 0%;
+    color: black;
+    background-color: white;
+    font-size: 35px;
+    text-align: center;
+    font-family: Gotham-Bold;
+}
+
+.bodyText{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 0px;
+  overflow-y: auto;
+  height: 89%;
+  font-size: 15px;
+  font-family: Gotham-Book;
+}
+
+* {
+    -webkit-text-size-adjust: none;
+}
+
+#story {background-color: white;}
+#artifacts {background-color: white;}
+</style>
+</head>
+<body>
+
+<div id="masthead">
+</div>
+
+<button id="buttonStory" class="tablink" onclick="openPage('story', this, '#002f65')">Discover What Happened</button>
+<button id="buttonArtifacts" class="tablink" onclick="openPage('artifacts', this, '#002f65')">Explore the Artifacts</button>
+
+<div id="overlay" onclick="hideAttractor()">
+    <!–– <video id='attractor' src='attractor.mp4' height=100% width=100% autoplay loop mu
+    <img id='attractor' source='attractor.jpg'></img>
+</div>
+
+<div id="story" class="tabcontent">
+
+</div>
+
+<div id="artifacts" class="tabcontent">
+
+    <div class='bodyText'>
+
+    <table>
+        <tr>
+            <td id='imageCell'> <img src='artifacts/slide_rule.JPG' width="200px" </td>
+            <td>
+            <div id='titleText' class='titleText'>Slide Rule</div>
+            This slide rule was used by Alan Bean in the 1970s. Slide rules enabled the user to make complex calculations by moving the center piece to align with different values on the various number lines. Even after the introduction of the pocket calculator around 1970, slide rules were often smaller, lighter, and more reliable.
+            </td>
+        </tr>
+        <tr>
+            <td id='imageCell'> <img src='artifacts/slide_rule.JPG' width="200px"> </td>
+            <td>
+            <div id='titleText' class='titleText'>Slide Rule</div>
+            This slide rule was used by Alan Bean in the 1970s. Slide rules enabled the user to make complex calculations by moving the center piece to align with different values on the various number lines. Even after the introduction of the pocket calculator around 1970, slide rules were often smaller, lighter, and more reliable.
+            </td>
+        </tr>
+    <tr>
+            <td id='imageCell'> <img src='artifacts/slide_rule.JPG' width="200px"> </td>
+            <td>
+            <div id='titleText' class='titleText'>Slide Rule</div>
+            This slide rule was used by Alan Bean in the 1970s. Slide rules enabled the user to make complex calculations by moving the center piece to align with different values on the various number lines. Even after the introduction of the pocket calculator around 1970, slide rules were often smaller, lighter, and more reliable.
+            </td>
+        </tr>
+    <tr>
+            <td id='imageCell'> <img src='artifacts/slide_rule.JPG' width="200px"> </td>
+            <td>
+            <div id='titleText' class='titleText'>Slide Rule</div>
+            This slide rule was used by Alan Bean in the 1970s. Slide rules enabled the user to make complex calculations by moving the center piece to align with different values on the various number lines. Even after the introduction of the pocket calculator around 1970, slide rules were often smaller, lighter, and more reliable.
+            </td>
+        </tr>
+    </table>
+    </div>
+
+</div>
+<button class="langSwitch" id="langSwitch" onclick="localize('swap')">Espanol</button>
+<button class="sizeLabel" id="sizeLabel">Aa:</button>
+<input type="range" min="-5" max="30" value="0" class="slider" id="textSizeSlider" name='slider'>
+<script>
+
+/* Open a tab */
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+/* Show and hide the attractor overlay */
+function showAttractor() {
+    //document.getElementById("attractor").play()
+    document.getElementById("overlay").style.display = "block";
+    setDefaults()
+}
+
+/* Adjust the text size */
+
+function setTextSize(val){
+
+    var bodyElements = document.getElementsByClassName('bodyText');
+
+    for (var i = 0; i < bodyElements.length; i++) {
+      var element = bodyElements[i];
+      element.style.fontSize = parseInt(defaultBodySize) + parseInt(val) + 'px'
+    }
+
+    var titleElements = document.getElementsByClassName('titleText')
+
+    for (var i = 0; i < titleElements.length; i++) {
+      var element = titleElements[i];
+      element.style.fontSize = parseInt(defaultTitleSize) + parseInt(val) + 'px'
+    }
+
+}
+
+function hideAttractor() {
+  //document.getElementById("attractor").pause()
+  document.getElementById("overlay").style.display = "none";
+}
+
+var inactivityTime = function () {
+    var time;
+    window.onload = resetTimer;
+    // DOM Events
+    document.onmousemove = resetTimer;
+    document.onkeypress = resetTimer;
+    function resetTimer() {
+            clearTimeout(time);
+            time = setTimeout(showAttractor, 30000)
+            // 1000 milliseconds = 1 second
+        }
+}
+
+function localize(lang){
+
+    switch (lang){
+        case "en":
+            curLang = "en";
+            break;
+        case "es":
+            curLang = "es";
+            break;
+        case "swap":
+            if (curLang == "en"){
+                curLang = "es";
+                lang = "es";
+            } else {
+                curLang = "en";
+                lang = "en";
+            }
+            break;
+    }
+
+    // Loop the elements with text and switch them.
+    //var ids = ['buttonStory', 'buttonArtifacts', 'langSwitch', 'masthead', 'story', 'artifacts']
+    //for (var i = 0; i < ids.length; i++) {
+    //    id = document.getElementById(ids[i]);
+    //    id.innerHTML = textDict[ids[i]+'_'+lang];
+    //}
+
+    // Make sure evrything is at the correct text size
+    setTextSize(0)
+}
+
+function setDefaults(){
+
+    // Set the starting page
+    document.getElementById("buttonArtifacts").click();
+
+    // Populate the text fieldset
+    localize('en');
+
+    // Reset text size
+    setTextSize(0)
+
+    // Reset the slider
+    var slider = document.getElementById('textSizeSlider');
+    slider.value = 0
+}
+
+// Set up the slider
+
+var slider = document.getElementById('textSizeSlider');
+slider.oninput = function() {
+  setTextSize(slider.value)
+}
+
+// Hold the current language
+var curLang = 'en'
+
+// Text size defautls
+var defaultBodySize = 15
+var defaultTitleSize = 25
+
+// Hold the current text size
+var bodySize = 15
+var titleSize = 25
+
+// Start the timer checking for idle (30 s)
+inactivityTime();
+
+// Set the default state
+setDefaults()
+
+</script>
+
+</body>
+</html>
