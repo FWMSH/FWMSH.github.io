@@ -49,10 +49,6 @@ body, html {
   height: 7%;
   width: 20%;
 }
-.label{
-  height: 7%;
-  width: 500px;
-}
 .langSwitch{
   font-size: 20px;
   font-family: Gotham-Book;
@@ -64,11 +60,22 @@ body, html {
   //display: none;
 }
 
-.sizeLabel{
+.sizeDown{
+  font-size: 20px;
+  font-family: Gotham-Book;
+  height: 7%;
+  width: 100px;
+  vertical-align: top;
+  background-color: #555;//#6e298d;
+  color: white;
+  //display: none;
+}
+
+.sizeUp{
   font-size: 30px;
   font-family: Gotham-Book;
   height: 7%;
-  width: 120px;
+  width: 100px;
   vertical-align: top;
   background-color: #555;//#6e298d;
   color: white;
@@ -180,8 +187,7 @@ body, html {
 
 </div>
 <button class="langSwitch" id="langSwitch" onclick="localize('swap')">Espanol</button>
-<button class="sizeLabel" id="sizeLabel">Aa:</button>
-<input type="range" min="-5" max="30" value="0" class="slider" id="textSizeSlider" name='slider'>
+<button class="sizeDown" onclick='fontSizeDown()'>A</button><button class="sizeUp" onclick='fontSizeUp()'>A</button>
 <script>
 
 /* Open a tab */
@@ -208,20 +214,32 @@ function showAttractor() {
 
 /* Adjust the text size */
 
-function setTextSize(val){
+function fontSizeUp(){
+  bodySize = bodySize + 4
+  titleSize = titleSize + 4
+  setTextSize()
+}
+
+function fontSizeDown(){
+  bodySize = bodySize - 4
+  titleSize = titleSize - 4
+  setTextSize()
+}
+
+function setTextSize(){
 
     var bodyElements = document.getElementsByClassName('bodyText');
 
     for (var i = 0; i < bodyElements.length; i++) {
       var element = bodyElements[i];
-      element.style.fontSize = parseInt(defaultBodySize) + parseInt(val) + 'px'
+      element.style.fontSize = parseInt(bodySize) + 'px'
     }
 
     var titleElements = document.getElementsByClassName('titleText')
 
     for (var i = 0; i < titleElements.length; i++) {
       var element = titleElements[i];
-      element.style.fontSize = parseInt(defaultTitleSize) + parseInt(val) + 'px'
+      element.style.fontSize = parseInt(titleSize) + 'px'
     }
 
 }
@@ -271,8 +289,6 @@ function localize(lang){
     //    id.innerHTML = textDict[ids[i]+'_'+lang];
     //}
 
-    // Make sure evrything is at the correct text size
-    setTextSize(0)
 }
 
 function setDefaults(){
@@ -284,18 +300,9 @@ function setDefaults(){
     localize('en');
 
     // Reset text size
-    setTextSize(0)
-
-    // Reset the slider
-    var slider = document.getElementById('textSizeSlider');
-    slider.value = 0
-}
-
-// Set up the slider
-
-var slider = document.getElementById('textSizeSlider');
-slider.oninput = function() {
-  setTextSize(slider.value)
+    bodySize = defaultBodySize
+    titleSize = defaultTitleSize
+    setTextSize()
 }
 
 // Hold the current language
