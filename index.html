@@ -82,7 +82,11 @@
       var now = new Date();
       var diff = (now - startingTime)/1000; // seconds
       
-      timingDict[currentlyTimed] += Math.round(diff)
+      timingDict[currentlyTimed] += Math.round(diff);
+      
+      // Reset the button appearance
+      btn = document.getElementById(currentlyTimed);
+      btn.className = 'stoppedTimingButton';
       
       // Set the appropriate variabels to reflect the change
       currentlyTimed = '';
