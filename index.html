@@ -60,19 +60,21 @@
     
       // Function to clear the current timings and start over, but preserve the buttons
       
+      if (currentlyTimed != '') { // Do nothing if we're not timing
       
-      // Stop the timer
-      stopTiming();
-     
-      // Log the current session
-      logTimingSession();
-      
-      // Reset the timing dictionary
-      const keys = Object.keys(timingDict)
-      var i;
-      for (i=0; i < keys.length; i++) {
-        timingDict[keys[i]] = 0;
-      } 
+        // Stop the timer
+        stopTiming();
+       
+        // Log the current session
+        logTimingSession();
+        
+        // Reset the timing dictionary
+        const keys = Object.keys(timingDict)
+        var i;
+        for (i=0; i < keys.length; i++) {
+          timingDict[keys[i]] = 0;
+        } 
+      }
     }
     
     function stopTiming() {
