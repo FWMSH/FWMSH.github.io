@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <style>
+      .stoppedTimingButton {
+        color: white;
+        background-color: red;
+        width: 100%;
+        height: 15%;
+        font-size: 24;
+      }
+      .runningTimingButton {
+        color: white;
+        background-color: green;
+        width: 100%;
+        height: 15%;
+        font-size: 24;
+      }
+    </style>
+  </head>
+  <body>
+  <!--<input type="text" id="buttonName" name="Item name">
+  <button onclick="addButton()">Add item</button> -->
+  <button onclick="resetTimingSession()">New session</button>
+  <button id='Art' class='stoppedTimingButton'>Art</button>
+  <button id='History' class='stoppedTimingButton'>History</button>
+  <button id='Science' class='stoppedTimingButton'>Science</button>
+  <button id='Technology' class='stoppedTimingButton'>Technology</button>
+  <div id='buttonList'></div>
+  <div id="sessionLog"></div>
+  </body>
+  <script>
+  
+    var timingDict = {'Art': 0, 'History': 0, 'Science': 0, 'Technology': 0};
+    var currentlyTimed;
+    var startingTime = 0;
+    var sessionStartingTime;
+    var firstRun = true;
+    var resultsBody = ""
+    
+    function logTimingSession(){
+    
+      // Function to log the current session.
+      
+      //resultsBody += '[' + sessionStartingTime + '] '
+           
+      // Iterate the keys in the timingDict and compute result
+      const keys = Object.keys(timingDict)
+      var i;
+      for (i=0; i < keys.length; i++) {
+        resultsBody += keys[i] + ": " + timingDict[keys[i]] + " ";
+      }
+      resultsBody += '<p>'
+      
+      div = document.getElementById('sessionLog');
+      div.innerHTML = resultsBody;
+    
+    }
+    
+    function resetTimingSession() {
+    
+      // Function to clear the current timings and start over, but preserve the buttons
+      
+      
+      // Stop the timer
+      stopTiming();
+     
+      // Log the current session
+      logTimingSession();
+      
+      // Reset the timing dictionary
+      const keys = Object.keys(timingDict)
+      var i;
+      for (i=0; i < keys.length; i++) {
+        timingDict[keys[i]] = 0;
+      } 
+    }
+    
+    function stopTiming() {
+    
+      // Function to stop the timer without starting another.
+      
+      var now = new Date();
+      var diff = (now - startingTime)/1000; // seconds
+      
+      timingDict[currentlyTimed] += Math.round(diff)
+      
+      // Set the appropriate variabels to reflect the change
+      currentlyTimed = '';
+      startingTime = 0;
+      firstRun = true;
+
+    }
+  
+    function switchTiming(id){
+    
+      // Function to log one timer and start another
+      
+      if (id in timingDict) {
+        
+        if (firstRun == false) {
+          
+          var now = new Date();
+          var diff = (now - startingTime)/1000; // seconds
+          
+          timingDict[currentlyTimed] += Math.round(diff)
+          
+          // Recolor to be stoppedTimingButton
+          btn = document.getElementById(currentlyTimed);
+          btn.className = 'stoppedTimingButton';
+          
+        } else {
+          sessionStartingTime = new Date();
+          firstRun = false;
+        }
+        
+        startingTime = new Date();
+        currentlyTimed = id;
+        btn = document.getElementById(id);
+        btn.className = 'runningTimingButton';
+        
+      }
+          
+    }
+    
+    function addButton(){
+    
+      // Function to add a button with the name in the text field
+      
+      var buttonList = document.getElementById('buttonList');
+      var buttonName = document.getElementById('buttonName');    
+      
+      // Create the button and add it to the page
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML = buttonName.value;
+      btn.id = buttonName.value; 
+      btn.className = 'stoppedTimingButton';
+      timingDict[buttonName.value] = 0  
+      
+      buttonList.appendChild(btn);
+      
+      
+    }
+    
+    // Create an event listener for button click
+    document.addEventListener('click',function(e){
+      if(e.target && e.target.id != ''){
+            switchTiming(e.target.id)
+       }
+    });
+  </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
