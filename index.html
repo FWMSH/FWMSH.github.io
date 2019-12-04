@@ -21,6 +21,7 @@
   <!--<input type="text" id="buttonName" name="Item name">
   <button onclick="addButton()">Add item</button> -->
   <button onclick="resetTimingSession()">New session</button>
+  <button style="margin-left: 100px;"onclick="resetTimingSession(log=false)">Clear session</button>
   <button id='Art' class='stoppedTimingButton'>Art</button>
   <button id='History' class='stoppedTimingButton'>History</button>
   <button id='Science' class='stoppedTimingButton'>Science</button>
@@ -56,7 +57,7 @@
     
     }
     
-    function resetTimingSession() {
+    function resetTimingSession(log=true) {
     
       // Function to clear the current timings and start over, but preserve the buttons
       
@@ -66,7 +67,9 @@
         stopTiming();
        
         // Log the current session
-        logTimingSession();
+        if (log == true) {
+          logTimingSession();
+        }
         
         // Reset the timing dictionary
         const keys = Object.keys(timingDict)
@@ -81,9 +84,10 @@
     
       // Function to stop the timer without starting another.
       
+      // Add the current values to the timingDict
       var now = new Date();
       var diff = (now - startingTime)/1000; // seconds
-      
+          
       timingDict[currentlyTimed] += Math.round(diff);
       
       // Reset the button appearance
