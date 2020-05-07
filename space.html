@@ -1,0 +1,183 @@
+<!DOCTYPE html/css>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: purple;
+      }
+      #header {
+        height: 15%;
+        font-size: 100px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        font-family: Gotham-Bold;
+        color: white;
+        background-color: black;
+      }
+      #number-input {
+        font-size: 150px;
+        text-align: center;
+        color: white;
+        font-family: Gotham-Book;
+      }
+      #keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+      .keypad-button {
+        color: white;
+        background-color: gray;
+        text-align: center;
+        font-size: 100px;
+        font-family: Gotham-Book;
+      }
+      #k_go {
+        background-color: green;
+      }
+      #k_back {
+        background-color: red;
+      }
+      #audioControlBar {
+        display: flex;
+      }
+      #clipName {
+        font-size: 75px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-left: 20px;
+      }
+      .audioControl {
+        font-size: 100px;
+        color: white;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+
+      * {
+        -webkit-text-size-adjust: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='header'>Space</div>
+    <audio id='audio' onerror="handleAudioError()">
+      <source src='space-1.mp3' type="audio/mpeg">
+    </audio>
+    <div id='audioControlBar'>
+      <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
+      <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
+      <div id='clipName'>Welcome to the space gallery!</div>
+    </div>
+    <div id='number-input'>_</div>
+    <div id='keypad'>
+      <div class='keypad-button' id='k1' onclick="pressKey(1)">1</div>
+      <div class='keypad-button' id='k2' onclick="pressKey(2)">2</div>
+      <div class='keypad-button' id='k3' onclick="pressKey(3)">3</div>
+      <div class='keypad-button' id='k4' onclick="pressKey(4)">4</div>
+      <div class='keypad-button' id='k5' onclick="pressKey(5)">5</div>
+      <div class='keypad-button' id='k6' onclick="pressKey(6)">6</div>
+      <div class='keypad-button' id='k7' onclick="pressKey(7)">7</div>
+      <div class='keypad-button' id='k8' onclick="pressKey(8)">8</div>
+      <div class='keypad-button' id='k9' onclick="pressKey(9)">9</div>
+      <div class='keypad-button' id='k_back' onclick="pressKey(-1)"><--</div>
+      <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
+      <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
+    </div>
+  </body>
+  <script>
+
+    var audioState = 'pause';
+
+    var nameDict = {'1': 'Apollo Suit Prototype',
+                    '2': 'Mylar from Apollo 11'};
+
+    function loadItem() {
+
+      // Function to take the input number, search for a tour clip and play it
+
+      audio = document.getElementById('audio');
+      numLabel = document.getElementById('number-input');
+
+      if (numLabel.innerHTML != '_') {
+
+        try {
+          document.getElementById('clipName').innerHTML = nameDict[numLabel.innerHTML]
+        }
+        catch(err) {
+          document.getElementById('clipName').innerHTML = ''
+        }
+
+        audio.src = 'space-' + numLabel.innerHTML + '.mp3';
+        setAudioState('play');
+
+        numLabel.innerHTML = '_';
+      }
+    }
+
+    function handleAudioError() {
+
+      // Funciton called when we try to play an audio file that doesn't exist,
+      // Usually because something put in an invalid number
+
+      label = document.getElementById('clipName');
+      label.innerHTML = 'Entry not found!';
+      setAudioState('pause');
+    }
+
+    function togglePlayPause() {
+      if (audioState == 'play') {
+        setAudioState('pause');
+      } else {
+        setAudioState('play');
+      }
+    }
+
+    function setAudioState(val) {
+
+      // Set the audio state and update the interface button
+
+      audio = document.getElementById('audio');
+
+      if (val == 'play') {
+        audioState = 'play';
+        document.getElementById('playPauseButton').innerHTML = '⏸️';
+        audio.play();
+      } else if (val == 'pause'){
+        audioState = 'pause';
+        document.getElementById('playPauseButton').innerHTML = '▶️';
+        audio.pause();
+      } else if (val == 'reset') {
+          audio.currentTime = 0;
+      }
+    }
+
+    function pressKey(val) {
+
+      // Function to take a press from the keypad and update the number label
+
+      numLabel = document.getElementById('number-input');
+
+      if (val >= 0) {
+        if (numLabel.innerHTML == '_') {
+          numLabel.innerHTML = ''
+        }
+        numLabel.innerHTML += val
+      } else { // We've hit the back button
+        numLabel.innerHTML = numLabel.innerHTML.slice(0,-1)
+        if (numLabel.innerHTML.length == 0) {
+          numLabel.innerHTML = '_'
+        }
+      }
+    }
+
+  </script>
+
+</html>
