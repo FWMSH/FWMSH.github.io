@@ -13,7 +13,7 @@
       }
 
       body {
-        background-color: purple;
+        background-color: #003066;
       }
       #header {
         height: 15%;
@@ -25,23 +25,18 @@
         flex-direction: column;
         font-family: Gotham-Bold;
         color: white;
-        background-color: blue;
       }
       #space {
-        background-color: black;
       }
       #history {
-        background-color: brown;
       }
       #science {
-        background-color: orange;
       }
       #project-planet {
-        background-color: green;
       }
       .option {
         width: 95%;
-        font-size: 60px;
+        font-size: 100px;
         color: white;
         height: 10%;
         font-family: Gotham-Book;
@@ -49,23 +44,115 @@
         margin-bottom: 10px;
         margin-left: 20px;
         margin-right: 20px;
+        background-color: #6e298d;
+        border: 0px;
+        border-radius: 100px;
+      }
+      #overlay {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(0,0,0,0.8);
+      }
+      #audio-check {
+        color: white;
+        text-align: center;
+        font-family: Gotham-Book;
+        font-size: 75px;
+        margin-top: 40%;
+        padding: 25px;
+      }
+      #testSoundButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 75px;
+        background-color: #db0961;
+        border-radius: 50px;
+        width: 75%;
+        height: 120px;
+        border: 0px;
+      }
+      #endSoundTestButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 75px;
+        background-color: #009760;
+        border-radius: 50px;
+        width: 75%;
+        height: 120px;
+        border: 0px;
       }
 
       * {
         -webkit-text-size-adjust: none;
+        touch-action: manipulation;
       }
     </style>
   </head>
   <body>
-    <div id='header'>Discovery Zone Audio Tour</div>
+    <div id='overlay'>
+      <div id='audio-check'>
+        <audio id='testSound' onended='resetButton()'>
+          <source src='sound-test.wav'>
+        </audio>
+        Before we get started, let's check your audio level.
+        <p>
+        <button id='testSoundButton' onclick='playTestSound()'>Play test sound</button>
+        <p>
+        Please be considerate of other guests and keep your audio no louder than you need to hear the content.
+        <p>
+        <button id='endSoundTestButton' onclick='dismissPopup()'>Okay, let's go!</button>
+      </div>
+    </div>
+    <div id='header'>Discovery Zone Audio Tours</div>
     <div id='optionList'>
       <a href="space.html"><button class='option' id='space'>Space</button></a>
-      <button class='option' id='science'>Natural history</button>
+      <a href=""><button class='option' id='science'>Natural history</button></a>
       <button class='option' id='history'>History</button>
       <button class='option' id='project-planet'>Project Planet</button>
     </div>
   </body>
   <script>
+
+  // Check for options passed from previous page
+  var queryString = decodeURIComponent(window.location.search);
+
+  var searchParams = new URLSearchParams(queryString);
+  if(searchParams.has('skipAudioCheck')) {
+    dismissPopup()
+  }
+
+  function dismissPopup() {
+
+    // Hide the overlay
+
+    document.getElementById('overlay').style.display = 'none';
+  }
+
+  function resetButton() {
+
+    // Called after audio stops to reset the button text.
+
+    button = document.getElementById('testSoundButton');
+    button.innerHTML = 'Play again';
+  }
+
+  function playTestSound() {
+
+    sound = document.getElementById('testSound');
+    button = document.getElementById('testSoundButton');
+
+    sound.play();
+    button.innerHTML = 'Playing...';
+  }
 
   </script>
 

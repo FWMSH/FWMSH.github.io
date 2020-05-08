@@ -11,13 +11,13 @@
         font-family: Gotham-Book;
         src: url(Gotham-Book.otf);
       }
-      
+
       body {
-        background-color: purple;
+        background-color: #003066;
       }
       #header {
         height: 15%;
-        font-size: 100px;
+        font-size: 150px;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -25,7 +25,6 @@
         flex-direction: column;
         font-family: Gotham-Bold;
         color: white;
-        background-color: black;
       }
       #number-input {
         font-size: 150px;
@@ -47,21 +46,26 @@
         text-align: center;
         font-size: 100px;
         font-family: Gotham-Book;
+        border-radius: 40px;
       }
       #k_go {
-        background-color: green;
+        background-color: #009760;
       }
       #k_back {
-        background-color: red;
+        background-color: #ab0634;
       }
       #audioControlBar {
         display: flex;
+        justify-content: center;
+        align-content: center;
       }
       #clipName {
         font-size: 75px;
         color: white;
         font-family: Gotham-Book;
         padding-left: 20px;
+        text-align: center;
+        height: 10%;
       }
       .audioControl {
         font-size: 100px;
@@ -69,23 +73,42 @@
         margin-left: 10px;
         margin-right: 10px;
       }
+      #homeButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 75px;
+        background-color: #6e298d;
+        border-radius: 50px;
+        width: 400px;
+        height: 120px;
+        text-align: center;
+        margin-top: 100px;
+        border: 0px;
+      }
+      #bottomPane {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+      }
 
 
       * {
         -webkit-text-size-adjust: none;
+        touch-action: manipulation;
       }
     </style>
   </head>
   <body>
     <div id='header'>Space</div>
     <audio id='audio' onerror="handleAudioError()">
-      <source src='space-1.mp3' type="audio/mpeg">
+      <source src='space-intro.mp3' type="audio/mpeg">
     </audio>
     <div id='audioControlBar'>
-      <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
       <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
-      <div id='clipName'>Welcome to the space gallery!</div>
+      <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
     </div>
+    <div id='clipName'>Use the keypad to enter a label number</div>
     <div id='number-input'>_</div>
     <div id='keypad'>
       <div class='keypad-button' id='k1' onclick="pressKey(1)">1</div>
@@ -100,6 +123,9 @@
       <div class='keypad-button' id='k_back' onclick="pressKey(-1)"><--</div>
       <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
       <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
+    </div>
+    <div id=bottomPane>
+      <a href='index.html?skipAudioCheck'><button id='homeButton'>Go home</button></a>
     </div>
   </body>
   <script>
