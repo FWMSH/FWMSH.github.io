@@ -112,16 +112,16 @@
         align-content: center;
         width: 100%;
       }
-      .objectLabel{
+      .objectName{
         font-size: 75px;
         color: white;
         font-family: Gotham-Book;
         padding-left: 20px;
         text-align: center;
-        width: 100%;
       }
       .objectImage{
-        width: 90%;
+        width: auto;
+        max-height: 40%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -133,7 +133,15 @@
         padding-top: 10px;
         padding-left: 20px;
       }
-
+      .objectText {
+        font-size: 55px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-top: 10px;
+        padding-left: 20px;
+        overflow-y: auto;
+        height: 40%;
+      }
 
       * {
         -webkit-text-size-adjust: none;
@@ -176,7 +184,21 @@
     var audioState = 'pause';
 
     var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg', "The suit jacket as seen in the Museum's collection"),
-                    '2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),};
+                    '2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),
+                    '3': generateImageTextBlock('Space Shuttle Coveralls', 'space-3.jpg', "An astronaut wearing the coveralls on STS-005", "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes.")};
+
+    function generateImageTextBlock(objName, imgName, imgCaption, objText) {
+
+      // Function to return an HTML block with an image, caption, and text
+      // nicely formatted.
+
+      html = "<div class='objectName'>"+objName+"</div>"
+      html += "<img class='objectImage' src=" + imgName + ">"
+      html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
+      html += '<hr>' + "<div class='objectText'>" + objText + "</div>"
+
+      return(html)
+    }
 
     function generateAudioOnlyBlock(objName) {
 
@@ -189,15 +211,15 @@
         <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
       </div><br>
       `
-      html += "<div class='objectLabel''>"+objName+"</div>"
+      html += "<div class='objectName'>"+objName+"</div>"
 
       return(html)
     }
 
     function generateAudioImageBlock(objName, imgName, imgCaption) {
 
-      // Function to return an HTML block with the artifact name and the controls
-      // for audio playback.
+      // Function to return an HTML block with the artifact name, the controls
+      // for audio playback, and an image with its caption.
 
       html = `
       <div id='audioControlBar'>
@@ -205,7 +227,7 @@
         <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
       </div>
       `
-      html += "<div class='objectLabel'>"+objName+"</div>"
+      html += "<div class='objectName'>"+objName+"</div>"
       html += "<img class='objectImage' src=" + imgName + ">"
       html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
 
@@ -214,8 +236,8 @@
 
     function generateAudioScriptBlock(objName, script) {
 
-      // Function to return an HTML block with the artifact name and the controls
-      // for audio playback.
+      // Function to return an HTML block with the artifact name, the controls
+      // for audio playback and a custom iframe. Cannot use <script> tags!
 
       html = `
       <div id='audioControlBar'>
@@ -223,7 +245,7 @@
         <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
       </div>
       `
-      html += "<div class='objectLabel''>"+objName+"</div>"
+      html += "<div class='objectName''>"+objName+"</div>"
       html += script
 
       return(html)
@@ -246,17 +268,22 @@
       audio = document.getElementById('audio');
       numLabel = document.getElementById('number-input');
 
-      if (numLabel.innerHTML != '_') {
+      if (numLabel.innerHTML != '_') { // User has entered a number
 
-        try {
+        try { // Check the dict for the given number
           document.getElementById('contentPane').innerHTML = nameDict[numLabel.innerHTML]
         }
         catch(err) {
           document.getElementById('contentPane').innerHTML = ''
         }
 
-        audio.src = 'space-' + numLabel.innerHTML + '.mp3';
-        setAudioState('play');
+        // If the playPauseButton exists, it means that this number has an
+        // audio file. Load it and play it.
+        if (document.getElementById('playPauseButton')) {
+          audio.src = 'space-' + numLabel.innerHTML + '.mp3';
+          setAudioState('play');
+        }
+
 
         document.getElementById('inputPane').style.display = 'none';
         document.getElementById('contentPane').style.display = 'block';
@@ -291,11 +318,15 @@
 
       if (val == 'play') {
         audioState = 'play';
-        document.getElementById('playPauseButton').innerHTML = '⏸️';
+        if (document.getElementById('playPauseButton')) {
+          document.getElementById('playPauseButton').innerHTML = '⏸️';
+        }
         audio.play();
       } else if (val == 'pause'){
         audioState = 'pause';
-        document.getElementById('playPauseButton').innerHTML = '▶️';
+        if (document.getElementById('playPauseButton')) {
+          document.getElementById('playPauseButton').innerHTML = '▶️';
+        }
         audio.pause();
       } else if (val == 'reset') {
           audio.currentTime = 0;
