@@ -118,7 +118,20 @@
         font-family: Gotham-Book;
         padding-left: 20px;
         text-align: center;
-        min-height: 10%;
+        width: 100%;
+      }
+      .objectImage{
+        width: 90%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .objectImageCaption{
+        font-size: 55px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-top: 10px;
+        padding-left: 20px;
       }
 
 
@@ -162,7 +175,7 @@
 
     var audioState = 'pause';
 
-    var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg'),
+    var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg', "The suit jacket as seen in the Museum's collection"),
                     '2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),};
 
     function generateAudioOnlyBlock(objName) {
@@ -174,14 +187,14 @@
       <div id='audioControlBar'>
         <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
         <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
-      </div>
+      </div><br>
       `
       html += "<div class='objectLabel''>"+objName+"</div>"
 
       return(html)
     }
 
-    function generateAudioImageBlock(objName, imgName) {
+    function generateAudioImageBlock(objName, imgName, imgCaption) {
 
       // Function to return an HTML block with the artifact name and the controls
       // for audio playback.
@@ -192,8 +205,9 @@
         <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
       </div>
       `
-      html += "<div class='objectLabel''>"+objName+"</div>"
-      html += "<img src=" + imgName + ">"
+      html += "<div class='objectLabel'>"+objName+"</div>"
+      html += "<img class='objectImage' src=" + imgName + ">"
+      html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
 
       return(html)
     }
