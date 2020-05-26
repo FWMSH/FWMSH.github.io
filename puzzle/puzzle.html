@@ -35,7 +35,6 @@
         width: 450px;
         height: 140px;
         text-align: center;
-        margin-top: 100px;
         border: 0px;
         margin-left: 10px;
         margin-right: 10px;
@@ -45,14 +44,43 @@
         width: 95%;
         margin: 0 auto;
         padding: 0px;
-        height: 70%;
+        height: 60%;
       }
       .tile {
         width: 300px;
         position: absolute;
         transition: all 200ms;
       }
-      #bottomPane {
+      #fullImage {
+        width: 900px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        transition: all 200ms;
+      }
+      #caption {
+        font-size: 55px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-top: 10px;
+        padding-left: 20px;
+        overflow-y: auto;
+        margin-bottom: 100px;
+      }
+      #reset {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #6e298d;
+        border-radius: 50px;
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .centeredPane {
         display: flex;
         justify-content: center;
         align-content: center;
@@ -69,25 +97,65 @@
     <div id='header'>Puzzle</div>
     </div>
     <div id='playspace'></div>
-    <div id=bottomPane>
+    <div id='caption'>
+      Tap a piece next to the empty slot to slide it into that position!
+    </div>
+    <div class='centeredPane'>
       <a href='../index.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
     </div>
 </body>
 <script>
 
-  var nrow = 3;
-  var ncol = 3;
+  let answers = { 'MMU': ["", "8", "7", "6", "5", "4", "3", "2", "1"],
+                  'DinoLabs': ["8", "7", "6", "5", "4", "3", "2", "1", ""]}
+
+  // Select the initial puzzle. Each puzzle is a folder of 8 images
+  // [1.jpg, ...] in a directory with the matching name from the
+  // answer key
+  var puzzle = ''
 
   var playspace = document.getElementById('playspace');
 
+  var nrow = 3;
+  var ncol = 3;
+
+  // Store which element is in each position ftom
+  // 0 (top left) to 8 (bottom right)
+  var map = new Array(nrow*ncol);
+  var n_moves = 0;
+
   // Store the location of the missing tile
-  var gap_row = 2;
-  var gap_col = 2;
+  var gap_row = nrow-1;
+  var gap_col = ncol-1;
+
+  function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+  }
+
+  function victory() {
+
+    // Function to show the victory screen and offer a new puzzle
+
+    playspace.innerHTML = "<img id='fullImage' src='tiles/"+puzzle+'/'+puzzle+'.jpg'+"'>"
+    document.getElementById('caption').innerHTML = "<div class='centeredPane'><button id='reset' onclick='newGame()'>New Puzzle</button></div>";
+  }
 
   var tileSlider = function (tile, i, j) {
 
+    // This object holds the current position of a piece and handles moving it
+    // Once the piece is moved, it checks for the win condition
+
     var row = i;
     var col = j;
+    var id = tile.src.slice(-5,-4);
+    map[3*row + col] = id; // initial position
 
     var move = function() {
 
@@ -95,33 +163,76 @@
       var colOffset = Math.abs(gap_col - col);
 
       if ((rowOffset + colOffset) == 1) { // tile is adjacent to gap
+        n_moves += 1;
         tile.style.top = (300*gap_row).toString() + 'px';
         tile.style.left = (300*gap_col).toString() + 'px';
 
         // Swap the two coordinates
         [row, gap_row] = [gap_row, row];
         [col, gap_col] = [gap_col, col];
+
+        // Update position
+        map[3*row + col] = id;
+        map[3*gap_row + gap_col] = '';
+        console.log(map);
+        // Check if the puzzle has been solved
+        var solved = true;
+        for (i=0; i<nrow*ncol-1; i++) {
+          if (map[i] != (answers[puzzle])[i]) {
+            solved = false;
+          }
+        }
+        if (solved){
+          victory();
+        }
       }
     }
     return(move)
   }
 
-  // Place the tiles initially
-  tot = 0;
-  for (i=0; i < nrow; i++) {
-    for (j=0; j < ncol; j++) {
-      tot += 1;
-      if (tot < nrow*ncol) {
-        img = document.createElement('img');
-        img.setAttribute('class', 'tile');
-        img.onclick = tileSlider(img, i, j);
-        img.style.top = (300*i).toString()+'px';
-        img.style.left = (300*j).toString()+'px';
-        img.src = 'tiles/' + tot.toString() + '.jpg';
-        playspace.appendChild(img);
+  function buildPuzzle(puzzle) {
+
+    // Place the tiles initially
+
+    tot = 0;
+    for (i=0; i < nrow; i++) {
+      for (j=0; j < ncol; j++) {
+        tot += 1;
+        if (tot < nrow*ncol) {
+          img = document.createElement('img');
+          img.src = 'tiles/'+ puzzle + '/' + tot.toString() + '.jpg';
+          img.setAttribute('class', 'tile');
+          img.onclick = tileSlider(img, i, j);
+          img.style.top = (300*i).toString()+'px';
+          img.style.left = (300*j).toString()+'px';
+          playspace.appendChild(img);
+        }
       }
     }
   }
+
+  function newGame() {
+
+    // Choose a new puzzle and set everything up
+
+    playspace.innerHTML = '';
+    var old_puzzle = puzzle;
+    while (puzzle == old_puzzle) { // Make sure we get a new puzzle
+      puzzle = shuffle(Object.keys(answers))[0];
+    }
+
+    map = new Array(nrow*ncol);
+    n_moves = 0;
+    gap_row = nrow-1;
+    gap_col = ncol-1;
+
+    document.getElementById('caption').innerHTML = 'Tap a piece next to the empty slot to slide it into that position!'
+
+    buildPuzzle(puzzle);
+  }
+
+  newGame();
+  //victory();
 
 </script>
 
