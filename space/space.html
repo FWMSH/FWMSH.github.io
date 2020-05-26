@@ -80,11 +80,13 @@
         font-size: 50px;
         background-color: #6e298d;
         border-radius: 50px;
-        width: 500px;
+        width: 450px;
         height: 140px;
         text-align: center;
         margin-top: 100px;
         border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
       }
       #showInput {
         color: white;
@@ -92,11 +94,13 @@
         font-size: 50px;
         background-color: #db0961;
         border-radius: 50px;
-        width: 500px;
+        width: 450px;
         height: 140px;
         text-align: center;
         margin-top: 100px;
         border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
       }
       #contentPane {
         height: 70%;
@@ -175,7 +179,7 @@
       </div>
     </div>
     <div id=bottomPane>
-      <a href='index.html?skipAudioCheck'><button id='homeButton'>Go home</button></a>
+      <a href='../index.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
       <button id='showInput' onclick="showInputPane()">New Artifact</button>
     </div>
   </body>
@@ -185,7 +189,18 @@
 
     var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg', "The suit jacket as seen in the Museum's collection"),
                     '2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),
-                    '3': generateImageTextBlock('Space Shuttle Coveralls', 'space-3.jpg', "An astronaut wearing the coveralls on STS-005", "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes.")};
+                    '3': generateImageTextBlock('Space Shuttle Coveralls', 'space-3.jpg', "An astronaut wearing the coveralls on STS-005", "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes."),
+                    'error': generateTextOnlyBlock('Artifact Not Found!', "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!" )};
+
+    function generateTextOnlyBlock(objName, objText) {
+
+      // Function to show only text about an object. This should be used rarely.
+
+      html = "<div class='objectName'>"+objName+"</div>"
+      html += '<br>' + "<div class='objectText'>" + objText + "</div>"
+
+      return(html)
+    }
 
     function generateImageTextBlock(objName, imgName, imgCaption, objText) {
 
@@ -270,11 +285,11 @@
 
       if (numLabel.innerHTML != '_') { // User has entered a number
 
-        try { // Check the dict for the given number
-          document.getElementById('contentPane').innerHTML = nameDict[numLabel.innerHTML]
+        if (numLabel.innerHTML in nameDict) { // Check the dict for the given number
+          document.getElementById('contentPane').innerHTML = nameDict[numLabel.innerHTML];
         }
-        catch(err) {
-          document.getElementById('contentPane').innerHTML = ''
+        else {
+          document.getElementById('contentPane').innerHTML = nameDict['error'];
         }
 
         // If the playPauseButton exists, it means that this number has an
@@ -287,6 +302,8 @@
 
         document.getElementById('inputPane').style.display = 'none';
         document.getElementById('contentPane').style.display = 'block';
+        console.log(document.getElementById('contentPane').offsetHeight);
+        console.log(document.getElementById('contentPane').scrollHeight);
 
         numLabel.innerHTML = '_';
       }
