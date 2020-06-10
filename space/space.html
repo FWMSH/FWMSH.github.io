@@ -146,16 +146,63 @@
         overflow-y: auto;
         height: 40%;
       }
+      #togglePane {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        width: 100%;
+      }
+      #toggles {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        margin-top: -50px;
+      }
+      .toggleOn {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #009760;
+        border-radius: 50px;
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        margin-top: 100px;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .toggleOff {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: gray;
+        border-radius: 50px;
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        margin-top: 100px;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
 
       * {
         -webkit-text-size-adjust: none;
         touch-action: manipulation;
       }
+      button:active {
+        outline: none;
+        border: none;
+      }
+
+button:focus {outline:0;}
     </style>
   </head>
   <body>
-    <div id='header'>Space</div>
-    <audio id='audio' onerror="handleAudioError()">
+    <div id='header'>Launchpad</div>
+    <audio id='audio' onerror="handleAudioError()" onended="setAudioState('pause')">
       <source src='space-intro.mp3' type="audio/mpeg">
     </audio>
     <div id='contentPane'>
@@ -177,6 +224,12 @@
         <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
         <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
       </div>
+      <div id='togglePane'>
+        <div id='toggles'>
+          <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
+          <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
+        </div>
+      </div>
     </div>
     <div id=bottomPane>
       <a href='../index.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
@@ -185,19 +238,66 @@
   </body>
   <script>
 
+    var mediaType = 'text';
     var audioState = 'pause';
 
-    var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg', "The suit jacket as seen in the Museum's collection"),
-                    '2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),
-                    '3': generateImageTextBlock('Space Shuttle Coveralls', 'space-3.jpg', "An astronaut wearing the coveralls on STS-005", "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes."),
-                    'error': generateTextOnlyBlock('Artifact Not Found!', "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!" )};
+    var nameDict = {
+          '1': 'Apollo Suit Prototype',
+          '2': 'Mylar from Apollo 11',
+          '3': 'Space Shuttle Coveralls',
+          'error': 'Artifact Not Found!'
+        };
+
+    var imageDict = {
+          '1': 'space-1.jpg',
+          '2': '',
+          '3': 'space-3.jpg',
+          'error': ''
+        };
+
+    var captionDict = {
+      '1': "The suit jacket as seen in the Museum's collection",
+      '2': '',
+      '3': "An astronaut wearing the coveralls on STS-005",
+      'error': ''
+    }
+
+    var textDict = {
+          '1': 'This prototype spacesuit was developed around 1965 to solve a problem encountered by the early spacewalking astronauts: heat. The spacesuit was designed to be extremely cool, pulling heat away from the astronaut and preventing them from getting overheated.',
+          '2': "This small piece of Mylar travelled to the Moon as part of the Apollo 11 Command Module. It was located on the outside of the Command Module and would’ve protected it from the heat of the Sun. So how did we end up with it? After the Command Module splashed back down on Earth, engineers stripped away pieces of the foil to take home as souvenirs. Two of those pieces eventually ended up in our collection.",
+          '3': "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes.",
+          'error': "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!"
+        };
+
+
+    //var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg', "The suit jacket as seen in the Museum's collection"),
+                    //'2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),
+                    //'3': generateImageTextBlock('Space Shuttle Coveralls', 'space-3.jpg', "An astronaut wearing the coveralls on STS-005", "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes."),
+                    //'error': generateTextOnlyBlock('Artifact Not Found!', "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!" )};
+
+    function toggleMedia(type) {
+
+      // Function to switch between displaying text or the audio guide.
+
+      var textToggle = document.getElementById('textToggle');
+      var audioToggle = document.getElementById('audioToggle');
+
+      if (type == 'text') {
+        textToggle.className = 'toggleOn';
+        audioToggle.className = 'toggleOff';
+      } else if (type == 'audio') {
+        textToggle.className = 'toggleOff';
+        audioToggle.className = 'toggleOn';
+      }
+      mediaType = type;
+    }
 
     function generateTextOnlyBlock(objName, objText) {
 
       // Function to show only text about an object. This should be used rarely.
 
       html = "<div class='objectName'>"+objName+"</div>"
-      html += '<br>' + "<div class='objectText'>" + objText + "</div>"
+      html += '<br>' + "<div class='objectText' style='height: 90%;'>" + objText + "</div>"
 
       return(html)
     }
@@ -283,27 +383,46 @@
       audio = document.getElementById('audio');
       numLabel = document.getElementById('number-input');
 
-      if (numLabel.innerHTML != '_') { // User has entered a number
+      var html = '';
+      var num = parseInt(numLabel.innerHTML).toString() // To strip and leading 0
 
-        if (numLabel.innerHTML in nameDict) { // Check the dict for the given number
-          document.getElementById('contentPane').innerHTML = nameDict[numLabel.innerHTML];
+      if (isFinite(num)) { // User has entered a number
+
+        if (num in nameDict) { // Check the dict for the given number
+
+          if (mediaType == 'text') { // Build a text page
+
+            if (imageDict[num] != '') { // We have a picture
+              html = generateImageTextBlock(nameDict[num], imageDict[num], captionDict[num], textDict[num]);
+            } else { // No picture
+              html = generateTextOnlyBlock(nameDict[num],textDict[num]);
+            }
+
+          } else if (mediaType == 'audio') { // Build an audio page
+
+            if (imageDict[num] != '') { // We have a picture
+              html = generateAudioImageBlock(nameDict[num], imageDict[num], captionDict[num]);
+            } else { // No picture
+              html = generateAudioOnlyBlock(nameDict[num]);
+          }
+        }
+
+          document.getElementById('contentPane').innerHTML = html;
         }
         else {
-          document.getElementById('contentPane').innerHTML = nameDict['error'];
+          document.getElementById('contentPane').innerHTML = generateTextOnlyBlock(nameDict['error'], textDict['error']);
         }
 
-        // If the playPauseButton exists, it means that this number has an
+        // If the playPauseButton exists, it means that this page has an
         // audio file. Load it and play it.
         if (document.getElementById('playPauseButton')) {
-          audio.src = 'space-' + numLabel.innerHTML + '.mp3';
+          audio.src = 'space-' + num + '.mp3';
           setAudioState('play');
         }
 
 
         document.getElementById('inputPane').style.display = 'none';
         document.getElementById('contentPane').style.display = 'block';
-        console.log(document.getElementById('contentPane').offsetHeight);
-        console.log(document.getElementById('contentPane').scrollHeight);
 
         numLabel.innerHTML = '_';
       }
