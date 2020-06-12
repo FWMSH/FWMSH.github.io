@@ -11,6 +11,8 @@
       gtag('config', 'UA-169285999-1');
     </script>
 
+    <title>Welcome!</title>
+
     <style>
 
       @font-face {
@@ -27,41 +29,61 @@
       }
 
       #header {
-        min-height: 15%;
-        font-size: 100px;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        height: 15%;
+      }
+      #greeting {
+        display: none;
+      }
+      .text {
+        color: white;
+        font-size: 60px;
+        font-family: Gotham-Book;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
+      .toggles {
         display: flex;
         justify-content: center;
         align-content: center;
-        flex-direction: column;
-        font-family: Gotham-Bold;
+        width: 100%;
+        margin-top: -50px;
+      }
+      .toggleOn {
         color: white;
-      }
-      #space {
-      }
-      #history {
-      }
-      #science {
-      }
-      #project-planet {
-      }
-      .option {
-        width: 95%;
-        font-size: 80px;
-        color: white;
-        min-height: 10%;
         font-family: Gotham-Book;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: 20px;
-        margin-right: 20px;
-        background-color: #6e298d;
+        font-size: 50px;
+        background-color: #009760;
+        border-radius: 50px;
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        margin-top: 100px;
         border: 0px;
-        border-radius: 100px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .toggleOff {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: gray;
+        border-radius: 50px;
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        margin-top: 100px;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #mediaToggles{
+        display: none;
       }
       #overlay {
         position: absolute;
-        display: block;
+        display: none;
         width: 100%;
         height: 100%;
         top: 0;
@@ -71,13 +93,11 @@
         z-index: 0;
         margin-left: auto;
         margin-right: auto;
+        padding-top: 30%;
         background-color: rgba(0,0,0,0.9);
       }
       #audio-check {
-        color: white;
         text-align: center;
-        font-family: Gotham-Book;
-        font-size: 75px;
         margin-top: 10%;
         padding: 25px;
       }
@@ -101,37 +121,73 @@
         height: 120px;
         border: 0px;
       }
+      #goButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 75px;
+        background-color: #009760;
+        border-radius: 50px;
+        width: 600px;
+        height: 140px;
+        border: 0px;
+      }
+      #goPane {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        margin-top: 100px;
+        display: none;
+      }
 
       * {
         -webkit-text-size-adjust: none;
         touch-action: manipulation;
       }
+      button:active {
+        outline: none;
+        border: none;
+      }
     </style>
   </head>
   <body>
+    <div id='header'><img src='FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div>
+
+    <div id='langToggles' class=toggles>
+      <button id='enToggle' class='toggleOff' onclick="toggleLang('en')">English</button>
+      <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button>
+    </div>
+    <div id='greeting' class='text'>
+      <p>
+      <h2>Welcome!</h2> This app will be your companion during your Museum visit. It can provide you with extra info about the objects you'll see today.
+      <p> Would you prefer to listen or read?
+    </div>
+    <div id='mediaToggles' class='toggles'>
+      <button id='textToggle' class='toggleOff' onclick="toggleMedia('text')">Read</button>
+      <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Listen</button>
+    </div>
+
+    <div id='goPane'>
+      <button id='goButton' onclick="switchPage('home.html')">Let's Go!</button>
+    </div>
+
     <div id='overlay'>
       <div id='audio-check'>
         <audio id='testSound' onended='resetButton()'>
           <source src='sound-test.wav'>
         </audio>
-        <p>
-        Before we get started, let's check your audio level.
-        <p>
+        <div class='text' id='levelCheckText'>
+          Let's check your audio level.
+          <p>
+        </div>
         <button id='testSoundButton' onclick='playTestSound()'>Play test sound</button>
-        <p>
-        Please be considerate of other guests and keep your audio no louder than you need to hear the content.
-        <p>
-        <button id='endSoundTestButton' onclick='dismissPopup()'>Okay, let's go!</button>
+        <div class='text' id='soundCourtesy'>
+          <p>
+          Please be considerate of other guests and keep your audio no louder than you need to hear the content.
+          <p>
+        </div>
+        <button id='endSoundTestButton' onclick='dismissPopup()'>Sounds good!</button>
       </div>
-    </div>
-    <div id='header'>Discovery Zone</div>
-    <div id='optionList'>
-      <button class='option' id='space' onclick='switchPage("space/space.html")'>Launchpad</button>
-      <button class='option' id='science'>Natural history</button>
-      <button class='option' id='history'>History</button>
-      <button class='option' id='project-planet'>Project Planet</button>
-      <button class='option' id='innovation'>Main Gallery</button>
-      <a href="puzzle/puzzle.html"><button class='option' id='space'>Puzzle</button></a>
     </div>
   </body>
   <script>
@@ -152,6 +208,78 @@
   }
   if(searchParams.has('mediaType')) {
     mediaType = searchParams.get('mediaType');
+  }
+
+  function toggleMedia(type) {
+
+    // Function to switch between displaying text or the audio guide.
+
+    var textToggle = document.getElementById('textToggle');
+    var audioToggle = document.getElementById('audioToggle');
+
+    if (type == 'text') {
+      textToggle.className = 'toggleOn';
+      audioToggle.className = 'toggleOff';
+    } else if (type == 'audio') {
+      textToggle.className = 'toggleOff';
+      audioToggle.className = 'toggleOn';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    mediaType = type;
+    document.getElementById('goPane').style.display = 'flex';
+  }
+
+  function toggleLang(newLang) {
+
+    // Function to select a langauge and switch the dictionaries over
+
+    var enToggle = document.getElementById('enToggle');
+    var esToggle = document.getElementById('esToggle');
+    var textToggle = document.getElementById('textToggle');
+    var audioToggle = document.getElementById('audioToggle');
+    var greeting = document.getElementById('greeting');
+    var levelCheckText = document.getElementById('levelCheckText');
+    var soundCourtesy = document.getElementById('soundCourtesy');
+    var testSoundButton = document.getElementById('testSoundButton');
+    var endSoundTestButton = document.getElementById('endSoundTestButton');
+    var goButton = document.getElementById('goButton');
+
+    lang = newLang;
+
+    if (lang == 'en') {
+      enToggle.className = 'toggleOn';
+      esToggle.className = 'toggleOff';
+      textToggle.innerHTML = 'Read';
+      audioToggle.innerHTML = 'Listen';
+      greeting.innerHTML = `
+      <p>
+      <h2>Welcome!</h2> This app will be your companion during your Museum visit. It can provide you with extra info about the objects you'll see today.
+      <p> Would you prefer to listen or read?
+      `;
+      levelCheckText.innerHTML = "Let's check your audio level.<p>";
+      soundCourtesy.innerHTML = "<p>Please be considerate of other guests and keep your audio no louder than you need to hear the content.<p>";
+      testSoundButton.innerHTML = 'Play test sound';
+      endSoundTestButton.innerHTML = 'Sounds good!';
+      goButton.innerHTML = "Let's go!";
+
+    } else if (lang == 'es') {
+      enToggle.className = 'toggleOff';
+      esToggle.className = 'toggleOn';
+      textToggle.innerHTML = 'Lee';
+      audioToggle.innerHTML = 'Escucha';
+      greeting.innerHTML = `
+      <p>
+      <h2>¡Bienvenidos!</h2> Esta aplicación será su acompañante durante su visita al museo. Puede proporcionarle información adicional sobre los objetos que verá hoy.
+      <p> ¿Prefieres escuchar o leer?
+      `;
+      levelCheckText.innerHTML = "Verifiquemos su nivel de audio.<p>";
+      soundCourtesy.innerHTML = "<p>Sea considerado con otros invitados y mantenga su audio no más alto de lo que necesita para escuchar el contenido.</p>";
+      testSoundButton.innerHTML = 'Reproducir sonido';
+      endSoundTestButton.innerHTML = 'Suena bueno!';
+      goButton.innerHTML = "¡Vamonos!";
+    }
+    document.getElementById('greeting').style.display = 'block';
+    document.getElementById('mediaToggles').style.display = 'flex';
   }
 
   function switchPage(page) {

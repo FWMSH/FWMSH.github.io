@@ -11,6 +11,8 @@
       gtag('config', 'UA-169285999-1');
     </script>
 
+    <title>Launchpad</title>
+
     <style>
 
       @font-face {
@@ -251,7 +253,7 @@ button:focus {outline:0;}
       </div>
     </div>
     <div id=bottomPane>
-      <a id='homeLink' href='../index.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
+      <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
       <button id='showInput' onclick="showInputPane()">New Artifact</button>
     </div>
   </body>
@@ -328,7 +330,7 @@ button:focus {outline:0;}
       // Function to build a new homelink based on the value of the user-selectable
       // parameters
 
-      document.getElementById('homeLink').href = '../index.html?skipAudioCheck'+'&lang='+lang+'&mediaType='+mediaType;
+      document.getElementById('homeLink').href = '../index.html?lang='+lang+'&mediaType='+mediaType;
 
     }
 

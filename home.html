@@ -1,0 +1,121 @@
+<!DOCTYPE html/css>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169285999-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-169285999-1');
+    </script>
+    <title>Choose a Gallery</title>
+
+    <style>
+
+      @font-face {
+      font-family: Gotham-Bold;
+      src: url(Gotham-Bold.otf);
+      }
+      @font-face {
+        font-family: Gotham-Book;
+        src: url(Gotham-Book.otf);
+      }
+
+      body {
+        background-color: #003066;
+      }
+
+      #header {
+        display: flex;
+        justify-content: center;
+        height: 15%;
+      }
+      #space {
+      }
+      #history {
+      }
+      #science {
+      }
+      #project-planet {
+      }
+      .option {
+        width: 95%;
+        font-size: 80px;
+        color: white;
+        min-height: 10%;
+        font-family: Gotham-Book;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: #6e298d;
+        border: 0px;
+        border-radius: 100px;
+      }
+      #overlay {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(0,0,0,0.9);
+      }
+
+      * {
+        -webkit-text-size-adjust: none;
+        touch-action: manipulation;
+      }
+      button:active {
+        outline: none;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='header'><img src='FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div>
+    <div id='optionList'>
+      <button class='option' id='space' onclick='switchPage("space/space.html")'>Launchpad</button>
+      <button class='option' id='science'>Natural history</button>
+      <button class='option' id='history'>History</button>
+      <button class='option' id='project-planet'>Project Planet</button>
+      <button class='option' id='innovation'>Main Gallery</button>
+      <a href="puzzle/puzzle.html"><button class='option' id='space'>Puzzle</button></a>
+    </div>
+  </body>
+  <script>
+
+  // User preferences to pass back and forth with the other pages
+  var lang = 'en';
+  var mediaType = 'text';
+
+  // Check for options passed from previous page
+  var queryString = decodeURIComponent(window.location.search);
+
+  var searchParams = new URLSearchParams(queryString);
+  if(searchParams.has('lang')) {
+    lang = searchParams.get('lang');
+  }
+  if(searchParams.has('mediaType')) {
+    mediaType = searchParams.get('mediaType');
+  }
+
+  function switchPage(page) {
+
+    // Function to switch pages while appending the user preferences
+
+    var link = page + '?lang='+lang+'&mediaType='+mediaType;
+
+    window.location.href = link;
+  }
+
+  </script>
+
+</html>
