@@ -32,6 +32,8 @@
         display: flex;
         justify-content: center;
         height: 15%;
+        position: fixed;
+        top: 10px;
       }
       #greeting {
         display: none;
@@ -77,6 +79,9 @@
         border: 0px;
         margin-left: 10px;
         margin-right: 10px;
+      }
+      #langToggles{
+        padding-top: 300px;;
       }
       #mediaToggles{
         display: none;
@@ -227,6 +232,7 @@
     }
     mediaType = type;
     document.getElementById('goPane').style.display = 'flex';
+    window.scrollTo(0,document.body.scrollHeight);
   }
 
   function toggleLang(newLang) {
