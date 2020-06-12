@@ -71,12 +71,17 @@
         align-content: center;
       }
       #inputLabel {
-        font-size: 75px;
         color: white;
         font-family: Gotham-Book;
         padding-left: 20px;
         text-align: center;
-        min-height: 10%;
+        height: 15%;
+      }
+      .inputLabelEN {
+        font-size: 75px;
+      }
+      .inputLabelES {
+        font-size: 65px;
       }
       .audioControl {
         font-size: 100px;
@@ -93,7 +98,6 @@
         width: 450px;
         height: 140px;
         text-align: center;
-        margin-top: 100px;
         border: 0px;
         margin-left: 10px;
         margin-right: 10px;
@@ -107,7 +111,6 @@
         width: 450px;
         height: 140px;
         text-align: center;
-        margin-top: 100px;
         border: 0px;
         margin-left: 10px;
         margin-right: 10px;
@@ -125,6 +128,8 @@
         justify-content: center;
         align-content: center;
         width: 100%;
+        position: fixed;
+        bottom: 5%;
       }
       .objectName{
         font-size: 75px;
@@ -162,7 +167,7 @@
         font-size: 50px;
         width: 100%;
       }
-      #toggles {
+      .toggles {
         display: flex;
         justify-content: center;
         align-content: center;
@@ -218,7 +223,7 @@ button:focus {outline:0;}
     <div id='contentPane'>
     </div>
     <div id='inputPane'>
-      <div id='inputLabel'>Use the keypad to enter a label number</div>
+      <div id='inputLabel' class='inputLabelEN'>Use the keypad to enter a label number</div>
       <div id='number-input'>_</div>
       <div id='keypad'>
         <div class='keypad-button' id='k1' onclick="pressKey(1)">1</div>
@@ -235,14 +240,18 @@ button:focus {outline:0;}
         <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
       </div>
       <div id='togglePane'>
-        <div id='toggles'>
+        <div id='mediaToggles' class='toggles'>
           <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
           <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
+        </div>
+        <div id='langToggles' class=toggles>
+          <button id='enToggle' class='toggleOn' onclick="toggleLang('en')">English</button>
+          <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button>
         </div>
       </div>
     </div>
     <div id=bottomPane>
-      <a href='../index.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
+      <a id='homeLink' href='../index.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
       <button id='showInput' onclick="showInputPane()">New Artifact</button>
     </div>
   </body>
@@ -250,40 +259,78 @@ button:focus {outline:0;}
 
     var mediaType = 'text';
     var audioState = 'pause';
+    var lang = 'en';
 
-    var nameDict = {
+    var nameDict_en = {
           '1': 'Apollo Suit Prototype',
           '2': 'Mylar from Apollo 11',
           '3': 'Space Shuttle Coveralls',
           'error': 'Artifact Not Found!'
         };
 
-    var imageDict = {
+    var imageDict_en = {
           '1': 'space-1.jpg',
           '2': '',
           '3': 'space-3.jpg',
           'error': ''
         };
 
-    var captionDict = {
-      '1': "The suit jacket as seen in the Museum's collection",
+    var captionDict_en = {
+      '1': "The suit jacket as seen in the Museum's collection.",
       '2': '',
-      '3': "An astronaut wearing the coveralls on STS-005",
+      '3': "An astronaut wearing the coveralls on STS-005.",
       'error': ''
     }
 
-    var textDict = {
+    var textDict_en = {
           '1': 'This prototype spacesuit was developed around 1965 to solve a problem encountered by the early spacewalking astronauts: heat. The spacesuit was designed to be extremely cool, pulling heat away from the astronaut and preventing them from getting overheated.',
           '2': "This small piece of Mylar travelled to the Moon as part of the Apollo 11 Command Module. It was located on the outside of the Command Module and would’ve protected it from the heat of the Sun. So how did we end up with it? After the Command Module splashed back down on Earth, engineers stripped away pieces of the foil to take home as souvenirs. Two of those pieces eventually ended up in our collection.",
           '3': "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes.",
           'error': "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!"
         };
 
+    var nameDict_es = {
+          '1': 'Prototipo de traje de Apolo',
+          '2': 'Mylar del Apolo 11',
+          '3': 'Overol de transbordador espacial',
+          'error': '¡Artefacto no encontrado!'
+        };
 
-    //var nameDict = {'1': generateAudioImageBlock('Apollo Suit Prototype', 'space-1.jpg', "The suit jacket as seen in the Museum's collection"),
-                    //'2': generateAudioScriptBlock('Mylar from Apollo 11', '<iframe src="https://www.theasys.io/viewer/P0r8IaHe0g6vuEekcFdNuX6oTDp5Kq" allowfullscreen="true" frameborder="0" scrolling="no" allow="vr;gyroscope;accelerometer" height="1000" style="width:100%;border:none;"></iframe>'),
-                    //'3': generateImageTextBlock('Space Shuttle Coveralls', 'space-3.jpg', "An astronaut wearing the coveralls on STS-005", "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes."),
-                    //'error': generateTextOnlyBlock('Artifact Not Found!', "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!" )};
+    var imageDict_es = {
+          '1': 'space-1.jpg',
+          '2': '',
+          '3': 'space-3.jpg',
+          'error': ''
+        };
+
+    var captionDict_es = {
+      '1': "La chaqueta del traje como se ve en la colección del museo.",
+      '2': '',
+      '3': "Un astronauta vistiendo el overol en STS-005.",
+      'error': ''
+    }
+
+    var textDict_es = {
+          '1': 'Este prototipo de traje espacial se desarrolló alrededor de 1965 para resolver un problema que encontraron los primeros astronautas en la caminata espacial: el calor. El traje espacial fue diseñado para ser extremadamente frío, alejando el calor del astronauta y evitando que se sobrecaliente.',
+          '2': "Este pequeño pedazo de Mylar viajó a la Luna como parte del Módulo de Comando Apolo 11. Estaba ubicado en el exterior del Módulo de Comando y lo habría protegido del calor del Sol. Entonces, ¿cómo terminamos con eso? Después de que el Módulo de Comando volviera a caer sobre la Tierra, los ingenieros quitaron pedazos de la lámina para llevarlos a casa como recuerdos. Dos de esas piezas finalmente terminaron en nuestra colección.",
+          '3': "Estos overoles fueron fabricados para su uso en las primeras misiones del transbordador espacial. La tela está recubierta de teflón, lo que los hace extremadamente resbaladizos. Esta suavidad facilitó que los astronautas se pusieran los overoles sobre la ropa. Un traje como este se usaba solo durante el lanzamiento y la reentrada; Durante las operaciones diarias, los astronautas pueden usar ropa de calle normal.",
+          'error': "Vaya, un artefacto con ese número no parece existir en esta galería. ¡Verifique que haya seleccionado la galería apropiada y luego intente con un número diferente!"
+        };
+
+    // Set the initial language to English
+    var nameDict = nameDict_en;
+    var imageDict = imageDict_en;
+    var captionDict = captionDict_en;
+    var textDict = textDict_en;
+
+    function updateHomeLink() {
+
+      // Function to build a new homelink based on the value of the user-selectable
+      // parameters
+
+      document.getElementById('homeLink').href = '../index.html?skipAudioCheck'+'&lang='+lang+'&mediaType='+mediaType;
+
+    }
 
     function toggleMedia(type) {
 
@@ -300,6 +347,55 @@ button:focus {outline:0;}
         audioToggle.className = 'toggleOn';
       }
       mediaType = type;
+      updateHomeLink();
+    }
+
+    function toggleLang(newLang) {
+
+      // Function to select a langauge and switch the dictionaries over
+
+      var enToggle = document.getElementById('enToggle');
+      var esToggle = document.getElementById('esToggle');
+      var inputLabel = document.getElementById('inputLabel');
+      var textToggle = document.getElementById('textToggle');
+      var audioToggle = document.getElementById('audioToggle');
+      var homeButton = document.getElementById('homeButton');
+      var showInput = document.getElementById('showInput');
+      var goButton = document.getElementById('k_go');
+
+      lang = newLang;
+
+      if (lang == 'en') {
+        enToggle.className = 'toggleOn';
+        esToggle.className = 'toggleOff';
+        inputLabel.innerHTML = 'Use the keypad to enter a label number';
+        inputLabel.className = 'inputLabelEN';
+        textToggle.innerHTML = 'Text';
+        audioToggle.innerHTML = 'Audio';
+        homeButton.innerHTML = 'Go Home';
+        showInput.innerHTML = 'New Artifact';
+        goButton.innerHTML = 'Go';
+        nameDict = nameDict_en;
+        imageDict = imageDict_en;
+        captionDict = captionDict_en;
+        textDict = textDict_en;
+      } else if (lang == 'es') {
+        enToggle.className = 'toggleOff';
+        esToggle.className = 'toggleOn';
+        inputLabel.innerHTML = 'Use el teclado para ingresar un número de etiqueta';
+        inputLabel.className = 'inputLabelES';
+        textToggle.innerHTML = 'Texto';
+        audioToggle.innerHTML = 'Audio';
+        homeButton.innerHTML = 'Vete a Casa';
+        showInput.innerHTML = 'Nuevo Objeto';
+        goButton.innerHTML = 'Ir';
+        nameDict = nameDict_es;
+        imageDict = imageDict_es;
+        captionDict = captionDict_es;
+        textDict = textDict_es;
+      }
+      updateHomeLink();
+
     }
 
     function generateTextOnlyBlock(objName, objText) {
@@ -496,6 +592,19 @@ button:focus {outline:0;}
           numLabel.innerHTML = '_'
         }
       }
+    }
+
+    // Check for options passed from previous page
+    var queryString = decodeURIComponent(window.location.search);
+
+    var searchParams = new URLSearchParams(queryString);
+    if(searchParams.has('lang')) {
+      lang = searchParams.get('lang');
+      toggleLang(lang);
+    }
+    if(searchParams.has('mediaType')) {
+      mediaType = searchParams.get('mediaType');
+      toggleMedia(mediaType);
     }
 
   </script>

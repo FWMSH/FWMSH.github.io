@@ -10,7 +10,7 @@
 
       gtag('config', 'UA-169285999-1');
     </script>
-    
+
     <style>
 
       @font-face {
@@ -126,7 +126,7 @@
     </div>
     <div id='header'>Discovery Zone</div>
     <div id='optionList'>
-      <a href="space/space.html"><button class='option' id='space'>Launchpad</button></a>
+      <button class='option' id='space' onclick='switchPage("space/space.html")'>Launchpad</button>
       <button class='option' id='science'>Natural history</button>
       <button class='option' id='history'>History</button>
       <button class='option' id='project-planet'>Project Planet</button>
@@ -136,12 +136,31 @@
   </body>
   <script>
 
+  // User preferences to pass back and forth with the other pages
+  var lang = 'en';
+  var mediaType = 'text';
+
   // Check for options passed from previous page
   var queryString = decodeURIComponent(window.location.search);
 
   var searchParams = new URLSearchParams(queryString);
   if(searchParams.has('skipAudioCheck')) {
-    dismissPopup()
+    dismissPopup();
+  }
+  if(searchParams.has('lang')) {
+    lang = searchParams.get('lang');
+  }
+  if(searchParams.has('mediaType')) {
+    mediaType = searchParams.get('mediaType');
+  }
+
+  function switchPage(page) {
+
+    // Function to switch pages while appending the user preferences
+
+    var link = page + '?lang='+lang+'&mediaType='+mediaType;
+
+    window.location.href = link;
   }
 
   function dismissPopup() {
