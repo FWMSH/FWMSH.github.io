@@ -264,30 +264,90 @@ button:focus {outline:0;}
     var lang = 'en';
 
     var nameDict_en = {
-          '1': 'Apollo Suit Prototype',
-          '2': 'Mylar from Apollo 11',
-          '3': 'Space Shuttle Coveralls',
+          '1': 'Spacecraft Leak Patch',
+          '2': 'Food Preparation Water Gun',
+          '3': 'Apollo Spacecraft Heat Shield',
+          '4': '<i>Faith 7</i> Heat Shield',
+          '5': 'Mylar from Apollo 11',
+          '6': 'Lunar Module Data Card',
+          '7': 'Fort Worth Flag',
+          '8': 'United States Flag',
+          '9': 'Apollo Command Module Towels',
+          '10': 'Apollo Command Module Window',
+          '11': 'Skylab Exercise Bicycle',
+          '12': 'Space Shuttle Control Panel',
+          '13': 'Space Shuttle Thermal Tile',
+          '14': 'Orange Pineapple Drink',
+          '15': 'Noodle and Chicken Meal',
+          '16': 'Space Shuttle Coveralls',
+          '17': "Alan Bean's Apollo Training Suit",
+          '18': "Apollo Spacesuit Thermal Garment",
           'error': 'Artifact Not Found!'
         };
 
     var imageDict_en = {
-          '1': 'space-1.jpg',
-          '2': '',
-          '3': 'space-3.jpg',
+          '1': '',
+          '2': 'B. Gemini-3-food.jpg',
+          '3': 'C. Apollo-heat-shield.jpg',
+          '4': 'D. Mercury-capsule.jpeg',
+          '5': 'E. A11-on-ship.jpg',
+          '6': '',
+          '7': '',
+          '8': '',
+          '9': 'I. Schmitt-shaving.jpg',
+          '10': 'J. Skylab.jpg',
+          '11': 'K. Conrad-on-bike.jpg',
+          '12': 'L. Shuttle-flight-deck.jpg',
+          '13': 'M. Shuttle-Discovery.jpg',
+          '14': 'N. ISS-coffee.jpg',
+          '15': 'O. ISS-chopsticks.jpg',
+          '16': 'P. Sally-Ride.jpg',
+          '17': 'Q. A12-training.jpg',
+          '18': 'R. A11-suit.jpg',
           'error': ''
         };
 
     var captionDict_en = {
-      '1': "The suit jacket as seen in the Museum's collection.",
-      '2': '',
-      '3': "An astronaut wearing the coveralls on STS-005.",
+      '1': '',
+      '2': 'The water gun being used to rehydrate food for Gemini 3.',
+      '3': "NASA artist's impression of the Command Module returning to Earth.",
+      '4': "<i>Faith 7</i> capsule on display at Space Center Houston.",
+      '5': 'Apollo 11 Command Module after recovery. Notice the gold Mylar on the outside.',
+      '6': '',
+      '7': '',
+      '8': '',
+      '9': 'Apollo 17 astronaut Harrison Schmitt shaving in space.',
+      '10': 'Skylab, the first American space station.',
+      '11': 'Skylab 2 commander Pete Conrad riding the onboard exercise bike.',
+      '12': 'Flight deck on Space Shuttle <i>Endeavor</i>.',
+      '13': 'The dark thermal tiles are visible as Space Shuttle <i>Discovery</i> approaches the ISS.',
+      '14': 'Italian astronaut Samantha Cristoforetti drinks coffee onboard the ISS.',
+      '15': 'Astronaut Sunita Williams using chopsticks while eating dinner in 2007.',
+      '16': 'Astronaut Sally Ride wearing coveralls aboard Space Shuttle <i>Challenger</i> in 1983.',
+      '17': 'Apollo 12 astronauts Pete Conrad and Alan Bean in their training suits.',
+      '18': 'The final equipment used by Neil Armstrong to walk on the Moon.',
       'error': ''
     }
 
     var textDict_en = {
-          '1': 'This prototype spacesuit was developed around 1965 to solve a problem encountered by the early spacewalking astronauts: heat. The spacesuit was designed to be extremely cool, pulling heat away from the astronaut and preventing them from getting overheated.',
-          '2': "This small piece of Mylar travelled to the Moon as part of the Apollo 11 Command Module. It was located on the outside of the Command Module and would’ve protected it from the heat of the Sun. So how did we end up with it? After the Command Module splashed back down on Earth, engineers stripped away pieces of the foil to take home as souvenirs. Two of those pieces eventually ended up in our collection.",
-          '3': "These coveralls were manufactured for use on early Space Shuttle missions. The fabric is coated in Teflon, making them extremely slick. This smoothness made it easy for the astronauts to pull the coveralls over their clothes. A suit like this was worn only during launch and reentry; during daily operations, astronauts could wear normal street clothes.",
+          '1': "In the vacuum of space, air is an astronaut's most precious resource. That makes a leak an incredibly serious situation. Spacecraft carried devices like this patch, which could be used to rapidly seal a small puncture. Its bottom is covered in thick glue to form a tight seal. The air pressure inside the capsule would help hold it in place.",
+          '2': "Food in space is dried to reduce both its weight and volume. Most food is more than 50% water by weight and even dried fruits like raisins can be nearly a quarter water. Astronauts during the Gemini program rehydrated their food using an onboard water supply. The nozzle you see here would be placed inside a food pouch to release a specified amount of water. Hot water wasn't provided until the Apollo missions, so astronauts during Project Gemini would eat their food cold for up to two weeks at a time!",
+          '3': "When the Museum’s curators were selecting items for this exhibition, they almost skipped this one entirely! It's entered into our database not as a piece of heat shield, but as a paperweight, which definitely doesn't sound as interesting. And the catalog is telling the truth—the back of this piece is covered in felt. The heat shield inside comes from AS-201, an uncrewed test flight of the Apollo Command Module. NASA cut pieces from the shield and turned them into gifts for the Apollo astronauts. It's a stark reminder of the thin sheet of material that protected them during a fiery return to Earth.",
+          '4': "<i>Faith 7</i> was the sixth and final mission of Project Mercury and carried astronaut Gordon Cooper on 22 orbits of the Earth. Cooper was the first American astronaut to spend more than a day in space. Near the end of his mission, the capsule began experiencing several malfunctions that forced him to initiate a manual landing. This heat shield protected him during that reentry.",
+          '5': "Although space is extremely cold, losing heat is actually quite difficult. In a vacuum, the only way to cool down is to wait for your heat to radiate away, a process that is relatively inefficient. Because of that, it's important to keep a spacecraft from getting too warm. Just like here on Earth, a major source of heat in space is light from the Sun. This Mylar was coated the outside of the Apollo 11 Command Module and reflected the Sun's light so that it couldn't warm the capsule. <p> So how did we end up with it? After the Command Module splashed back down on Earth, engineers stripped away pieces of the foil to take home as souvenirs. Two of those pieces eventually ended up in our collection.",
+          '6': "Computers during the Space Race were extremely primitive by modern standards. Although the Apollo Command Module and Lunar Module carried a revolutionary minicomputer, many key calculations were made in Mission Control and then relayed by radio to the astronauts. This book provided Apollo 12 astronauts Alan Bean and Pete Conrad with checklists for the lunar landing and a place to note data sent from Earth. You can spot Bean's handwriting on the page—as Lunar Module Pilot, it was his job to relay the information needed by Conrad to land on the Moon.",
+          '7': "This Fort Worth flag was carried to the surface of the Moon by Apollo 12 astronaut and Fort Worth Native Alan Bean. NASA allowed each astronaut to carry some personal effects with them on the mission; many used this allowance to carry souvenirs for people and organizations that were important to them. Neil Armstrong established a chapter of a University of Michigan academic fraternity, while the astronauts of Apollo 15 left a memorial to astronauts killed during the Space Race.",
+          '8': "Alan Bean carried this US flag to the surface of the Moon in 1969. It wasn't the only one: in addition to the two flags seen here, he also took a Fort Worth flag for the City and a flag from his alma mater, Paschal High School.",
+          '9': "In addition to all the specialized equipment needed to explore space, astronauts also needed more ordinary tools. These small towels came standard with the Apollo Command Module and spent two months in space when the capsule served as a lifeboat for the Skylab space station. On trips to the Moon, astronauts used the towels for personal hygiene, such as washing their face or shaving.",
+          '10': "Skylab, the first American space station, was built from pats leftover from the Moon program. This window belonged to the Apollo Command Module that carried the crew of Skylab 3 to the station, where it then spent two months in orbit. After it returned to Earth, NASA scientists examined the glass with a microscope and discovered several tiny craters. Each was made by a speck of dust traveling at more than 17,000 miles per hour.",
+          '11': "The human body and space just don’t get along. Almost as soon as someone gets into orbit, their body starts breaking down. Their eyesight gets worse, their bones become more brittle, and their muscles begin to weaken. To combat these effects, astronauts on long-duration space missions must exercise obsessively, often for hours a day. On Skylab, a bike exactly like this one was one tool they had at their disposal. What you don't see here is a computer the size of a large suitcase. As astronauts exercised, the computer measured their heartrate, oxygen consumption, and carbon dioxide production. These data were transmitted to doctors on the ground. This information informed scientists as they prepared for astronauts to spend months or even a year aboard the International Space Station.",
+          '12': "Although the flight deck of the Space Shuttle contained nine digital displays, nearly all of its controls were mechanical switches like the ones you see here. Notice the metal ring on either side of the switch. These served two purposes. One was to reduce the likelihood of accidently flipping the switch by bumping into it. The other was to provide a place to hook a finger while using the controls. This helped keep an astronaut from floating away as they worked the controls. You'll notice similar switch guards on the Skylab exercise bike to your left.",
+          '13': "The thermal tiles were an important innovation on the Space Shuttle, but also a source of recurring trouble. From the beginning, the Shuttle was designed for frequent trips to space, with NASA at one point estimating there could be more than 25 launches a year. The thermal tiles were designed to replace traditional heat shields, like the ones on display on the wall behind you. Instead of frequently replacing a single, bulky shield, individual tiles could be replaced as they became damaged.<p>Unfortunately, while extremely resistant to heat, the tiles were quite fragile and needed frequent replacement. And in 2003, a tile was knocked off during launch by a piece of ice, causing the destruction of Space Shuttle <i>Columbia</i> and the loss of its crew.",
+          '14': "Just like here on Earth, hydration is key to maintaining good health for astronauts. And good hydration is more than just water—it's important to get enough electrolytes, or salts, with your beverages. Early astronauts were simply given pure water and tablets of salt, but they often used in the wrong ratio. Modern space beverages, like this orange pineapple drink, can be both healthy and tasty, ensuring astronauts stay well-hydrated.",
+          '15': "The food on early space missions was simply terrible. Typical meals would involve combinations of dehydrated cubes and pastes that, while nutritious, barely qualified as food. Many astronauts found the meals so unpalatable that they would simply not eat or eat as little as possible. That approach is not sustainable now that we're sending people into space for months at a time, so modern space food has been dramatically improved. Astronauts on the International Space Station can choose from dozens of different meals, including multicultural staples like kimchi.",
+          '16': "Coveralls like these were worn by astronauts on early Shuttle missions during the launch and reentry phases. Because the Space Shuttle was supposed to represent a new, safer era of space flight, NASA didn't require the bulky pressure suits worn by astronauts during the Space Race. That all changed after 1986 <i>Challenger</i> accident, which resulted in the loss of the crew.",
+          '17': "Of the twelve men who walked on the Moon, only one was a scientist. The rest received extensive scientific training, especially in geology. Apollo 12 astronaut Alan Bean wore this suit while completing mission training activities in the desert. The astronauts practiced identifying and collecting rock samples, deploying experiments, and simply maneuvering in their bulky suits.",
+          '18': "The first spacewalking astronauts all encountered the same problem: heat. Although space can be very cold, spacesuits trap heat effectively. On early spacewalks, astronauts sweated so much that their helmets fogged up and some even became dangerously overheated. NASA knew that Moonwalkers couldn't afford these problems, so they developed methods for keeping astronauts cool in their suit.<p>This prototype garment conducts heat efficiently, making it extremely cold to the touch even today. It was produced in 1965 for Edgar Mitchell, who eventually walked on the Moon as part of Apollo 14. But when he did, he wasn't wearing this. By then, NASA had settled on a design that circulated cool water through the suit and enabled each astronaut to set their preferred temperature.",
           'error': "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!"
         };
 
@@ -416,7 +476,7 @@ button:focus {outline:0;}
       // nicely formatted.
 
       html = "<div class='objectName'>"+objName+"</div>"
-      html += "<img class='objectImage' src=" + imgName + ">"
+      html += "<img class='objectImage' src='images/" + imgName + "'>"
       html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
       html += '<hr>' + "<div class='objectText'>" + objText + "</div>"
 
