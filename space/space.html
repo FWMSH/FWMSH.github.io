@@ -157,7 +157,7 @@
         font-family: Gotham-Bold;
         text-align: center;
         overflow-y: auto;
-        max-height: 15vh;
+        height: 15%;
       }
       .objectImage{
         width: auto;
@@ -174,9 +174,7 @@
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 20px;
-        max-height: 12%;
         overflow-y: auto;
-        display: none;
       }
       .objectText {
         font-size: 45px;
@@ -186,7 +184,34 @@
         padding-left: 20px;
         padding-right: 20px;
         overflow-y: auto;
-        height: 50vh;
+        height: 40%;
+      }
+      #lightboxOverlay {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 10%;
+        background-color: rgba(0,0,0,0.9);
+      }
+      #lightboxImage {
+        width: 95%;
+        padding-top: 10%;
+        display: block;
+        margin: auto;
+        max-height: 65%;
+      }
+      #lightboxImageCaption {
+        padding-top: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        max-height: 25%;
       }
       #optionsOverlay {
         position: absolute;
@@ -283,6 +308,10 @@ button:focus {outline:0;}
       <source src='space-intro.mp3' type="audio/mpeg">
     </audio>
     <div id='contentPane'>
+    </div>
+    <div id='lightboxOverlay' onclick='hideLightboxOverlay()'>
+      <img id='lightboxImage'>
+      <div id='lightboxImageCaption' class='objectImageCaption'></div>
     </div>
     <div id='inputPane'>
       <div id='inputLabel' class='inputLabelEN'>Use the keypad to enter a label number</div>
@@ -615,12 +644,26 @@ button:focus {outline:0;}
 
     }
 
+    function showLightboxOverlay() {
+
+      // Funciton to show the overlay with the image lightbox and captionDict
+
+      document.getElementById('lightboxOverlay').style.display = 'block';
+    }
+
+    function hideLightboxOverlay() {
+
+      // Funciton to show the overlay with the image lightbox and captionDict
+
+      document.getElementById('lightboxOverlay').style.display = 'none';
+    }
+
     function generateTextOnlyBlock(objName, objText) {
 
       // Function to show only text about an object. This should be used rarely.
 
       html = "<div class='objectName'>"+objName+"</div>"
-      html += '<br>' + "<div class='objectText' style='height: 90%;'>" + objText + "</div>"
+      html += '<br>' + "<div class='objectText' style='height: 80%;'>" + objText + "</div>"
 
       return(html)
     }
@@ -631,8 +674,8 @@ button:focus {outline:0;}
       // nicely formatted.
 
       html = "<div class='objectName'>"+objName+"</div>"
-      html += "<img class='objectImage' src='images/" + imgName + "'>"
-      html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
+      html += "<img class='objectImage' onclick='showLightboxOverlay()' src='images/" + imgName + "'>"
+      //html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
       html += "<div class='objectText'>" + objText + "</div>"
 
       return(html)
@@ -668,10 +711,8 @@ button:focus {outline:0;}
               <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
             </div>
             `
-      html += "<img class='objectImage' src='images/" + imgName + "'>"
-      html += "<div class='objectImageCaption' style='max-height: 30vh'>" + imgCaption + "</div>"
-
-
+      html += "<img class='objectImage' onclick='showLightboxOverlay()' src='images/" + imgName + "'>"
+      //html += "<div class='objectImageCaption' style='max-height: 30vh'>" + imgCaption + "</div>"
 
       return(html)
     }
@@ -703,6 +744,7 @@ button:focus {outline:0;}
       document.getElementById('contentPane').style.display = 'none';
       document.getElementById('inputPane').style.display = 'block';
       document.getElementById('optionsOverlay').style.display = 'none';
+      document.getElementById('lightboxOverlay').style.display = 'none';
 
     }
 
@@ -732,6 +774,8 @@ button:focus {outline:0;}
 
             if (imageDict[num] != '') { // We have a picture
               html = generateImageTextBlock(nameDict[num], imageDict[num], captionDict[num], textDict[num]);
+              document.getElementById('lightboxImage').src = 'images/' + imageDict[num];
+              document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
             } else { // No picture
               html = generateTextOnlyBlock(nameDict[num],textDict[num]);
             }
@@ -740,6 +784,8 @@ button:focus {outline:0;}
 
             if (imageDict[num] != '') { // We have a picture
               html = generateAudioImageBlock(nameDict[num], imageDict[num], captionDict[num]);
+              document.getElementById('lightboxImage').src = 'images/' + imageDict[num];
+              document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
             } else { // No picture
               html = generateAudioOnlyBlock(nameDict[num]);
           }
