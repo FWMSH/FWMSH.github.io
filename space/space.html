@@ -661,15 +661,16 @@ button:focus {outline:0;}
       html = ''
 
       html += "<div class='objectName'>"+objName+"</div>"
-      html += "<img class='objectImage' src='images/" + imgName + "'>"
-      html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
-
       html +=  `
             <div id='audioControlBar'>
               <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
               <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
             </div>
             `
+      html += "<img class='objectImage' src='images/" + imgName + "'>"
+      html += "<div class='objectImageCaption' style='max-height: 40vh'>" + imgCaption + "</div>"
+
+
 
       return(html)
     }
