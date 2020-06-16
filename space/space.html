@@ -154,7 +154,7 @@
         color: white;
         padding-top: 25px;
         padding-bottom: 25px;
-        font-family: Gotham-Book;
+        font-family: Gotham-Bold;
         text-align: center;
         overflow-y: auto;
         max-height: 15vh;
@@ -658,15 +658,18 @@ button:focus {outline:0;}
       // Function to return an HTML block with the artifact name, the controls
       // for audio playback, and an image with its caption.
 
-      html = `
-      <div id='audioControlBar'>
-        <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
-        <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
-      </div>
-      `
+      html = ''
+
       html += "<div class='objectName'>"+objName+"</div>"
-      html += "<img class='objectImage' src=" + imgName + ">"
+      html += "<img class='objectImage' src='images/" + imgName + "'>"
       html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
+
+      html +=  `
+            <div id='audioControlBar'>
+              <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
+              <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
+            </div>
+            `
 
       return(html)
     }
