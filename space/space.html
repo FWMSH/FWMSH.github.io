@@ -28,7 +28,7 @@
         background-color: #003066;
       }
       #header {
-        height: 10%;
+        height: 10vh;
         font-size: 100px;
         text-align: center;
         display: flex;
@@ -117,8 +117,21 @@
         margin-left: 10px;
         margin-right: 10px;
       }
+      #optionButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: gray;
+        border-radius: 50px;
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
       #contentPane {
-        height: 70%;
+        height: 70vh;
         display: none;
       }
       #inputPane {
@@ -131,7 +144,10 @@
         align-content: center;
         width: 100%;
         position: fixed;
-        bottom: 2%;
+        bottom: 0;
+        padding-bottom: 2vh;
+        padding-top: 2vh;
+        background-color: #003066;
       }
       .objectName{
         font-size: 75px;
@@ -139,6 +155,8 @@
         font-family: Gotham-Book;
         padding-left: 20px;
         text-align: center;
+        overflow-y: auto;
+        max-height: 15vh;
       }
       .objectImage{
         width: auto;
@@ -148,26 +166,37 @@
         margin-right: auto;
       }
       .objectImageCaption{
-        font-size: 55px;
+        font-size: 45px;
         color: white;
         font-family: Gotham-Book;
         padding-top: 10px;
         padding-left: 20px;
+        max-height: 12%;
+        overflow-y: auto;
       }
       .objectText {
-        font-size: 55px;
+        font-size: 45px;
         color: white;
         font-family: Gotham-Book;
         padding-top: 10px;
         padding-left: 20px;
         overflow-y: auto;
-        height: 40%;
+        height: 30vh;
       }
-      #togglePane {
-        color: white;
-        font-family: Gotham-Book;
-        font-size: 50px;
+      #optionsOverlay {
+        position: absolute;
+        display: none;
         width: 100%;
+        height: 80vh;
+        top: 10vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 10%;
+        background-color: rgba(0,0,0,0.9);
       }
       .toggles {
         display: flex;
@@ -203,6 +232,32 @@
         border: 0px;
         margin-left: 10px;
         margin-right: 10px;
+      }
+      #textSizeSlider {
+        width: 620px;
+        -webkit-appearance: none;
+        height: 15px;
+        border-radius: 5px;
+        background: gray;
+        outline: none;
+      }
+
+      #textSizeSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #009760;
+        cursor: pointer;
+      }
+
+      #textSizeSlider::-moz-range-thumb {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #009760;
+        cursor: pointer;
       }
 
       * {
@@ -241,15 +296,26 @@ button:focus {outline:0;}
         <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
         <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
       </div>
-      <div id='togglePane'>
-        <div id='mediaToggles' class='toggles'>
-          <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
-          <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
-        </div>
+      <div class='toggles' style='margin-top: 50px;'>
+        <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
+      </div>
+      <div id='optionsOverlay'>
+        <div id='optionTitle' class='objectName'>Options</div>
         <div id='langToggles' class=toggles>
           <button id='enToggle' class='toggleOn' onclick="toggleLang('en')">English</button>
           <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button>
         </div>
+        <div id='mediaToggles' class='toggles'>
+          <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
+          <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
+        </div>
+        <div class='toggles' style='margin-top: 100px;'>
+          <div style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
+        </div>
+        <div class='toggles' style='margin-top: 100px;'>
+          <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
+        </div>
+        <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
       </div>
     </div>
     <div id=bottomPane>
@@ -262,6 +328,7 @@ button:focus {outline:0;}
     var mediaType = 'text';
     var audioState = 'pause';
     var lang = 'en';
+    var fontSize = 45;
 
     var nameDict_en = {
           '1': 'Spacecraft Leak Patch',
@@ -351,33 +418,93 @@ button:focus {outline:0;}
           'error': "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!"
         };
 
-    var nameDict_es = {
-          '1': 'Prototipo de traje de Apolo',
-          '2': 'Mylar del Apolo 11',
-          '3': 'Overol de transbordador espacial',
-          'error': '¡Artefacto no encontrado!'
-        };
+        var nameDict_es = {
+              '1': 'Parche de fugas de naves espaciales',
+              '2': 'Preparación de alimentos pistola de agua',
+              '3': 'Escudo de calor de la nave espacial Apollo',
+              '4': '<i>Faith 7</i> Escudo térmico',
+              '5': 'Mylar del Apollo 11',
+              '6': 'Tarjeta de datos del módulo lunar',
+              '7': 'Bandera de Fort Worth',
+              '8': 'Bandera de estados unidos',
+              '9': 'Toallas del módulo de comando Apollo',
+              '10': 'Ventana del módulo de comando Apollo',
+              '11': 'Bicicleta de ejercicio Skylab',
+              '12': 'Panel de control del transbordador espacial',
+              '13': 'Transbordador espacial baldosas térmicas',
+              '14': 'Bebida De Piña Y Naranja',
+              '15': 'Comida de fideos y pollo',
+              '16': 'Overol de transbordador espacial',
+              '17': "Traje de entrenamiento Apollo de Alan Bean",
+              '18': "Traje térmico de traje espacial Apollo",
+              'error': '¡Artefacto no encontrado!'
+            };
 
-    var imageDict_es = {
-          '1': 'space-1.jpg',
-          '2': '',
-          '3': 'space-3.jpg',
+        var imageDict_es = {
+              '1': '',
+              '2': 'B. Gemini-3-food.jpg',
+              '3': 'C. Apollo-heat-shield.jpg',
+              '4': 'D. Mercury-capsule.jpeg',
+              '5': 'E. A11-on-ship.jpg',
+              '6': '',
+              '7': '',
+              '8': '',
+              '9': 'I. Schmitt-shaving.jpg',
+              '10': 'J. Skylab.jpg',
+              '11': 'K. Conrad-on-bike.jpg',
+              '12': 'L. Shuttle-flight-deck.jpg',
+              '13': 'M. Shuttle-Discovery.jpg',
+              '14': 'N. ISS-coffee.jpg',
+              '15': 'O. ISS-chopsticks.jpg',
+              '16': 'P. Sally-Ride.jpg',
+              '17': 'Q. A12-training.jpg',
+              '18': 'R. A11-suit.jpg',
+              'error': ''
+            };
+
+        var captionDict_es = {
+          '1': '',
+          '2': 'La pistola de agua que se usa para rehidratar alimentos para Géminis 3.',
+          '3': "Impresión artística de la NASA del Módulo de Comando que regresa a la Tierra.",
+          '4': "<i>Faith 7</i> cápsula en exhibición en el Centro Espacial de Houston.",
+          '5': 'Módulo de comando Apollo 11 después de la recuperación. Observe el oro Mylar en el exterior.',
+          '6': '',
+          '7': '',
+          '8': '',
+          '9': 'El astronauta del Apolo 17 Harrison Schmitt se afeita en el espacio.',
+          '10': 'Skylab, la primera estación espacial estadounidense.',
+          '11': 'El comandante de Skylab 2, Pete Conrad, monta la bicicleta estática a bordo.',
+          '12': 'Cubierta de vuelo en el transbordador espacial <i>Endeavor</i>.',
+          '13': 'Las baldosas térmicas oscuras son visibles cuando el transbordador espacial <i>Discovery</i> se acerca a la ISS.',
+          '14': 'La astronauta italiana Samantha Cristoforetti toma café a bordo de la EEI.',
+          '15': 'La astronauta Sunita Williams usando palillos mientras cenaba en 2007.',
+          '16': 'La astronauta Sally Ride con overol a bordo del transbordador espacial <i>Challenger</i> en 1983.',
+          '17': 'Los astronautas del Apollo 12 Pete Conrad y Alan Bean en sus trajes de entrenamiento.',
+          '18': 'El equipo final utilizado por Neil Armstrong para caminar sobre la Luna.',
           'error': ''
-        };
+        }
 
-    var captionDict_es = {
-      '1': "La chaqueta del traje como se ve en la colección del museo.",
-      '2': '',
-      '3': "Un astronauta vistiendo el overol en STS-005.",
-      'error': ''
-    }
-
-    var textDict_es = {
-          '1': 'Este prototipo de traje espacial se desarrolló alrededor de 1965 para resolver un problema que encontraron los primeros astronautas en la caminata espacial: el calor. El traje espacial fue diseñado para ser extremadamente frío, alejando el calor del astronauta y evitando que se sobrecaliente.',
-          '2': "Este pequeño pedazo de Mylar viajó a la Luna como parte del Módulo de Comando Apolo 11. Estaba ubicado en el exterior del Módulo de Comando y lo habría protegido del calor del Sol. Entonces, ¿cómo terminamos con eso? Después de que el Módulo de Comando volviera a caer sobre la Tierra, los ingenieros quitaron pedazos de la lámina para llevarlos a casa como recuerdos. Dos de esas piezas finalmente terminaron en nuestra colección.",
-          '3': "Estos overoles fueron fabricados para su uso en las primeras misiones del transbordador espacial. La tela está recubierta de teflón, lo que los hace extremadamente resbaladizos. Esta suavidad facilitó que los astronautas se pusieran los overoles sobre la ropa. Un traje como este se usaba solo durante el lanzamiento y la reentrada; Durante las operaciones diarias, los astronautas pueden usar ropa de calle normal.",
-          'error': "Vaya, un artefacto con ese número no parece existir en esta galería. ¡Verifique que haya seleccionado la galería apropiada y luego intente con un número diferente!"
-        };
+        var textDict_es = {
+              '1': "En el vacío del espacio, el aire es el recurso más preciado de un astronauta. Eso hace que una fuga sea una situación increíblemente grave. La nave espacial transportaba dispositivos como este parche, que podrían usarse para sellar rápidamente un pequeño pinchazo. Su parte inferior está cubierta de pegamento grueso para formar un sello hermético. La presión del aire dentro de la cápsula ayudaría a mantenerla en su lugar.",
+              '2': "Los alimentos en el espacio se secan para reducir tanto su peso como su volumen. La mayoría de los alimentos contienen más del 50% de agua en peso e incluso las frutas secas como las pasas pueden ser casi un cuarto de agua. Los astronautas durante el programa Gemini rehidrataron sus alimentos utilizando un suministro de agua a bordo. La boquilla que ve aquí se colocaría dentro de una bolsa de comida para liberar una cantidad específica de agua. ¡No se proporcionó agua caliente hasta las misiones Apollo, por lo que los astronautas durante el Proyecto Géminis comerían su comida fría por hasta dos semanas a la vez!",
+              '3': "Cuando los curadores del museo estaban seleccionando elementos para esta exposición, ¡casi se saltaron esta por completo! Se ingresó en nuestra base de datos no como un escudo térmico, sino como un pisapapeles, que definitivamente no suena tan interesante. Y el catálogo dice la verdad: la parte posterior de esta pieza está cubierta de fieltro. El escudo térmico en el interior proviene de AS-201, un vuelo de prueba sin tripulación del Módulo de Comando Apollo. La NASA cortó piezas del escudo y las convirtió en regalos para los astronautas del Apollo. Es un claro recordatorio de la delgada lámina de material que los protegió durante un ardiente regreso a la Tierra.",
+              '4': "<i>Faith 7</i> fue la sexta y última misión del Proyecto Mercurio y transportó al astronauta Gordon Cooper en 22 órbitas de la Tierra. Cooper fue el primer astronauta estadounidense en pasar más de un día en el espacio. Cerca del final de su misión, la cápsula comenzó a experimentar varios fallos de funcionamiento que lo obligaron a iniciar un aterrizaje manual. Este escudo térmico lo protegió durante esa reentrada.",
+              '5': "Aunque el espacio es extremadamente frío, perder calor es bastante difícil. En el vacío, la única forma de enfriarse es esperar a que su calor se irradie, un proceso que es relativamente ineficiente. Por eso, es importante evitar que una nave espacial se caliente demasiado. Al igual que aquí en la Tierra, una fuente importante de calor en el espacio es la luz del Sol. Este Mylar estaba cubierto por el exterior del Módulo de Comando Apolo 11 y reflejaba la luz del Sol para que no pudiera calentar la cápsula.<p>Entonces, ¿cómo terminamos con eso? Después de que el Módulo de Comando volviera a caer sobre la Tierra, los ingenieros quitaron pedazos de la lámina para llevarlos a casa como recuerdos. Dos de esas piezas finalmente terminaron en nuestra colección.",
+              '6': "Las computadoras durante la carrera espacial fueron extremadamente primitivas para los estándares modernos. Aunque el Módulo de Comando Apollo y el Módulo Lunar llevaban una minicomputadora revolucionaria, muchos cálculos clave se realizaron en Control de Misión y luego se transmitieron por radio a los astronautas. Este libro proporcionó a los astronautas del Apollo 12 Alan Bean y Pete Conrad listas de verificación para el aterrizaje lunar y un lugar para anotar los datos enviados desde la Tierra. Puedes ver la letra de Bean en la página. Como piloto del módulo lunar, era su trabajo transmitir la información que Conrad necesitaba para aterrizar en la Luna.",
+              '7': "Esta bandera de Fort Worth fue llevada a la superficie de la Luna por el astronauta del Apollo 12 y Alan Bean, nativo de Fort Worth. La NASA permitió que cada astronauta llevara consigo algunos efectos personales en la misión; muchos utilizaron esta asignación para llevar recuerdos para personas y organizaciones que eran importantes para ellos. Neil Armstrong estableció un capítulo de una fraternidad académica de la Universidad de Michigan, mientras que los astronautas del Apollo 15 dejaron un monumento a los astronautas asesinados durante la Carrera Espacial.",
+              '8': "Alan Bean llevó esta bandera estadounidense a la superficie de la Luna en 1969. No fue la única: además de las dos banderas que se ven aquí, también tomó una bandera de Fort Worth para la Ciudad y una bandera de su alma mater, Escuela secundaria Paschal.",
+              '9': "Además de todo el equipo especializado necesario para explorar el espacio, los astronautas también necesitaban herramientas más comunes. Estas pequeñas toallas vienen de serie con el módulo de comando Apollo y pasaron dos meses en el espacio cuando la cápsula sirvió como bote salvavidas para la estación espacial Skylab. En los viajes a la Luna, los astronautas usaban las toallas para la higiene personal, como lavarse la cara o afeitarse.",
+              '10': "Skylab, la primera estación espacial estadounidense, se construyó a partir de los restos del programa Moon. Esta ventana pertenecía al Módulo de Comando Apollo que llevó a la tripulación del Skylab 3 a la estación, donde luego pasó dos meses en órbita. Después de que regresó a la Tierra, los científicos de la NASA examinaron el vidrio con un microscopio y descubrieron varios pequeños cráteres. Cada uno fue hecho por una mota de polvo que viajaba a más de 17,000 millas por hora.",
+              '11': "El cuerpo humano y el espacio simplemente no se llevan bien. Casi tan pronto como alguien entra en órbita, su cuerpo comienza a descomponerse. Su vista empeora, sus huesos se vuelven más frágiles y sus músculos comienzan a debilitarse. Para combatir estos efectos, los astronautas en misiones espaciales de larga duración deben hacer ejercicio obsesivamente, a menudo durante horas al día. En Skylab, una bicicleta exactamente como esta era una herramienta que tenían a su disposición. Lo que no ves aquí es una computadora del tamaño de una maleta grande. Mientras los astronautas hacían ejercicio, la computadora midió su frecuencia cardíaca, consumo de oxígeno y producción de dióxido de carbono. Estos datos fueron transmitidos a los médicos en el terreno. Esta información informó a los científicos mientras se preparaban para que los astronautas pasaran meses o incluso un año a bordo de la Estación Espacial Internacional.",
+              '12': "Aunque la cubierta de vuelo del transbordador espacial contenía nueve pantallas digitales, casi todos sus controles eran interruptores mecánicos como los que se ven aquí. Observe el anillo de metal a cada lado del interruptor. Estos sirvieron para dos propósitos. Una era reducir la probabilidad de activar accidentalmente el interruptor tropezando con él. El otro era proporcionar un lugar para enganchar un dedo mientras se usan los controles. Esto ayudó a evitar que un astronauta se alejara flotando mientras trabajaban los controles. Notará protectores de interruptor similares en la bicicleta de ejercicios Skylab a su izquierda.",
+              '13': "Las baldosas térmicas fueron una innovación importante en el transbordador espacial, pero también una fuente de problemas recurrentes. Desde el principio, el Shuttle fue diseñado para viajes frecuentes al espacio, y la NASA en un momento estimó que podría haber más de 25 lanzamientos al año. Las baldosas térmicas fueron diseñadas para reemplazar los escudos térmicos tradicionales, como los que se muestran en la pared detrás de usted. En lugar de reemplazar con frecuencia un solo escudo voluminoso, las fichas individuales podrían reemplazarse a medida que se dañaran.<p>Desafortunadamente, aunque extremadamente resistentes al calor, las fichas eran bastante frágiles y necesitaban un reemplazo frecuente. Y en 2003, un azulejo fue derribado durante el lanzamiento por un trozo de hielo, causando la destrucción del transbordador espacial <i>Columbia</i> y la pérdida de su tripulación.",
+              '14': "Al igual que aquí en la Tierra, la hidratación es clave para mantener una buena salud para los astronautas. Y una buena hidratación es más que solo agua: es importante obtener suficientes electrolitos o sales con sus bebidas. Los primeros astronautas simplemente recibieron agua pura y tabletas de sal, pero a menudo se usaron en una proporción incorrecta. Las bebidas espaciales modernas, como esta bebida de naranja y piña, pueden ser saludables y sabrosas, asegurando que los astronautas se mantengan bien hidratados.",
+              '15': "La comida en las primeras misiones espaciales fue simplemente terrible. Las comidas típicas implicarían combinaciones de cubos deshidratados y pastas que, aunque nutritivas, apenas califican como alimento. Muchos astronautas encontraron las comidas tan desagradables que simplemente no comerían o comerían lo menos posible. Ese enfoque no es sostenible ahora que estamos enviando personas al espacio durante meses, por lo que la comida espacial moderna se ha mejorado drásticamente. Los astronautas de la Estación Espacial Internacional pueden elegir entre docenas de comidas diferentes, incluidos alimentos básicos multiculturales como el kimchi.",
+              '16': "Overoles como estos fueron usados ​​por los astronautas en las primeras misiones de Shuttle durante las fases de lanzamiento y reentrada. Debido a que se suponía que el transbordador espacial representaría una nueva era más segura de los vuelos espaciales, la NASA no requirió los trajes de presión voluminosos que usaron los astronautas durante la carrera espacial. Todo eso cambió después del accidente de <i>Challenger</i> de 1986, que resultó en la pérdida de la tripulación.",
+              '17': "De los doce hombres que caminaron en la Luna, solo uno era científico. El resto recibió una amplia formación científica, especialmente en geología. El astronauta del Apollo 12, Alan Bean, usó este traje mientras completaba actividades de entrenamiento de misión en el desierto. Los astronautas practicaban identificar y recolectar muestras de rocas, desplegar experimentos y simplemente maniobrar con sus voluminosos trajes.",
+              '18': "Los primeros astronautas de la caminata espacial encontraron el mismo problema: el calor. Aunque el espacio puede ser muy frío, los trajes espaciales atrapan el calor de manera efectiva. En las primeras caminatas espaciales, los astronautas sudaban tanto que sus cascos se empañaron y algunos incluso se sobrecalentaron peligrosamente. La NASA sabía que los Moonwalkers no podían permitirse estos problemas, por lo que desarrollaron métodos para mantener a los astronautas frescos con su traje. Fue producido en 1965 para Edgar Mitchell, quien finalmente caminó en la Luna como parte del Apollo 14. Pero cuando lo hizo, no estaba usando esto. Para entonces, la NASA se había decidido por un diseño que hacía circular agua fría a través del traje y permitía a cada astronauta establecer su temperatura preferida.",
+              'error': "Vaya, un artefacto con ese número no parece existir en esta galería. ¡Verifique que haya seleccionado la galería apropiada y luego intente con un número diferente!"
+            };
 
     // Set the initial language to English
     var nameDict = nameDict_en;
@@ -390,8 +517,19 @@ button:focus {outline:0;}
       // Function to build a new homelink based on the value of the user-selectable
       // parameters
 
-      document.getElementById('homeLink').href = '../home.html?lang='+lang+'&mediaType='+mediaType;
+      document.getElementById('homeLink').href = '../home.html?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
 
+    }
+
+    function changeTextSize(size) {
+
+      // Function to change the text size, which will then be applied to
+      // the object text and object caption elements
+
+      fontSize = size; // Set the global property
+      // Update the sample text
+      document.getElementById('textSizeSample').style.fontSize = size + 'px';
+      updateHomeLink()
     }
 
     function toggleMedia(type) {
@@ -542,6 +680,16 @@ button:focus {outline:0;}
       setAudioState('pause');
       document.getElementById('contentPane').style.display = 'none';
       document.getElementById('inputPane').style.display = 'block';
+      document.getElementById('optionsOverlay').style.display = 'none';
+
+    }
+
+    function showOptionsOverlay() {
+
+      // When someone clicks the "Options" button, show the overlay
+
+      document.getElementById('optionsOverlay').style.display = 'block';
+
     }
 
     function loadItem() {
@@ -576,6 +724,14 @@ button:focus {outline:0;}
         }
 
           document.getElementById('contentPane').innerHTML = html;
+          var objectText = document.getElementsByClassName('objectText');
+          for (i=0; i<objectText.length; i++) {
+            objectText[i].style.fontSize = fontSize + 'px';
+          }
+          var objectImageCaption = document.getElementsByClassName('objectImageCaption');
+          for (i=0; i<objectImageCaption.length; i++) {
+            objectImageCaption[i].style.fontSize = fontSize + 'px';
+          }
         }
         else {
           document.getElementById('contentPane').innerHTML = generateTextOnlyBlock(nameDict['error'], textDict['error']);
@@ -667,6 +823,11 @@ button:focus {outline:0;}
     if(searchParams.has('mediaType')) {
       mediaType = searchParams.get('mediaType');
       toggleMedia(mediaType);
+    }
+    if(searchParams.has('fontSize')) {
+      fontSize = searchParams.get('fontSize');
+      changeTextSize(fontSize);
+      document.getElementById('textSizeSlider').value = fontSize;
     }
 
   </script>

@@ -127,6 +127,49 @@
         height: 120px;
         border: 0px;
       }
+      #textSizeLabel {
+        display: none;
+      }
+      #textSize {
+        display: none;
+      }
+      #textSizeSlider {
+        width: 620px;
+        -webkit-appearance: none;
+        height: 15px;
+        border-radius: 5px;
+        background: gray;
+        outline: none;
+      }
+
+      #textSizeSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #009760;
+        cursor: pointer;
+      }
+
+      #textSizeSlider::-moz-range-thumb {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #009760;
+        cursor: pointer;
+      }
+      #textSizeSample {
+        display: none;
+      }
+      .objectText {
+        font-size: 45px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-top: 10px;
+        padding-left: 20px;
+        overflow-y: auto;
+      }
       #goButton {
         color: white;
         font-family: Gotham-Book;
@@ -173,6 +216,13 @@
       <button id='textToggle' class='toggleOff' onclick="toggleMedia('text')">Read</button>
       <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Listen</button>
     </div>
+    <div id='textSizeLabel' class='text' style='margin-top: 75px;'>
+      Choose your text size:
+    </div>
+    <div id='textSize' class='toggles' style='margin-top: 100px;'>
+      <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
+    </div>
+    <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
 
     <div id='goPane'>
       <button id='goButton' onclick="switchPage('home.html')">Let's Go!</button>
@@ -202,6 +252,7 @@
   // User preferences to pass back and forth with the other pages
   var lang = 'en';
   var mediaType = 'text';
+  var fontSize = 45;
 
   // Check for options passed from previous page
   var queryString = decodeURIComponent(window.location.search);
@@ -215,6 +266,9 @@
   }
   if(searchParams.has('mediaType')) {
     mediaType = searchParams.get('mediaType');
+  }
+  if (searchParams.has('fontSize')) {
+    fontSize = searchParams.get('fontSize');
   }
 
   function toggleMedia(type) {
@@ -233,6 +287,9 @@
       document.getElementById('overlay').style.display = 'block';
     }
     mediaType = type;
+    document.getElementById('textSize').style.display = 'flex';
+    document.getElementById('textSizeSample').style.display = 'block';
+    document.getElementById('textSizeLabel').style.display = 'block';
     document.getElementById('goPane').style.display = 'flex';
     window.scrollTo(0,document.body.scrollHeight);
   }
@@ -290,11 +347,21 @@
     document.getElementById('mediaToggles').style.display = 'flex';
   }
 
+  function changeTextSize(size) {
+
+    // Function to change the text size, which will then be applied to
+    // the object text and object caption elements
+
+    fontSize = size; // Set the global property
+    // Update the sample text
+    document.getElementById('textSizeSample').style.fontSize = size + 'px';
+  }
+
   function switchPage(page) {
 
     // Function to switch pages while appending the user preferences
 
-    var link = page + '?lang='+lang+'&mediaType='+mediaType;
+    var link = page + '?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
 
     window.location.href = link;
   }
