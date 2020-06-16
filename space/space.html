@@ -152,8 +152,9 @@
       .objectName{
         font-size: 75px;
         color: white;
+        padding-top: 25px;
+        padding-bottom: 25px;
         font-family: Gotham-Book;
-        padding-left: 20px;
         text-align: center;
         overflow-y: auto;
         max-height: 15vh;
@@ -164,13 +165,15 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        padding-bottom: 25px;
       }
       .objectImageCaption{
         font-size: 45px;
         color: white;
         font-family: Gotham-Book;
-        padding-top: 10px;
         padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
         max-height: 12%;
         overflow-y: auto;
       }
@@ -178,8 +181,9 @@
         font-size: 45px;
         color: white;
         font-family: Gotham-Book;
-        padding-top: 10px;
+        padding-top: 20px;
         padding-left: 20px;
+        padding-right: 20px;
         overflow-y: auto;
         height: 30vh;
       }
@@ -310,7 +314,7 @@ button:focus {outline:0;}
           <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
         </div>
         <div class='toggles' style='margin-top: 100px;'>
-          <div style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
+          <div id='textSizeLabel' style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
         </div>
         <div class='toggles' style='margin-top: 100px;'>
           <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
@@ -562,6 +566,10 @@ button:focus {outline:0;}
       var homeButton = document.getElementById('homeButton');
       var showInput = document.getElementById('showInput');
       var goButton = document.getElementById('k_go');
+      var optionsButton = document.getElementById('optionButton');
+      var optionTitle = document.getElementById('optionTitle');
+      var textSizeLabel = document.getElementById('textSizeLabel');
+      var textSizeSample = document.getElementById('textSizeSample');
 
       lang = newLang;
 
@@ -575,6 +583,10 @@ button:focus {outline:0;}
         homeButton.innerHTML = 'Go Home';
         showInput.innerHTML = 'New Artifact';
         goButton.innerHTML = 'Go';
+        optionButton.innerHTML = 'Options';
+        optionTitle.innerHTML = 'Options';
+        textSizeLabel.innerHTML = 'Text Size';
+        textSizeSample.innerHTML = 'This is some sample text';
         nameDict = nameDict_en;
         imageDict = imageDict_en;
         captionDict = captionDict_en;
@@ -589,6 +601,10 @@ button:focus {outline:0;}
         homeButton.innerHTML = 'Vete a Casa';
         showInput.innerHTML = 'Nuevo Objeto';
         goButton.innerHTML = 'Ir';
+        optionButton.innerHTML = 'Opciones';
+        optionTitle.innerHTML = 'Opciones';
+        textSizeLabel.innerHTML = 'Tamano del Texto';
+        textSizeSample.innerHTML = 'Este es un texto de ejemplo';
         nameDict = nameDict_es;
         imageDict = imageDict_es;
         captionDict = captionDict_es;
@@ -678,6 +694,7 @@ button:focus {outline:0;}
       // hide the visible content, and show the keypad.
 
       setAudioState('pause');
+      document.getElementById('header').style.display = 'flex';
       document.getElementById('contentPane').style.display = 'none';
       document.getElementById('inputPane').style.display = 'block';
       document.getElementById('optionsOverlay').style.display = 'none';
@@ -744,7 +761,7 @@ button:focus {outline:0;}
           setAudioState('play');
         }
 
-
+        document.getElementById('header').style.display = 'none';
         document.getElementById('inputPane').style.display = 'none';
         document.getElementById('contentPane').style.display = 'block';
 
