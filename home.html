@@ -76,6 +76,7 @@
         text-align: left;
         font-family: Gotham-Book;
         margin-left: 40px;
+        margin-top: 10px;
         transition: display 0.2s ease-out;
       }
       .exploreButton {
@@ -84,8 +85,8 @@
         /*min-height: 10%;*/
         text-align: left;
         font-family: Gotham-Book;
-        margin-top: 0px;
-        margin-bottom: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
         margin-right: 20px;
         background-color: #db0961;
         border: 0px;
@@ -110,14 +111,15 @@
       .accordionPanel {
         padding: 0 18px;
         background-color: #003066;
-        max-height: 0;
         overflow: hidden;
+        display: none;
         transition: max-height 0.2s ease-out;
       }
       #galleryAccordion {
-        padding-top: 16vh;
+        margin-top: 16vh;
       }
       #galleryAccordionPanel {
+        display: block;
       }
       #rotationWarning {
         position: fixed;
@@ -151,38 +153,38 @@
   </head>
   <body>
     <div id='header'><img src='FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div>
-    <button class="accordion" id='galleryAccordion'>Galleries</button>
+    <button class="accordion" id='galleryAccordion' onclick='toggleAccordion("galleryAccordionPanel")'>Galleries</button>
     <div class="accordionPanel" id='galleryAccordionPanel'>
       <div id='galleryList'>
         <button class='gallery' id='space' onclick='toggleDetails("spaceDetails")'>Launchpad</button>
         <div class='galleryDetails' id='spaceDetails'>
-          50 years ago, we landed on the Moon. Where will we be 50 years from now?<br>
+          <div id='spaceDetailText'>50 years ago, we landed on the Moon. Where will we be 50 years from now?<br></div>
           <button class='exploreButton' onclick='switchPage("space/space.html")'>Explore</button>
         </div>
         <button class='gallery' id='science' onclick='toggleDetails("scienceDetails")'>Texas Ecosystems</button>
         <div class='galleryDetails' id='scienceDetails'>
-          Discover the incredible diversity of Texas wildlife<br>
+          <div id='scienceDetailText'>Discover the incredible diversity of Texas wildlife.<br></div>
           <button class='exploreButton'>Explore</button>
         </div>
         <button class='gallery' id='history' onclick='toggleDetails("historyDetails")'>Beads</button>
         <div class='galleryDetails' id='historyDetails'>
-          Uncover the hidden history of beads<br>
+          <div id='historyDetailText'>Uncover the hidden history of beads.<br></div>
           <button class='exploreButton'>Explore</button>
         </div>
         <button class='gallery' id='project-planet' onclick='toggleDetails("ppDetails")'>Project Planet</button>
         <div class='galleryDetails' id='ppDetails'>
-          Our world is changing. What will you do?<br>
+          <div id='ppDetailText'>Our world is changing. What will you do?<br></div>
           <button class='exploreButton'>Explore</button>
         </div>
         <button class='gallery' id='innovation' onclick='toggleDetails("wheelsDetails")'>Wheels</button>
         <div class='galleryDetails' id='wheelsDetails'>
-          What's your favorite thing with wheels?<br>
+          <div id='wheelsDetailText'> What's your favorite thing with wheels?<br></div>
           <button class='exploreButton'>Explore</button>
         </div>
       </div>
     </div>
-    <button class="accordion">Map</button>
-    <div class="accordionPanel">
+    <button id='mapAccordion' class="accordion" onclick='toggleAccordion("mapAccordionPanel")'>Map</button>
+    <div class="accordionPanel" id='mapAccordionPanel'>
       <img src='map_en.jpg'></img>
     </div>
     <div id='rotationWarning'>Please rotate your device</overlay>
@@ -201,7 +203,19 @@
   if (searchParams.has('lang')) {
     lang = searchParams.get('lang');
     if (lang == 'es') {
-      document.getElementById('rotationWarning').innerHTML = 'Roate tu dispositivo';
+      $('#galleryAccordion').html('Galerías');
+      $('#spaceDetailText').html('Hace 50 años, aterrizamos en la Luna. ¿Dónde estaremos dentro de 50 años?');
+      $('#science').html('Ecosistemas de Texas');
+      $('#scienceDetailText').html('Descubra la increíble diversidad de la vida silvestre de Texas.');
+      $('#history').html('Rosario');
+      $('#historyDetailText').html('Descubre la historia oculta de las cuentas.');
+      $('#project-planet').html('Proyecto Planeta');
+      $('#ppDetailText').html('Nuestro mundo está cambiando. ¿Qué harás?');
+      $('#innovation').html('Ruedas');
+      $('#wheelsDetailText').html('¿Cuál es tu cosa favorita con las ruedas?');
+      $('.exploreButton').html('Explorar');
+      $('#mapAccordion').html('Mapa');
+      $('#rotationWarning').html('Por favor gire su dispositivo');
     }
   }
   if (searchParams.has('mediaType')) {
@@ -230,6 +244,25 @@
     window.location.href = link;
   }
 
+  function toggleAccordion(id) {
+
+    // Expand/collapse accordion panels
+
+    var touched = document.getElementById(id);
+    var items = document.getElementsByClassName("accordionPanel");
+
+    if ($('#'+id).css('display') == 'none') {
+      $("#"+id).css("display", "block").hide().animate({'height':'show'}, 200)
+    } else $("#"+id).css("display", "none").show().animate({'height':'hide'}, 200)
+
+    // Loop through all the galleries to hide any active ones
+    for (i = 0; i < items.length; i++) {
+      if (items[i] != touched && $("#"+items[i].id).css('display') == 'block'){
+        $("#"+items[i].id).css("display", "none").show().animate({'height':'hide'}, 200)
+      }
+    }
+  }
+
   function toggleDetails(id) {
 
     // Expand/collapse the details list for one gallery and collapse any others
@@ -237,14 +270,13 @@
     var touched = document.getElementById(id);
     var galDetails = document.getElementsByClassName("galleryDetails");
     if ($('#'+id).css('display') == 'none') {
-      //touched.style.display = 'block';
-      $("#"+id).css("display", "block").hide().slideDown(200);
-    } else $("#"+id).css("display", "none").show().slideUp(200);
+      $("#"+id).css("display", "block").hide().animate({'height':'show'}, 200)
+    } else $("#"+id).css("display", "none").show().animate({'height':'hide'}, 200)
 
     // Loop through all the galleries to hide any active ones
     for (i = 0; i < galDetails.length; i++) {
       if (galDetails[i] != touched && $("#"+galDetails[i].id).css('display') == 'block'){
-        $("#"+galDetails[i].id).css("display", "none").show().slideUp(200);
+        $("#"+galDetails[i].id).css("display", "none").show().animate({'height':'hide'}, 200)
       }
     }
   }
@@ -255,35 +287,6 @@
     $(".galleryDetails").css("display", "none");
 
   }
-
-  // Code to handle showing/hiding the accordion elements
-  // This binds an action to each accordion button
-  var accordion = document.getElementsByClassName("accordion");
-  var panels = document.getElementsByClassName("accordionPanel");
-  for (i = 0; i < accordion.length; i++) {
-    accordion[i].addEventListener("click", function() {
-      var panel = this.nextElementSibling;
-      for (j=0;j<panels.length;j++){
-        if (panels[j] != panel) {
-          panels[j].style.maxHeight = null;
-          panels[j].classList.remove("active");
-        } else {
-          if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-            panel.classList.remove("active");
-          } else {
-            panel.style.maxHeight = "10000px";//panel.scrollHeight + "px";
-            panel.classList.add("active");
-          }
-        }
-      }
-      hideDetails();
-    });
-  };
-  // Set gallery list to be open by default
-  var galleryAccordionPanel = document.getElementById('galleryAccordionPanel')
-  galleryAccordionPanel.style.maxHeight = galleryAccordionPanel.scrollHeight + "px";
-  galleryAccordionPanel.style.maxHeight = '10000px';
 
   // Detect landscape and warn
   $(window).resize(function() {
