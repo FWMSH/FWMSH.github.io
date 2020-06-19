@@ -209,6 +209,16 @@
   }
   if (searchParams.has('fontSize')) {
     fontSize = searchParams.get('fontSize');
+    $('.galleryDetails').css('font-size',fontSize);
+    if (fontSize > 75) {
+      $('.accordion').css('font-size',fontSize);
+    }
+    if (fontSize > 60) {
+      $('.gallery').css('font-size',fontSize);
+    }
+    if (fontSize > 45) {
+      $('.exploreButton').css('font-size',fontSize);
+    }
   }
 
   function switchPage(page) {
@@ -228,15 +238,21 @@
     var galDetails = document.getElementsByClassName("galleryDetails");
     if ($('#'+id).css('display') == 'none') {
       //touched.style.display = 'block';
-      $("#"+id).css("display", "block").hide().slideDown();
-    } else $("#"+id).css("display", "none").show().slideUp();
+      $("#"+id).css("display", "block").hide().slideDown(200);
+    } else $("#"+id).css("display", "none").show().slideUp(200);
 
     // Loop through all the galleries to hide any active ones
     for (i = 0; i < galDetails.length; i++) {
       if (galDetails[i] != touched && $("#"+galDetails[i].id).css('display') == 'block'){
-        $("#"+galDetails[i].id).css("display", "none").show().slideUp();
+        $("#"+galDetails[i].id).css("display", "none").show().slideUp(200);
       }
     }
+  }
+
+  function hideDetails() {
+
+    // Function to hide the details view for every gallery
+    $(".galleryDetails").css("display", "none");
 
   }
 
@@ -256,17 +272,18 @@
             panel.style.maxHeight = null;
             panel.classList.remove("active");
           } else {
-            panel.style.maxHeight = "1000px";//panel.scrollHeight + "px";
+            panel.style.maxHeight = "10000px";//panel.scrollHeight + "px";
             panel.classList.add("active");
           }
         }
       }
+      hideDetails();
     });
   };
   // Set gallery list to be open by default
   var galleryAccordionPanel = document.getElementById('galleryAccordionPanel')
   galleryAccordionPanel.style.maxHeight = galleryAccordionPanel.scrollHeight + "px";
-  galleryAccordionPanel.style.maxHeight = '1000px';
+  galleryAccordionPanel.style.maxHeight = '10000px';
 
   // Detect landscape and warn
   $(window).resize(function() {
