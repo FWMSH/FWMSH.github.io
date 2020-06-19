@@ -138,14 +138,16 @@
 
   $(window).resize(function() {
     var screenAspect = $(this).width()/$(this).height();
+    var overlay = document.getElementById('rotationWarning');
 
     if (screenAspect > 1) {
-      document.getElementById('rotationWarning').style.display = 'block';
+      overlay.style.display = 'block';
+      overlay.style.height = $(this).height();
+      overlay.style.width = $(this).width();
     } else {
-      document.getElementById('rotationWarning').style.display = 'none';
+      overlay.style.display = 'none';
     }
   });
-
 
   </script>
 
