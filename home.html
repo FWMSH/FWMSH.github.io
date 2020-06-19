@@ -11,7 +11,7 @@
       gtag('config', 'UA-169285999-1');
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Choose a Gallery</title>
+    <title>Explore the Museum</title>
 
     <style>
 
@@ -51,17 +51,45 @@
         display: none;
       }
       .gallery {
-        width: 95%;
-        font-size: 80px;
+        width: 100%;
+        font-size: 60px;
         color: white;
-        min-height: 10%;
+        /*min-height: 10%;*/
+        text-align: left;
         font-family: Gotham-Book;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0px;
+        margin-bottom: 0px;
         margin-left: 20px;
         margin-right: 20px;
         background-color: #6e298d;
         border: 0px;
+        outline: none;
+        padding: 18px;
+        /*border-radius: 100px;*/
+      }
+      .galleryDetails {
+        width: 95%;
+        display: none;
+        font-size: 45px;
+        color: white;
+        /*min-height: 10%;*/
+        text-align: left;
+        font-family: Gotham-Book;
+        margin-left: 40px;
+        transition: display 0.2s ease-out;
+      }
+      .exploreButton {
+        font-size: 50px;
+        color: white;
+        /*min-height: 10%;*/
+        text-align: left;
+        font-family: Gotham-Book;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        background-color: #db0961;
+        border: 0px;
+        padding: 18px;
         /*border-radius: 100px;*/
       }
       .accordion {
@@ -126,17 +154,36 @@
     <button class="accordion" id='galleryAccordion'>Galleries</button>
     <div class="accordionPanel" id='galleryAccordionPanel'>
       <div id='galleryList'>
-        <button class='gallery' id='space' onclick='switchPage("space/space.html")'>Launchpad</button>
-        <button class='gallery' id='science'>Texas Ecosystems</button>
-        <button class='gallery' id='history'>Beads</button>
-        <button class='gallery' id='project-planet'>Project Planet</button>
-        <button class='gallery' id='innovation'>Wheels</button>
-        <a href="puzzle/puzzle.html"><button class='gallery' id='puzzle'>Puzzle</button></a>
+        <button class='gallery' id='space' onclick='toggleDetails("spaceDetails")'>Launchpad</button>
+        <div class='galleryDetails' id='spaceDetails'>
+          50 years ago, we landed on the Moon. Where will we be 50 years from now?<br>
+          <button class='exploreButton' onclick='switchPage("space/space.html")'>Explore</button>
+        </div>
+        <button class='gallery' id='science' onclick='toggleDetails("scienceDetails")'>Texas Ecosystems</button>
+        <div class='galleryDetails' id='scienceDetails'>
+          Discover the incredible diversity of Texas wildlife<br>
+          <button class='exploreButton'>Explore</button>
+        </div>
+        <button class='gallery' id='history' onclick='toggleDetails("historyDetails")'>Beads</button>
+        <div class='galleryDetails' id='historyDetails'>
+          Uncover the hidden history of beads<br>
+          <button class='exploreButton'>Explore</button>
+        </div>
+        <button class='gallery' id='project-planet' onclick='toggleDetails("ppDetails")'>Project Planet</button>
+        <div class='galleryDetails' id='ppDetails'>
+          Our world is changing. What will you do?<br>
+          <button class='exploreButton'>Explore</button>
+        </div>
+        <button class='gallery' id='innovation' onclick='toggleDetails("wheelsDetails")'>Wheels</button>
+        <div class='galleryDetails' id='wheelsDetails'>
+          What's your favorite thing with wheels?<br>
+          <button class='exploreButton'>Explore</button>
+        </div>
       </div>
     </div>
     <button class="accordion">Map</button>
     <div class="accordionPanel">
-      <img src='map_en.jpg'>
+      <img src='map_en.jpg'></img>
     </div>
     <div id='rotationWarning'>Please rotate your device</overlay>
   </body>
@@ -173,6 +220,26 @@
     window.location.href = link;
   }
 
+  function toggleDetails(id) {
+
+    // Expand/collapse the details list for one gallery and collapse any others
+
+    var touched = document.getElementById(id);
+    var galDetails = document.getElementsByClassName("galleryDetails");
+    if ($('#'+id).css('display') == 'none') {
+      //touched.style.display = 'block';
+      $("#"+id).css("display", "block").hide().slideDown();
+    } else $("#"+id).css("display", "none").show().slideUp();
+
+    // Loop through all the galleries to hide any active ones
+    for (i = 0; i < galDetails.length; i++) {
+      if (galDetails[i] != touched && $("#"+galDetails[i].id).css('display') == 'block'){
+        $("#"+galDetails[i].id).css("display", "none").show().slideUp();
+      }
+    }
+
+  }
+
   // Code to handle showing/hiding the accordion elements
   // This binds an action to each accordion button
   var accordion = document.getElementsByClassName("accordion");
@@ -189,7 +256,7 @@
             panel.style.maxHeight = null;
             panel.classList.remove("active");
           } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
+            panel.style.maxHeight = "1000px";//panel.scrollHeight + "px";
             panel.classList.add("active");
           }
         }
@@ -199,6 +266,7 @@
   // Set gallery list to be open by default
   var galleryAccordionPanel = document.getElementById('galleryAccordionPanel')
   galleryAccordionPanel.style.maxHeight = galleryAccordionPanel.scrollHeight + "px";
+  galleryAccordionPanel.style.maxHeight = '1000px';
 
   // Detect landscape and warn
   $(window).resize(function() {
