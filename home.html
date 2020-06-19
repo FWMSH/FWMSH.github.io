@@ -1,4 +1,4 @@
-<!DOCTYPE html/css>
+<!DOCTYPE html/css/javascript>
 <html>
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,8 +36,8 @@
         top: 0px;
         background-color: #003066;
       }
-      #optionList{
-        padding-top: 16vh;
+      #galleryList{
+        /*padding-top: 16vh;*/
       }
       #space {
       }
@@ -47,7 +47,10 @@
       }
       #project-planet {
       }
-      .option {
+      #puzzle {
+        display: none;
+      }
+      .gallery {
         width: 95%;
         font-size: 80px;
         color: white;
@@ -60,6 +63,33 @@
         background-color: #6e298d;
         border: 0px;
         /*border-radius: 100px;*/
+      }
+      .accordion {
+        background-color: #eee;
+        color: #444;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 75px;
+        transition: 0.4s;
+        font-family: Gotham-Bold;
+      }
+      .active, .accordion:hover {
+        background-color: #ccc;
+      }
+      .accordionPanel {
+        padding: 0 18px;
+        background-color: #003066;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+      }
+      #galleryAccordion {
+        padding-top: 16vh;
+      }
+      #galleryAccordionPanel {
       }
       #rotationWarning {
         position: fixed;
@@ -93,13 +123,20 @@
   </head>
   <body>
     <div id='header'><img src='FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div>
-    <div id='optionList'>
-      <button class='option' id='space' onclick='switchPage("space/space.html")'>Launchpad</button>
-      <button class='option' id='science'>Natural history</button>
-      <button class='option' id='history'>History</button>
-      <button class='option' id='project-planet'>Project Planet</button>
-      <button class='option' id='innovation'>Main Gallery</button>
-      <a href="puzzle/puzzle.html"><button class='option' id='space'>Puzzle</button></a>
+    <button class="accordion" id='galleryAccordion'>Galleries</button>
+    <div class="accordionPanel" id='galleryAccordionPanel'>
+      <div id='galleryList'>
+        <button class='gallery' id='space' onclick='switchPage("space/space.html")'>Launchpad</button>
+        <button class='gallery' id='science'>Texas Ecosystems</button>
+        <button class='gallery' id='history'>Beads</button>
+        <button class='gallery' id='project-planet'>Project Planet</button>
+        <button class='gallery' id='innovation'>Wheels</button>
+        <a href="puzzle/puzzle.html"><button class='gallery' id='puzzle'>Puzzle</button></a>
+      </div>
+    </div>
+    <button class="accordion">Map</button>
+    <div class="accordionPanel">
+      <img src='map_en.jpg'>
     </div>
     <div id='rotationWarning'>Please rotate your device</overlay>
   </body>
@@ -135,6 +172,33 @@
 
     window.location.href = link;
   }
+
+  // Code to handle showing/hiding the accordion elements
+  // This binds an action to each accordion button
+  var accordion = document.getElementsByClassName("accordion");
+  var panels = document.getElementsByClassName("accordionPanel");
+  for (i = 0; i < accordion.length; i++) {
+    accordion[i].addEventListener("click", function() {
+      var panel = this.nextElementSibling;
+      for (j=0;j<panels.length;j++){
+        if (panels[j] != panel) {
+          panels[j].style.maxHeight = null;
+          panels[j].classList.remove("active");
+        } else {
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+            panel.classList.remove("active");
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            panel.classList.add("active");
+          }
+        }
+      }
+    });
+  };
+  // Set gallery list to be open by default
+  var galleryAccordionPanel = document.getElementById('galleryAccordionPanel')
+  galleryAccordionPanel.style.maxHeight = galleryAccordionPanel.scrollHeight + "px";
 
   // Detect landscape and warn
   $(window).resize(function() {
