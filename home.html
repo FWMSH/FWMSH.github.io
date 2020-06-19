@@ -10,6 +10,7 @@
 
       gtag('config', 'UA-169285999-1');
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Choose a Gallery</title>
 
     <style>
@@ -60,9 +61,9 @@
         border: 0px;
         /*border-radius: 100px;*/
       }
-      #overlay {
+      #rotationWarning {
         position: absolute;
-        display: block;
+        display: none;
         width: 100%;
         height: 100%;
         top: 0;
@@ -73,6 +74,11 @@
         margin-left: auto;
         margin-right: auto;
         background-color: rgba(0,0,0,0.9);
+        font-size: 60px;
+        color: white;
+        font-family: Gotham-Book;
+        text-align: center;
+        padding-top: 40%;
       }
 
       * {
@@ -95,6 +101,7 @@
       <button class='option' id='innovation'>Main Gallery</button>
       <a href="puzzle/puzzle.html"><button class='option' id='space'>Puzzle</button></a>
     </div>
+    <div id='rotationWarning'>Please rotate your device</overlay>
   </body>
   <script>
 
@@ -109,6 +116,9 @@
   var searchParams = new URLSearchParams(queryString);
   if (searchParams.has('lang')) {
     lang = searchParams.get('lang');
+    if (lang == 'es') {
+      document.getElementById('rotationWarning').innerHTML = 'Roate tu dispositivo';
+    }
   }
   if (searchParams.has('mediaType')) {
     mediaType = searchParams.get('mediaType');
@@ -125,6 +135,17 @@
 
     window.location.href = link;
   }
+
+  $(window).resize(function() {
+    var screenAspect = $(this).width()/$(this).height();
+
+    if (screenAspect > 1) {
+      document.getElementById('rotationWarning').style.display = 'block';
+    } else {
+      document.getElementById('rotationWarning').style.display = 'none';
+    }
+  });
+
 
   </script>
 
