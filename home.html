@@ -28,6 +28,19 @@
         background-color: #003066;
       }
 
+      h3 {
+        font-family: Gotham-Bold;
+        font-size: 70px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      h5 {
+        font-family: Gotham-Bold;
+        font-size: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
       #header {
         display: flex;
         justify-content: center;
@@ -121,6 +134,16 @@
       #galleryAccordionPanel {
         display: block;
       }
+      #activitiesAccordionPanel {
+        font-size: 45px;
+        color: white;
+        /*min-height: 10%;*/
+        text-align: left;
+        font-family: Gotham-Book;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 20px;
+      }
       #rotationWarning {
         position: fixed;
         display: none;
@@ -183,10 +206,23 @@
         </div>
       </div>
     </div>
+
+    <button id='activitiesAccordion' class="accordion" onclick='toggleAccordion("activitiesAccordionPanel")'>Today's activities</button>
+    <div class="accordionPanel" id='activitiesAccordionPanel'>
+      <H3>Science Theater</H3>
+      <H5>11:00—Icy Exploration</H5>
+      Things are about to get really, really cold.
+      <H5>1:00—Energy Playground</H5>
+      Discover the hidden power that comes out of the outlet.
+      <H5>3:00—Chemistry Time</H5>
+      Uncover the surprising properties of everyday objects
+    </div>
+
     <button id='mapAccordion' class="accordion" onclick='toggleAccordion("mapAccordionPanel")'>Map</button>
     <div class="accordionPanel" id='mapAccordionPanel'>
       <img src='map_en.jpg'></img>
     </div>
+
     <div id='rotationWarning'>Please rotate your device</overlay>
   </body>
   <script>
@@ -215,6 +251,7 @@
       $('#wheelsDetailText').html('¿Cuál es tu cosa favorita con las ruedas?');
       $('.exploreButton').html('Explorar');
       $('#mapAccordion').html('Mapa');
+      $('#activitiesAccordion').html('Actividades de hoy');
       $('#rotationWarning').html('Por favor gire su dispositivo');
     }
   }
@@ -227,11 +264,18 @@
     if (fontSize > 75) {
       $('.accordion').css('font-size',fontSize);
     }
+    if (fontSize > 70) {
+      $('H3').css('font-size',fontSize);
+    }
     if (fontSize > 60) {
       $('.gallery').css('font-size',fontSize);
     }
+    if (fontSize > 50) {
+      $('H5').css('font-size',fontSize);
+    }
     if (fontSize > 45) {
       $('.exploreButton').css('font-size',fontSize);
+      $('#activitiesAccordionPanel').css('font-size',fontSize);
     }
   }
 
