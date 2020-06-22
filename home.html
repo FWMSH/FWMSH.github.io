@@ -106,6 +106,20 @@
         padding: 18px;
         /*border-radius: 100px;*/
       }
+      .generalButton {
+        font-size: 50px;
+        color: white;
+        /*min-height: 10%;*/
+        text-align: left;
+        font-family: Gotham-Book;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 20px;
+        background-color: #db0961;
+        border: 0px;
+        padding: 18px;
+        /*border-radius: 100px;*/
+      }
       .accordion {
         background-color: #eee;
         color: #444;
@@ -117,9 +131,6 @@
         font-size: 75px;
         transition: 0.4s;
         font-family: Gotham-Bold;
-      }
-      .active, .accordion:hover {
-        background-color: #ccc;
       }
       .accordionPanel {
         padding: 0 18px;
@@ -135,6 +146,16 @@
         display: block;
       }
       #activitiesAccordionPanel {
+        font-size: 45px;
+        color: white;
+        /*min-height: 10%;*/
+        text-align: left;
+        font-family: Gotham-Book;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 20px;
+      }
+      #scaverngerAccordionPanel {
         font-size: 45px;
         color: white;
         /*min-height: 10%;*/
@@ -210,12 +231,19 @@
     <button id='activitiesAccordion' class="accordion" onclick='toggleAccordion("activitiesAccordionPanel")'>Today's activities</button>
     <div class="accordionPanel" id='activitiesAccordionPanel'>
       <H3>Science Theater</H3>
+      <i>Located in Oak Room East.</i>
       <H5>11:00—Icy Exploration</H5>
       Things are about to get really, really cold.
       <H5>1:00—Energy Playground</H5>
       Discover the hidden power that comes out of the outlet.
       <H5>3:00—Chemistry Time</H5>
       Uncover the surprising properties of everyday objects
+    </div>
+
+    <button id='scavengerAccordion' class="accordion" onclick='toggleAccordion("scaverngerAccordionPanel")'>Scavenger hunt</button>
+    <div class="accordionPanel" id='scaverngerAccordionPanel'>
+      <H5>Can you find our hidden objects?</H5>
+      <button class='generalButton'>Play the game</button>
     </div>
 
     <button id='mapAccordion' class="accordion" onclick='toggleAccordion("mapAccordionPanel")'>Map</button>
@@ -252,6 +280,7 @@
       $('.exploreButton').html('Explorar');
       $('#mapAccordion').html('Mapa');
       $('#activitiesAccordion').html('Actividades de hoy');
+      $('#scavengerAccordion').html('Búsqueda de tesoros');
       $('#rotationWarning').html('Por favor gire su dispositivo');
     }
   }
@@ -305,6 +334,7 @@
         $("#"+items[i].id).css("display", "none").show().animate({'height':'hide'}, 200)
       }
     }
+    hideDetails();
   }
 
   function toggleDetails(id) {
