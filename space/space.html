@@ -150,7 +150,7 @@
         margin-right: 10px;
       }
       #contentPane {
-        height: 70vh;
+        height: 85vh;
         display: none;
       }
       #inputPane {
@@ -514,7 +514,7 @@ button:focus {outline:0;}
       // Function to show only text about an object. This should be used rarely.
 
       html = "<div class='objectName'>"+objName+"</div>"
-      html += '<br>' + "<div class='objectText' style='height: 80%;'>" + objText + "</div>"
+      html += '<br>' + "<div id='objectDesc' class='objectText' style='height: 80%;'>" + objText + "</div>"
 
       return(html)
     }
@@ -527,7 +527,7 @@ button:focus {outline:0;}
       html = "<div class='objectName'>"+objName+"</div>"
       html += "<img class='objectImage' onclick='showLightboxOverlay()' src='" + imgName + "'>"
       //html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
-      html += "<div class='objectText'>" + objText + "</div>"
+      html += "<div id='objectDesc' class='objectText'>" + objText + "</div>"
 
       return(html)
     }
@@ -639,8 +639,8 @@ button:focus {outline:0;}
               document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
             } else { // No picture
               html = generateAudioOnlyBlock(nameDict[num]);
+            }
           }
-        }
 
           document.getElementById('contentPane').innerHTML = html;
           var objectText = document.getElementsByClassName('objectText');
@@ -651,6 +651,7 @@ button:focus {outline:0;}
           for (i=0; i<objectImageCaption.length; i++) {
             objectImageCaption[i].style.fontSize = fontSize + 'px';
           }
+
         }
         else {
           document.getElementById('contentPane').innerHTML = generateTextOnlyBlock(nameDict['error'], textDict['error']);
@@ -666,6 +667,10 @@ button:focus {outline:0;}
         document.getElementById('header').style.display = 'none';
         document.getElementById('inputPane').style.display = 'none';
         document.getElementById('contentPane').style.display = 'block';
+
+        // var height = 0.45*$('#contentPane').height();
+        // console.log($('.objectImage').outerHeight());
+        // $('#objectDesc').height(height);
 
         numLabel.innerHTML = '_';
       }
