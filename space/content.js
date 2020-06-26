@@ -87,9 +87,24 @@ var textDict_en = {
     };
 
 var audioDict_en = {
-  '1': 'audio/en/space-1.mp3',
-  '2': 'audio/en/space-2.mp3',
-  '3': 'audio/en/space-3.mp3',
+  '1': 'audio/en/A. Leak Patch.mp3',
+  '2': 'audio/en/B. Water Gun.mp3',
+  '3': 'audio/en/C. Apollo Heat Shield.mp3',
+  '4': 'audio/en/D. Faith 7 Heat Sheild.mp3',
+  '5': 'audio/en/E. Mylar.mp3',
+  '6': 'audio/en/F. LM Data Card.mp3',
+  '7': 'audio/en/G. Fort Worth Flag.mp3',
+  '8': 'audio/en/H. US Flag.mp3',
+  '9': 'audio/en/I. Towels.mp3',
+  '10': 'audio/en/J. Window.mp3',
+  '11': 'audio/en/K. Skylab Bike.mp3',
+  '12': 'audio/en/L. Shuttle control panel.mp3',
+  '13': 'audio/en/M. Shuttle Tile.mp3',
+  '14': 'audio/en/N. Pineapple Drink.mp3',
+  '15': 'audio/en/O. Chicken Meal.mp3',
+  '16': 'audio/en/P. Shuttle Coveralls.mp3',
+  '17': 'audio/en/Q. Bean Suit.mp3',
+  '18': 'audio/en/R. Prototype suit.mp3'
 }
 
 var nameDict_es = {

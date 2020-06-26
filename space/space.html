@@ -537,13 +537,13 @@ button:focus {outline:0;}
       // Function to return an HTML block with the artifact name and the controls
       // for audio playback.
 
-      html = `
+      html = "<div class='objectName'>"+objName+"</div>"
+      html += `
       <div id='audioControlBar'>
         <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
         <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
       </div><br>
       `
-      html += "<div class='objectName'>"+objName+"</div>"
 
       return(html)
     }
