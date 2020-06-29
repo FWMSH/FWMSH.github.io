@@ -652,7 +652,9 @@ button:focus {outline:0;}
               html = generateAudioImageBlock(nameDict[num], imageDict[num], captionDict[num]);
               document.getElementById('lightboxImage').src = imageDict[num];
               document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
-            } else { // No picture
+            } else if (num in scriptDict) { // We have a script
+              html = generateAudioScriptBlock(nameDict[num], scriptDict[num]);
+            } else { // No picture or script
               html = generateAudioOnlyBlock(nameDict[num]);
           }
         }

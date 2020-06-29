@@ -1,0 +1,297 @@
+<!DOCTYPE html/css/javascript>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169285999-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-169285999-1');
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Explore the Museum</title>
+
+    <style>
+
+      @font-face {
+      font-family: Gotham-Bold;
+      src: url(../Gotham-Bold.otf);
+      }
+      @font-face {
+        font-family: Gotham-Book;
+        src: url(../Gotham-Book.otf);
+      }
+
+      body {
+        background-color: #003066;
+      }
+
+      h3 {
+        font-family: Gotham-Bold;
+        font-size: 70px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      h5 {
+        font-family: Gotham-Bold;
+        font-size: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      #header {
+        display: flex;
+        justify-content: center;
+        height: 16vh;
+        position: fixed;
+        top: 0px;
+        background-color: #003066;
+      }
+      #homeButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #6e298d;
+        /*border-radius: 50px;*/
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #checkButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #db0961;
+        /*border-radius: 50px;*/
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .generalButton {
+        font-size: 50px;
+        color: white;
+        /*min-height: 10%;*/
+        text-align: left;
+        font-family: Gotham-Book;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 20px;
+        background-color: #db0961;
+        border: 0px;
+        padding: 18px;
+      }
+      #contentPane {
+        height: 70vh;
+        overflow-y: auto;
+        margin-top: 17vh;
+      }
+      .multiChoice {
+        font-family: Gotham-Book;
+        font-size: 45px;
+        color: white;
+        position: relative;
+      }
+      .radioContainer {
+        display: block;
+        position: relative;
+        padding-left: 60px;
+        margin-bottom: 12px;
+        margin-top: 12px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      /* Hide the browser's default radio button */
+      .radioContainer input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      /* Create a custom radio button */
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 50px;
+        width: 50px;
+        background-color: #eee;
+        border-radius: 50%;
+      }
+      /* When the radio button is checked, add a blue background */
+      .radioContainer input:checked ~ .checkmark {
+        background-color: #2196F3;
+      }
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      /* Show the indicator (dot/circle) when checked */
+      .radioContainer input:checked ~ .checkmark:after {
+        display: block;
+      }
+      /* Style the indicator (dot/circle) */
+      .radioContainer .checkmark:after {
+        top: 18px;
+        left: 18px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: white;
+      }
+      #bottomPane {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        padding-bottom: 2vh;
+        padding-top: 2vh;
+        background-color: #003066;
+      }
+      #rotationWarning {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(0,0,0,0.9);
+        font-size: 60px;
+        color: white;
+        font-family: Gotham-Book;
+        text-align: center;
+        padding-top: 10%;
+      }
+
+      * {
+        -webkit-text-size-adjust: none;
+        touch-action: manipulation;
+      }
+      button:active {
+        outline: none;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='header'><img src='../FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div>
+
+    <div id='contentPane'>
+    </div>
+
+    <div id='bottomPane'>
+      <button id='homeButton' onclick='switchPage("../home.html")'>Go Home</button>
+      <button id='checkButton' onclick="checkAnswers()">Check Answers</button>
+    </div>
+
+    <div id='rotationWarning'>Please rotate your device</div>
+  </body>
+  <script>
+
+  // User preferences to pass back and forth with the other pages
+  var lang = 'en';
+  var mediaType = 'text';
+  var fontSize = 45;
+
+  // Check for options passed from previous page
+  var queryString = decodeURIComponent(window.location.search);
+
+  var searchParams = new URLSearchParams(queryString);
+  if (searchParams.has('lang')) {
+    lang = searchParams.get('lang');
+  }
+  if (searchParams.has('mediaType')) {
+    mediaType = searchParams.get('mediaType');
+  }
+  if (searchParams.has('fontSize')) {
+    fontSize = searchParams.get('fontSize');
+  }
+
+  function switchPage(page) {
+
+    // Function to switch pages while appending the user preferences
+
+    var link = page + '?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
+
+    window.location.href = link;
+  }
+
+  function createMultiChoice(question, answer_dict, correct_answer) {
+
+    // Generates html for a multiple-choice question
+
+    // Get a random number to be the id for the radio buttons
+    var rand_id =  Math.random().toString();
+
+    var html = '<div class="multiChoice">';
+    html += '<hr>';
+    html += question;
+    for (i=0; i<answer_dict.length; i++) {
+      html += '<label class="radioContainer">' + answer_dict[i];
+      html+= '<input type="radio" name="' + rand_id + '" value="' + answer_dict[i] + '" answer="' + correct_answer +  '"><span class="checkmark"></span></label>';
+    }
+    html += '</div>';
+
+    // Add question to content pane
+    $('#contentPane').append(html);
+  }
+
+  function checkAnswers() {
+
+    // Function to check each answer
+
+    // Get all checked radio buttons
+    var checked = $("input[type='radio']:checked");
+
+    for (i=0; i<checked.length; i++) {
+      if (checked[i]['value'] == checked[i].getAttribute('answer')) {
+        checked[i].parentElement.style.color = 'green';
+      } else {
+        checked[i].parentElement.style.color = 'red';
+      }
+    }
+  }
+
+  // Add the questions
+
+  createMultiChoice('Of which state is <i>Paluxysaurus</i> the official dinosaur?', ['Oklahoma', 'New Mexico', 'Texas'], 'Texas');
+  createMultiChoice('<i>Paluxysaurus jonesi</i> is a _______ , a class of dinosaur that eats plants, has a long neck and tail, a small head, and walks on all four legs.', ['Carnivore', 'Herbivore', 'Omnivore'], 'Herbivore');
+  createMultiChoice('Something as small as a single tooth can help to identify a dinosaur as a herbivore or a _______. ', ['Theropod', 'Carnivore', 'Ceratopsian'], 'Carnivore');
+  createMultiChoice('A _______ is a scientist that studies plants and animals that lived millions of years ago. They study fossils to learn about organisms and the environment in which they lived and what the Earth was like for them.', ['Paleontologist', 'Geologist', 'Astronomer'], 'Paleontologist');
+  createMultiChoice('In the <i>Beads: A Journey Across Cultures</i> exhibit, what egg, from the world’s largest bird, is used in the design of a necklace?', ['Penguin', 'Ostrich', 'Pterodactyl  '], 'Ostrich');
+
+  // Detect landscape and warn
+  $(window).resize(function() {
+    var screenAspect = $(this).width()/$(this).height();
+    var overlay = document.getElementById('rotationWarning');
+
+    if (screenAspect > 1) {
+      overlay.style.display = 'block';
+    } else {
+      overlay.style.display = 'none';
+    }
+  });
+
+  </script>
+
+</html>
