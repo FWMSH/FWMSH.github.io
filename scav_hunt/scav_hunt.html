@@ -89,9 +89,13 @@
         padding: 18px;
       }
       #contentPane {
-        height: 50vh;
+        height: 80vh;
         overflow-y: auto;
-        margin-top: 17vh;
+        /* margin-top: 17vh; */
+        margin-top: 20px;
+        font-size: 55px;
+        color: white;
+        font-family: Gotham-Book;
       }
       .sectionHeader {
         font-family: Gotham-Bold;
@@ -108,10 +112,7 @@
         margin-bottom: 12px;
         margin-top: 12px;
         cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+        -webkit-tap-highlight-color: transparent;
       }
       /* Hide the browser's default radio button */
       .radioContainer input {
@@ -196,9 +197,12 @@
     </style>
   </head>
   <body>
-    <div id='header'><img src='../FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div>
+    <!-- <div id='header'><img src='../FWMSH_logo.png' style='object-fit: cover; width: 100%;'></div> -->
 
     <div id='contentPane'>
+      <img src='Building.jpg' style='width:100%;'>
+      <h3>Scavenger Hunt</h3>
+      Our galleries are full of cool facts and amazing ideas. Can you find the answers to these questions?
     </div>
 
     <div id='bottomPane'>
@@ -227,6 +231,8 @@
   }
   if (searchParams.has('fontSize')) {
     fontSize = searchParams.get('fontSize');
+    $('H3').css({'fontSize': parseInt(fontSize) + 40});
+    $('#contentPane').css({'fontSize': fontSize});
   }
 
   function switchPage(page) {
@@ -283,8 +289,6 @@
 
     $('#contentPane').append(html);
     $('.sectionHeader').css({'fontSize': parseInt(fontSize) + 10});
-
-
   }
 
   function checkAnswers() {
@@ -296,9 +300,9 @@
 
     for (i=0; i<checked.length; i++) {
       if (checked[i]['value'] == checked[i].getAttribute('answer')) {
-        checked[i].parentElement.style.color = 'green';
+        checked[i].parentElement.style.color = '#009760';
       } else {
-        checked[i].parentElement.style.color = 'red';
+        checked[i].parentElement.style.color = '#ab0634';
       }
     }
   }
@@ -324,7 +328,7 @@
 
   createHeader('<i>Launchpad</i>');
   createMultiChoice("By using infrared light, astronomers can study an object's _______.", ['Temperature', 'Weight', 'Age'], 'Temperature');
-  createMultiChoice("On which space station did astronauts use a bike like the one on display in <i>Launchpad</i>?", ['International Space Station', 'Space Shuttle', 'SKylab'], 'SKylab');
+  createMultiChoice("On which space station did astronauts use a bike like the one on display in <i>Launchpad</i>?", ['International Space Station', 'Space Shuttle', 'Skylab'], 'Skylab');
   createMultiChoice("If you weigh 100 lbs on Earth, how much will you weigh on the Moon?", ['Less', 'About the same', 'More'], 'Less');
 
   createHeader('<i>Wonderous Wheels</i>');
