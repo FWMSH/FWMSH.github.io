@@ -128,7 +128,7 @@
         border: none;
         text-align: left;
         outline: none;
-        font-size: 75px;
+        font-size: 65px;
         transition: 0.4s;
         font-family: Gotham-Bold;
       }
@@ -145,7 +145,7 @@
       #galleryAccordionPanel {
         display: block;
       }
-      #activitiesAccordionPanel {
+      .schedule {
         font-size: 45px;
         color: white;
         /*min-height: 10%;*/
@@ -233,16 +233,12 @@
       </div>
     </div>
 
-    <button id='activitiesAccordion' class="accordion" onclick='toggleAccordion("activitiesAccordionPanel")'>Today's activities</button>
-    <div class="accordionPanel" id='activitiesAccordionPanel'>
-      <H3>Science Theater</H3>
-      <i>Located in Oak Room East.</i>
-      <H5>11:00—Icy Exploration</H5>
-      Things are about to get really, really cold.
-      <H5>1:00—Energy Playground</H5>
-      Discover the hidden power that comes out of the outlet.
-      <H5>3:00—Chemistry Time</H5>
-      Uncover the surprising properties of everyday objects
+    <button id='steamLabAccordion' class="accordion" onclick='toggleAccordion("steamLabAccordionPanel")'>STEAM Lab Schedule</button>
+    <div class="accordionPanel schedule" id='steamLabAccordionPanel'>
+    </div>
+
+    <button id='scienceTheaterAccordion' class="accordion" onclick='toggleAccordion("scienceTheaterAccordionPanel")'>Science Theater Schedule</button>
+    <div class="accordionPanel schedule" id='scienceTheaterAccordionPanel'>
     </div>
 
     <button id='scavengerAccordion' class="accordion" onclick='toggleAccordion("scaverngerAccordionPanel")'>Scavenger hunt</button>
@@ -258,6 +254,7 @@
 
     <div id='rotationWarning'>Please rotate your device</div>
   </body>
+  <script type="text/javascript" src="content.js"></script>
   <script>
 
   // User preferences to pass back and forth with the other pages
@@ -367,6 +364,64 @@
 
   }
 
+  function createSteamLabSchedule() {
+
+    // Function to filter the schedule for events on the current day and build the scheudle HTML
+
+    // Select the correct language
+    var list_to_use = steamLabActivityList_en
+    // Select the correct day of the week
+    var today = new Date();
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var filteredList = list_to_use.filter(d => d.day == 'Friday');//list_to_use.filter(d => d.day == days[today.getDay()]);
+    if (filteredList.length > 0) {
+      var html = '<H3>STEAM Lab</H3>Stay safe while goinog hands-on with these socially-distant activities.';
+
+      for (i=0; i<filteredList.length; i++) {
+        var entry = filteredList[i];
+        var endDateTime = new Date(today.toDateString() + ' ' + entry['endTime']);
+        if (endDateTime.getTime() > today.getTime()) { // Only add events that aren't in the past.
+          html += '<H5>' + entry['title'] + '</H5>';
+          html += '<strong>' + entry['startTime'] + ' - ' + entry['endTime'] + '</strong>';
+          html += '<br>' + entry['desc'];
+        }
+      }
+    } else {
+      var html = '<H3>STEAM Lab</H3>The STEAM Lab is closed, but make sure to come back for our socially-distant hands-on activities in the future!';
+    }
+
+    $('#steamLabAccordionPanel').append(html);
+  }
+
+  function createScienceTheaterSchedule() {
+
+    // Function to filter the schedule for events on the current day and build the scheudle HTML
+
+    // Select the correct language
+    var list_to_use = scienceTheaterActivityList_en
+    // Select the correct day of the week
+    var today = new Date();
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var filteredList = list_to_use.filter(d => d.day == 'Friday');//list_to_use.filter(d => d.day == days[today.getDay()]);
+    if (filteredList.length > 0) {
+      var html = '<H3>Science Theater</H3>The Science Theater features daily live demonstrations, talks, and stories with Museum staff. Socially-distant seating is provided.';
+
+      for (i=0; i<filteredList.length; i++) {
+        var entry = filteredList[i];
+        var endDateTime = new Date(today.toDateString() + ' ' + entry['endTime']);
+        if (endDateTime.getTime() > today.getTime()) { // Only add events that aren't in the past.
+          html += '<H5>' + entry['title'] + '</H5>';
+          html += '<strong>' + entry['startTime'] + ' - ' + entry['endTime'] + '</strong>';
+          html += '<br>' + entry['desc'];
+        }
+      }
+    } else {
+      var html = '<H3>Science Theater</H3>The Science Theater is closed, but make sure to come back for our socially-distant demos, talks, and stories in the future!';
+    }
+
+    $('#scienceTheaterAccordionPanel').append(html);
+  }
+
   // Detect landscape and warn
   $(window).resize(function() {
     var screenAspect = $(this).width()/$(this).height();
@@ -378,6 +433,10 @@
       overlay.style.display = 'none';
     }
   });
+
+  // Populate the schedules
+  createSteamLabSchedule();
+  createScienceTheaterSchedule();
 
   </script>
 

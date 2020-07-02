@@ -89,13 +89,12 @@
         padding: 18px;
       }
       #contentPane {
-        height: 80vh;
+        height: 90vh;
         overflow-y: auto;
         /* margin-top: 17vh; */
         margin-left: 20px;
         margin-right: 20px;
         margin-top: 20px;
-        padding-bottom: 500px;
         font-size: 55px;
         color: white;
         font-family: Gotham-Book;
@@ -255,6 +254,16 @@
     return arr;
   }
 
+  function createPaddingBlock(px=500) {
+
+    // Function to insert an empty div with a fixed height to add some padding
+
+    var html = "<div style='height: " + px.toString() + "px;'></div>"
+
+    // Add  to content pane
+    $('#contentPane').append(html);
+  }
+
   function createMultiChoice(question, answer_dict, correct_answer) {
 
     // Generates html for a multiple-choice question
@@ -341,6 +350,8 @@
   createHeader('V-DROME');
   createMultiChoice("Which of your senses is V-DROME <i>not</i> designed to engage?", ['Smell', 'Sight', 'Sound', 'Taste'], 'Taste');
   createMultiChoice("V-DROME will be located _______.", ['Next to the Omni', 'Where the Omni is now', 'Next to the Noble Planetarium'], 'Next to the Omni');
+
+  createPaddingBlock();
 
   // Detect landscape and warn
   $(window).resize(function() {
