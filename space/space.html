@@ -203,7 +203,11 @@
         padding-left: 20px;
         padding-right: 20px;
         overflow-y: auto;
-        height: 40%;
+        height: 60%;
+      }
+      .paddingBlock{
+        height: 500px;
+        width: 100%;
       }
       #lightboxOverlay {
         position: absolute;
@@ -527,7 +531,7 @@ button:focus {outline:0;}
       html = "<div class='objectName'>"+objName+"</div>"
       html += "<img class='objectImage' onclick='showLightboxOverlay()' src='" + imgName + "'>"
       //html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
-      html += "<div id='objectDesc' class='objectText'>" + objText + "</div>"
+      html += "<div id='objectDesc' class='objectText'>" + objText + "<div class='paddingBlock'></div></div>"
 
       return(html)
     }
