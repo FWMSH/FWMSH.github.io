@@ -1,9 +1,9 @@
 var steamLabActivityList_en = [
   {'title': 'Coffee Filter Planets', 'desc': 'Design your own planet using a coffee filter.', 'day':
   'Friday', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
-  {'title': 'Shaving Cream Planets', 'desc': 'Use shaving cream to make a planet', 'day':
+  {'title': 'Shaving Cream Planets', 'desc': 'Use shaving cream to make a planet.', 'day':
   'Friday', 'startTime': '11:45 AM', 'endTime': '12:45 PM'},
-  {'title': 'Bicycle Pump Rockets', 'desc': 'Build and launch your own rocket', 'day':
+  {'title': 'Bicycle Pump Rockets', 'desc': 'Build and launch your own rocket.', 'day':
   'Friday', 'startTime': '1:45 PM', 'endTime': '2:45 PM'},
 ];
 

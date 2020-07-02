@@ -291,23 +291,20 @@
   }
   if (searchParams.has('fontSize')) {
     fontSize = searchParams.get('fontSize');
+    formatText();
+  }
+
+  function formatText() {
+
+    // Function to set all the necessary text sizes based on the user's preference.
+
     $('.galleryDetails').css('font-size',fontSize);
-    if (fontSize > 75) {
-      $('.accordion').css('font-size',fontSize);
-    }
-    if (fontSize > 70) {
-      $('H3').css('font-size',fontSize);
-    }
-    if (fontSize > 60) {
-      $('.gallery').css('font-size',fontSize);
-    }
-    if (fontSize > 50) {
-      $('H5').css('font-size',fontSize);
-    }
-    if (fontSize > 45) {
-      $('.exploreButton').css('font-size',fontSize);
-      $('#activitiesAccordionPanel').css('font-size',fontSize);
-    }
+    $('.exploreButton').css('font-size',fontSize);
+    $('.schedule').css('font-size',fontSize);
+    $('.accordion').css('font-size',parseInt(fontSize) + 20);
+    $('.gallery').css('font-size',parseInt(fontSize) + 10);
+    $('H3').css('font-size',parseInt(fontSize) + 15);
+    $('H5').css('font-size',parseInt(fontSize) + 5);
   }
 
   function switchPage(page) {
@@ -391,6 +388,7 @@
     }
 
     $('#steamLabAccordionPanel').append(html);
+    formatText();
   }
 
   function createScienceTheaterSchedule() {
@@ -420,6 +418,7 @@
     }
 
     $('#scienceTheaterAccordionPanel').append(html);
+    formatText();
   }
 
   // Detect landscape and warn
