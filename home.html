@@ -370,7 +370,7 @@
     // Select the correct day of the week
     var today = new Date();
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var filteredList = list_to_use.filter(d => d.day == 'Friday');//list_to_use.filter(d => d.day == days[today.getDay()]);
+    var filteredList = list_to_use.filter(d => d.day == days[today.getDay()]); //list_to_use.filter(d => d.day == 'Friday');
     if (filteredList.length > 0) {
       var html = '<H3>STEAM Lab</H3>Stay safe while goinog hands-on with these socially-distant activities.';
 
@@ -400,7 +400,7 @@
     // Select the correct day of the week
     var today = new Date();
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var filteredList = list_to_use.filter(d => d.day == 'Friday');//list_to_use.filter(d => d.day == days[today.getDay()]);
+    var filteredList = list_to_use.filter(d => d.day == days[today.getDay()]); //list_to_use.filter(d => d.day == 'Friday');
     if (filteredList.length > 0) {
       var html = '<H3>Science Theater</H3>The Science Theater features daily live demonstrations, talks, and stories with Museum staff. Socially-distant seating is provided.';
 
