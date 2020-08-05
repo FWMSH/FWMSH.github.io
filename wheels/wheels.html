@@ -12,7 +12,7 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>Beads</title>
+    <title>Wheels</title>
 
     <style>
 
@@ -58,33 +58,27 @@
         text-align: center;
         padding-top: 10%;
       }
-      #number-input {
-        font-size: 150px;
-        text-align: center;
+      #artifactList {
+        overflow-y: scroll;
+        height: 80%;
+      }
+      .artifactButton {
+        position: relative;
+        width: 98%;
+        padding: 10px;
+      }
+      .artifactButtonImage {
+        width: 100%;
+        opacity: 0.5;
+      }
+      .artifactButtonText {
+        position: absolute;
+        bottom: 8px;
+        left: 25px;
         color: white;
         font-family: Gotham-Book;
-      }
-      #keypad {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-        grid-auto-rows: minmax(100px, auto);
-        margin-left: 10%;
-        margin-right: 10%;
-      }
-      .keypad-button {
-        color: white;
-        background-color: gray;
-        text-align: center;
-        font-size: 100px;
-        font-family: Gotham-Book;
-        /*border-radius: 40px;*/
-      }
-      #k_go {
-        background-color: #009760;
-      }
-      #k_back {
-        background-color: #ab0634;
+        font-size: 75px;
+        padding-right: 20px;
       }
       #audioControlBar {
         display: flex;
@@ -326,7 +320,7 @@ button:focus {outline:0;}
     </style>
   </head>
   <body>
-    <div id='header'>Beads</div>
+    <div id='header'>Wheels</div>
     <audio id='audio' onerror="handleAudioError()" onended="setAudioState('pause')">
       <source src='' type="audio/mpeg">
     </audio>
@@ -337,23 +331,11 @@ button:focus {outline:0;}
       <div id='lightboxImageCaption' class='objectImageCaption'></div>
     </div>
     <div id='inputPane'>
-      <div id='inputLabel' class='inputLabelEN'>Use the keypad to enter a label number</div>
-      <div id='number-input'>_</div>
-      <div id='keypad'>
-        <div class='keypad-button' id='k1' onclick="pressKey(1)">1</div>
-        <div class='keypad-button' id='k2' onclick="pressKey(2)">2</div>
-        <div class='keypad-button' id='k3' onclick="pressKey(3)">3</div>
-        <div class='keypad-button' id='k4' onclick="pressKey(4)">4</div>
-        <div class='keypad-button' id='k5' onclick="pressKey(5)">5</div>
-        <div class='keypad-button' id='k6' onclick="pressKey(6)">6</div>
-        <div class='keypad-button' id='k7' onclick="pressKey(7)">7</div>
-        <div class='keypad-button' id='k8' onclick="pressKey(8)">8</div>
-        <div class='keypad-button' id='k9' onclick="pressKey(9)">9</div>
-        <div class='keypad-button' id='k_back' onclick="pressKey(-1)"><--</div>
-        <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
-        <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
+      <div id='inputLabel' class='inputLabelEN'>Select an Artifact</div>
+      <div id='artifactList'>
+
       </div>
-      <div class='toggles' style='margin-top: 50px;'>
+      <div class='toggles' style='margin-top: 50px; margin-bottom: 300px'>
         <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
       </div>
       <div id='optionsOverlay'>
@@ -397,6 +379,22 @@ button:focus {outline:0;}
     var captionDict = captionDict_en;
     var textDict = textDict_en;
     var audioDict = audioDict_en;
+    var thumbDict = thumbDict_en;
+
+    function populateArtifactButtons() {
+
+      // Function to create an ArifactButton for each elemtnt in nameDict and add it to the artifactList
+
+      var list = document.getElementById('artifactList');
+      for (i=1; i<Object.keys(nameDict).length; i++) {
+        let index = i.toString()
+        var html = "<div class='artifactButton' onclick='loadItem(" + index + ")'>";
+        html += "<img class='artifactButtonImage' src='" + thumbDict[index] + "'>"
+        html += "<div class='artifactButtonText'>" + nameDict[index] + "</div></div>"
+        list.innerHTML += html
+      }
+
+    }
 
     function updateHomeLink() {
 
@@ -611,15 +609,15 @@ button:focus {outline:0;}
 
     }
 
-    function loadItem() {
+    function loadItem(num) {
 
       // Function to take the input number, search for a tour clip and play it
 
       audio = document.getElementById('audio');
-      numLabel = document.getElementById('number-input');
-
-      var html = '';
-      var num = parseInt(numLabel.innerHTML).toString() // To strip and leading 0
+      // numLabel = document.getElementById('number-input');
+      //
+      // var html = '';
+      // var num = parseInt(numLabel.innerHTML).toString() // To strip and leading 0
 
       if (isFinite(num)) { // User has entered a number
 
@@ -676,7 +674,7 @@ button:focus {outline:0;}
         // console.log($('.objectImage').outerHeight());
         // $('#objectDesc').height(height);
 
-        numLabel.innerHTML = '_';
+        //numLabel.innerHTML = '_';
       }
     }
 
@@ -721,24 +719,8 @@ button:focus {outline:0;}
       }
     }
 
-    function pressKey(val) {
-
-      // Function to take a press from the keypad and update the number label
-
-      numLabel = document.getElementById('number-input');
-
-      if (val >= 0) {
-        if (numLabel.innerHTML == '_') {
-          numLabel.innerHTML = ''
-        }
-        numLabel.innerHTML += val
-      } else { // We've hit the back button
-        numLabel.innerHTML = numLabel.innerHTML.slice(0,-1)
-        if (numLabel.innerHTML.length == 0) {
-          numLabel.innerHTML = '_'
-        }
-      }
-    }
+    // Populate the artifactList
+    populateArtifactButtons();
 
     // Detect landscape and warn
     $(window).resize(function() {
