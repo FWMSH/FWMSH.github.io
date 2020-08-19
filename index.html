@@ -251,7 +251,7 @@
     <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
 
     <div id='goPane'>
-      <button id='goButton' onclick="switchPage('home.html')">Let's Go!</button>
+      <button id='goButton' onclick="switchPage()">Let's Go!</button>
     </div>
 
     <div id='overlay'>
@@ -387,9 +387,21 @@
     document.getElementById('textSizeSample').style.fontSize = size + 'px';
   }
 
-  function switchPage(page) {
+  function switchPage() {
 
     // Function to switch pages while appending the user preferences
+
+    // Check for options passed from previous page
+    var queryString = decodeURIComponent(window.location.search);
+
+    var searchParams = new URLSearchParams(queryString);
+    if (searchParams.has('page')) {
+      passed_page = searchParams.get('page');
+      page = passed_page + "/" + passed_page + ".html";
+    }
+    else {
+      page = "home.html";
+    }
 
     var link = page + '?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
 
@@ -432,6 +444,8 @@
       overlay.style.display = 'none';
     }
   });
+
+
 
   </script>
 
