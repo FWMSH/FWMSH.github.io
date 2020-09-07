@@ -369,8 +369,9 @@
     var list_to_use = steamLabActivityList_en
     // Select the correct day of the week
     var today = new Date();
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var filteredList = list_to_use.filter(d => d.day == days[today.getDay()]); //list_to_use.filter(d => d.day == 'Friday');
+    var filteredList = list_to_use.filter(d => {var time = new Date(d.date).getTime();
+                                                 return (time == today.getTime());
+                                                });
     if (filteredList.length > 0) {
       var html = '<H3>STEAM Lab</H3>Stay safe while going hands-on with these socially-distant activities.';
 
@@ -378,7 +379,7 @@
         var entry = filteredList[i];
         var endDateTime = new Date(today.toDateString() + ' ' + entry['endTime']);
         if (endDateTime.getTime() > today.getTime()) { // Only add events that aren't in the past.
-          html += '<H5>' + entry['title'] + '</H5>';
+          html += '<H5>' + entry['name'] + '</H5>';
           html += '<strong>' + entry['startTime'] + ' - ' + entry['endTime'] + '</strong>';
           html += '<br>' + entry['desc'];
         }
@@ -399,8 +400,9 @@
     var list_to_use = scienceTheaterActivityList_en
     // Select the correct day of the week
     var today = new Date();
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var filteredList = list_to_use.filter(d => d.day == days[today.getDay()]); //list_to_use.filter(d => d.day == 'Friday');
+    var filteredList = list_to_use.filter(d => {var time = new Date(d.date).getTime();
+                                                 return (time == today.getTime());
+                                                });
     if (filteredList.length > 0) {
       var html = '<H3>Science Theater</H3>The Science Theater features daily live demonstrations, talks, and stories with Museum staff. Socially-distant seating is provided.';
 
@@ -408,7 +410,7 @@
         var entry = filteredList[i];
         var endDateTime = new Date(today.toDateString() + ' ' + entry['endTime']);
         if (endDateTime.getTime() > today.getTime()) { // Only add events that aren't in the past.
-          html += '<H5>' + entry['title'] + '</H5>';
+          html += '<H5>' + entry['name'] + '</H5>';
           html += '<strong>' + entry['startTime'] + ' - ' + entry['endTime'] + '</strong>';
           html += '<br>' + entry['desc'];
         }
