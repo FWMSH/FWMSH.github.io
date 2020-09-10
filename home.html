@@ -369,8 +369,10 @@
     var list_to_use = steamLabActivityList_en
     // Select the correct day of the week
     var today = new Date();
+    var today_day= new Date();
+    today_day.setHours(0,0,0,0);
     var filteredList = list_to_use.filter(d => {var time = new Date(d.date).getTime();
-                                                 return (time == today.getTime());
+                                                 return (time == today_day.getTime());
                                                 });
     if (filteredList.length > 0) {
       var html = '<H3>STEAM Lab</H3>Stay safe while going hands-on with these socially-distant activities.';
@@ -400,8 +402,10 @@
     var list_to_use = scienceTheaterActivityList_en
     // Select the correct day of the week
     var today = new Date();
+    var today_day= new Date();
+    today_day.setHours(0,0,0,0);
     var filteredList = list_to_use.filter(d => {var time = new Date(d.date).getTime();
-                                                 return (time == today.getTime());
+                                                 return (time == today_day.getTime());
                                                 });
     if (filteredList.length > 0) {
       var html = '<H3>Science Theater</H3>The Science Theater features daily live demonstrations, talks, and stories with Museum staff. Socially-distant seating is provided.';
