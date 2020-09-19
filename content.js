@@ -17,6 +17,15 @@ var steamLabActivityList_en = [
 {'name': 'Foil Boat STEAM Challenge', 'desc': '', 'date': '9/12/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
 {'name': 'Mixed Media Jellyfish', 'desc': '', 'date': '9/12/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
 {'name': 'Foil Boat STEAM Challenge', 'desc': '', 'date': '9/12/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Clay Leaf Prints', 'desc': '', 'date': '9/17/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Raccoon Den STEM Challenge', 'desc': '', 'date': '9/17/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Pine Trees - Painting with Forks', 'desc': '', 'date': '9/17/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Clay Leaf Prints', 'desc': '', 'date': '9/18/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Raccoon Den STEM Challenge', 'desc': '', 'date': '9/18/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Pine Trees - Painting with Forks', 'desc': '', 'date': '9/18/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Clay Leaf Prints', 'desc': '', 'date': '9/19/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Raccoon Den STEM Challenge', 'desc': '', 'date': '9/19/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Pine Trees - Painting with Forks', 'desc': '', 'date': '9/19/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -38,4 +47,13 @@ var scienceTheaterActivityList_en = [
 {'name': 'Story Time with Animals - A Day at Seagull Beach', 'desc': '', 'date': '9/12/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
 {'name': 'Story Time with Animals - A House for Hermit Crab', 'desc': '', 'date': '9/12/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
 {'name': 'Story Time with Animals - A Day at Seagull Beach', 'desc': '', 'date': '9/12/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Story Time with Animals - Raccoon on His Own', 'desc': '', 'date': '9/17/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'Animal Talk - Animals of the Piney Woods', 'desc': '', 'date': '9/17/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Story Time with Animals - The Bear Who Shared', 'desc': '', 'date': '9/17/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Story Time with Animals - Raccoon on His Own', 'desc': '', 'date': '9/18/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'Animal Talk - Animals of the Piney Woods', 'desc': '', 'date': '9/18/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Story Time with Animals - The Bear Who Shared', 'desc': '', 'date': '9/18/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Story Time with Animals - Raccoon on His Own', 'desc': '', 'date': '9/19/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'Animal Talk - Animals of the Piney Woods', 'desc': '', 'date': '9/19/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Animals Talk - Animals of the Piney Woods', 'desc': '', 'date': '9/19/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
