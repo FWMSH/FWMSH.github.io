@@ -35,6 +35,15 @@ var steamLabActivityList_en = [
 {'name': 'Prairie Dog Paper Burrows', 'desc': '', 'date': '9/26/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
 {'name': 'Bison Puppet', 'desc': '', 'date': '9/26/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
 {'name': 'Prairie Dog Paper Burrows', 'desc': '', 'date': '9/26/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/1/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Paper Bead Making', 'desc': '', 'date': '10/1/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Bead Key Chains', 'desc': '', 'date': '10/1/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/2/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Paper Bead Making', 'desc': '', 'date': '10/2/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Bead Key Chains', 'desc': '', 'date': '10/2/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/3/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Paper Bead Making', 'desc': '', 'date': '10/3/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Bead Key Chains', 'desc': '', 'date': '10/3/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -74,4 +83,13 @@ var scienceTheaterActivityList_en = [
 {'name': 'Story time - Grandfather Bison', 'desc': '', 'date': '9/26/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
 {'name': 'Animal Talk - Bison', 'desc': '', 'date': '9/26/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
 {'name': 'Animal Talk - Bison', 'desc': '', 'date': '9/26/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Van De Graff Demonstration', 'desc': '', 'date': '10/1/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'History of Beads', 'desc': '', 'date': '10/1/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Van De Graff Demonstration', 'desc': '', 'date': '10/1/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Van De Graff Demonstration', 'desc': '', 'date': '10/2/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'History of Beads', 'desc': '', 'date': '10/2/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Van De Graff Demonstration', 'desc': '', 'date': '10/2/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Van De Graff Demonstration', 'desc': '', 'date': '10/3/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'History of Beads', 'desc': '', 'date': '10/3/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Van De Graff Demonstration', 'desc': '', 'date': '10/3/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
