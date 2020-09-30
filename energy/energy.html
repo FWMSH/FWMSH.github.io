@@ -1,0 +1,775 @@
+<!DOCTYPE html/css>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169285999-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-169285999-1');
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Energy Blast</title>
+
+    <style>
+
+      @font-face {
+        font-family: Gotham-Bold;
+        src: url(Gotham-Bold.otf);
+      }
+      @font-face {
+        font-family: Gotham-Book;
+        src: url(Gotham-Book.otf);
+      }
+
+      body {
+        background-color: #003066;
+      }
+      #header {
+        height: 10vh;
+        font-size: 100px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        font-family: Gotham-Bold;
+        color: white;
+      }
+      #rotationWarning {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(0,0,0,0.9);
+        font-size: 60px;
+        color: white;
+        font-family: Gotham-Book;
+        text-align: center;
+        padding-top: 10%;
+      }
+      #number-input {
+        font-size: 150px;
+        text-align: center;
+        color: white;
+        font-family: Gotham-Book;
+      }
+      #keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+      .keypad-button {
+        color: white;
+        background-color: gray;
+        text-align: center;
+        font-size: 100px;
+        font-family: Gotham-Book;
+        /*border-radius: 40px;*/
+      }
+      #k_go {
+        background-color: #009760;
+      }
+      #k_back {
+        background-color: #ab0634;
+      }
+      #audioControlBar {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+      }
+      #inputLabel {
+        color: white;
+        font-family: Gotham-Book;
+        padding-left: 20px;
+        text-align: center;
+        height: 15%;
+      }
+      .inputLabelEN {
+        font-size: 75px;
+      }
+      .inputLabelES {
+        font-size: 65px;
+      }
+      .audioControl {
+        font-size: 100px;
+        color: white;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #homeButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #6e298d;
+        /*border-radius: 50px;*/
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #showInput {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #db0961;
+        /*border-radius: 50px;*/
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #optionButton {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: gray;
+        /*border-radius: 50px;*/
+        width: 450px;
+        height: 140px;
+        text-align: center;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #contentPane {
+        height: 70vh;
+        display: none;
+      }
+      #inputPane {
+        height: 70%;
+        display: block;
+      }
+      #bottomPane {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        padding-bottom: 2vh;
+        padding-top: 2vh;
+        background-color: #003066;
+      }
+      .objectName{
+        font-size: 75px;
+        color: white;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        font-family: Gotham-Bold;
+        text-align: center;
+        overflow-y: auto;
+        height: 15%;
+      }
+      .objectImage{
+        width: auto;
+        max-height: 40%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 25px;
+      }
+      .objectImageCaption{
+        font-size: 45px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        overflow-y: auto;
+      }
+      .objectText {
+        font-size: 45px;
+        color: white;
+        font-family: Gotham-Book;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        overflow-y: auto;
+        height: 60%;
+      }
+      .paddingBlock{
+        height: 500px;
+        width: 100%;
+      }
+      #lightboxOverlay {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 10%;
+        background-color: rgba(0,0,0,0.9);
+      }
+      #lightboxImage {
+        width: 95%;
+        padding-top: 10%;
+        display: block;
+        margin: auto;
+        max-height: 65%;
+      }
+      #lightboxImageCaption {
+        padding-top: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+        max-height: 25%;
+      }
+      #optionsOverlay {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 80vh;
+        top: 10vh;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 10%;
+        background-color: rgba(0,0,0,0.9);
+      }
+      .toggles {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        margin-top: -50px;
+      }
+      .toggleOn {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: #009760;
+        /*border-radius: 50px;*/
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        margin-top: 100px;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .toggleOff {
+        color: white;
+        font-family: Gotham-Book;
+        font-size: 50px;
+        background-color: gray;
+        /*border-radius: 50px;*/
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        margin-top: 100px;
+        border: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      #textSizeSlider {
+        width: 620px;
+        -webkit-appearance: none;
+        height: 15px;
+        border-radius: 5px;
+        background: gray;
+        outline: none;
+      }
+
+      #textSizeSlider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #009760;
+        cursor: pointer;
+      }
+
+      #textSizeSlider::-moz-range-thumb {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #009760;
+        cursor: pointer;
+      }
+
+      * {
+        -webkit-text-size-adjust: none;
+        touch-action: manipulation;
+      }
+      button:active {
+        outline: none;
+        border: none;
+      }
+
+button:focus {outline:0;}
+    </style>
+  </head>
+  <body>
+    <div id='header'>Energy Blast</div>
+    <audio id='audio' onerror="handleAudioError()" onended="setAudioState('pause')">
+      <source src='' type="audio/mpeg">
+    </audio>
+    <div id='contentPane'>
+    </div>
+    <div id='lightboxOverlay' onclick='hideLightboxOverlay()'>
+      <img id='lightboxImage'>
+      <div id='lightboxImageCaption' class='objectImageCaption'></div>
+    </div>
+    <div id='inputPane'>
+      <div id='inputLabel' class='inputLabelEN'>Use the keypad to enter a label number</div>
+      <div id='number-input'>_</div>
+      <div id='keypad'>
+        <div class='keypad-button' id='k1' onclick="pressKey(1)">1</div>
+        <div class='keypad-button' id='k2' onclick="pressKey(2)">2</div>
+        <div class='keypad-button' id='k3' onclick="pressKey(3)">3</div>
+        <div class='keypad-button' id='k4' onclick="pressKey(4)">4</div>
+        <div class='keypad-button' id='k5' onclick="pressKey(5)">5</div>
+        <div class='keypad-button' id='k6' onclick="pressKey(6)">6</div>
+        <div class='keypad-button' id='k7' onclick="pressKey(7)">7</div>
+        <div class='keypad-button' id='k8' onclick="pressKey(8)">8</div>
+        <div class='keypad-button' id='k9' onclick="pressKey(9)">9</div>
+        <div class='keypad-button' id='k_back' onclick="pressKey(-1)"><--</div>
+        <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
+        <div class='keypad-button' id='k_go' onclick="loadItem()">Go</div>
+      </div>
+      <div class='toggles' style='margin-top: 50px;'>
+        <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
+      </div>
+      <div id='optionsOverlay'>
+        <div id='optionTitle' class='objectName'>Options</div>
+        <div id='langToggles' class=toggles>
+          <!-- <button id='enToggle' class='toggleOn' onclick="toggleLang('en')">English</button>
+          <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button> -->
+        </div>
+        <div id='mediaToggles' class='toggles'>
+          <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
+          <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
+        </div>
+        <div class='toggles' style='margin-top: 100px;'>
+          <div id='textSizeLabel' style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
+        </div>
+        <div class='toggles' style='margin-top: 100px;'>
+          <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
+        </div>
+        <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
+      </div>
+    </div>
+    <div id='bottomPane'>
+      <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
+      <button id='showInput' onclick="showInputPane()">New Artifact</button>
+    </div>
+    <div id='rotationWarning'>Please rotate your device</div>
+  </body>
+  <script type="text/javascript" src="content.js"></script>
+  <script>
+
+    var mediaType = 'text';
+    var audioState = 'pause';
+    var lang = 'en';
+    var fontSize = 45;
+
+
+
+    // Set the initial language to English
+    var nameDict = nameDict_en;
+    var imageDict = imageDict_en;
+    var captionDict = captionDict_en;
+    var textDict = textDict_en;
+    var audioDict = audioDict_en;
+
+    function updateHomeLink() {
+
+      // Function to build a new homelink based on the value of the user-selectable
+      // parameters
+
+      document.getElementById('homeLink').href = '../home.html?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
+
+    }
+
+    function changeTextSize(size) {
+
+      // Function to change the text size, which will then be applied to
+      // the object text and object caption elements
+
+      fontSize = size; // Set the global property
+      // Update the sample text
+      document.getElementById('textSizeSample').style.fontSize = size + 'px';
+      updateHomeLink()
+    }
+
+    function toggleMedia(type) {
+
+      // Function to switch between displaying text or the audio guide.
+
+      var textToggle = document.getElementById('textToggle');
+      var audioToggle = document.getElementById('audioToggle');
+
+      if (type == 'text') {
+        textToggle.className = 'toggleOn';
+        audioToggle.className = 'toggleOff';
+      } else if (type == 'audio') {
+        textToggle.className = 'toggleOff';
+        audioToggle.className = 'toggleOn';
+      }
+      mediaType = type;
+      updateHomeLink();
+    }
+
+    function toggleLang(newLang) {
+
+      // Function to select a langauge and switch the dictionaries over
+
+      var enToggle = document.getElementById('enToggle');
+      var esToggle = document.getElementById('esToggle');
+      var inputLabel = document.getElementById('inputLabel');
+      var textToggle = document.getElementById('textToggle');
+      var audioToggle = document.getElementById('audioToggle');
+      var homeButton = document.getElementById('homeButton');
+      var showInput = document.getElementById('showInput');
+      var goButton = document.getElementById('k_go');
+      var optionsButton = document.getElementById('optionButton');
+      var optionTitle = document.getElementById('optionTitle');
+      var textSizeLabel = document.getElementById('textSizeLabel');
+      var textSizeSample = document.getElementById('textSizeSample');
+      var rotationWarning = document.getElementById('rotationWarning');
+
+      lang = newLang;
+
+      if (lang == 'en') {
+        //enToggle.className = 'toggleOn';
+        //esToggle.className = 'toggleOff';
+        inputLabel.innerHTML = 'Use the keypad to enter a label number';
+        inputLabel.className = 'inputLabelEN';
+        textToggle.innerHTML = 'Text';
+        audioToggle.innerHTML = 'Audio';
+        homeButton.innerHTML = 'Go Home';
+        showInput.innerHTML = 'New Artifact';
+        goButton.innerHTML = 'Go';
+        optionButton.innerHTML = 'Options';
+        optionTitle.innerHTML = 'Options';
+        textSizeLabel.innerHTML = 'Text Size';
+        textSizeSample.innerHTML = 'This is some sample text';
+        rotationWarning.innerHTML = 'Please rotate your device';
+        nameDict = nameDict_en;
+        imageDict = imageDict_en;
+        captionDict = captionDict_en;
+        textDict = textDict_en;
+      } else if (lang == 'es') {
+        enToggle.className = 'toggleOff';
+        esToggle.className = 'toggleOn';
+        inputLabel.innerHTML = 'Use el teclado para ingresar un número de etiqueta';
+        inputLabel.className = 'inputLabelES';
+        textToggle.innerHTML = 'Texto';
+        audioToggle.innerHTML = 'Audio';
+        homeButton.innerHTML = 'Vete a Casa';
+        showInput.innerHTML = 'Nuevo Objeto';
+        goButton.innerHTML = 'Ir';
+        optionButton.innerHTML = 'Opciones';
+        optionTitle.innerHTML = 'Opciones';
+        textSizeLabel.innerHTML = 'Tamano del Texto';
+        textSizeSample.innerHTML = 'Este es un texto de ejemplo';
+        rotationWarning.innerHTML = 'Por favor gire su dispositivo';
+        nameDict = nameDict_es;
+        imageDict = imageDict_es;
+        captionDict = captionDict_es;
+        textDict = textDict_es;
+      }
+      updateHomeLink();
+
+    }
+
+    function showLightboxOverlay() {
+
+      // Funciton to show the overlay with the image lightbox and captionDict
+
+      document.getElementById('lightboxOverlay').style.display = 'block';
+    }
+
+    function hideLightboxOverlay() {
+
+      // Funciton to show the overlay with the image lightbox and captionDict
+
+      document.getElementById('lightboxOverlay').style.display = 'none';
+    }
+
+    function generateTextOnlyBlock(objName, objText) {
+
+      // Function to show only text about an object. This should be used rarely.
+
+      html = "<div class='objectName'>"+objName+"</div>"
+      html += '<br>' + "<div id='objectDesc' class='objectText' style='height: 80%;'>" + objText + "</div>"
+
+      return(html)
+    }
+
+    function generateImageTextBlock(objName, imgName, imgCaption, objText) {
+
+      // Function to return an HTML block with an image, caption, and text
+      // nicely formatted.
+
+      html = "<div class='objectName'>"+objName+"</div>"
+      html += "<img class='objectImage' onclick='showLightboxOverlay()' src='" + imgName + "'>"
+      //html += "<div class='objectImageCaption'>" + imgCaption + "</div>"
+      html += "<div id='objectDesc' class='objectText'>" + objText + "<div class='paddingBlock'></div></div>"
+
+      return(html)
+    }
+
+    function generateAudioOnlyBlock(objName) {
+
+      // Function to return an HTML block with the artifact name and the controls
+      // for audio playback.
+
+      html = "<div class='objectName'>"+objName+"</div>"
+      html += `
+      <div id='audioControlBar'>
+        <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
+        <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
+      </div><br>
+      `
+
+      return(html)
+    }
+
+    function generateAudioImageBlock(objName, imgName, imgCaption) {
+
+      // Function to return an HTML block with the artifact name, the controls
+      // for audio playback, and an image with its caption.
+
+      html = ''
+
+      html += "<div class='objectName'>"+objName+"</div>"
+      html +=  `
+            <div id='audioControlBar'>
+              <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
+              <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
+            </div>
+            `
+      html += "<img class='objectImage' onclick='showLightboxOverlay()' src='" + imgName + "'>"
+      html += "<div class='objectImageCaption' style='max-height: 30vh'>" + imgCaption + "</div>"
+
+      return(html)
+    }
+
+    function generateAudioScriptBlock(objName, script) {
+
+      // Function to return an HTML block with the artifact name, the controls
+      // for audio playback and a custom iframe. Cannot use <script> tags!
+
+      html = `
+      <div id='audioControlBar'>
+        <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
+        <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
+      </div>
+      `
+      html += "<div class='objectName''>"+objName+"</div>"
+      html += script
+
+      return(html)
+    }
+
+    function showInputPane() {
+
+      // When someone clicks the "New Artifact" button, pause the current audio,
+      // hide the visible content, and show the keypad.
+
+      setAudioState('pause');
+      document.getElementById('header').style.display = 'flex';
+      document.getElementById('contentPane').style.display = 'none';
+      document.getElementById('inputPane').style.display = 'block';
+      document.getElementById('optionsOverlay').style.display = 'none';
+      document.getElementById('lightboxOverlay').style.display = 'none';
+
+    }
+
+    function showOptionsOverlay() {
+
+      // When someone clicks the "Options" button, show the overlay
+
+      document.getElementById('optionsOverlay').style.display = 'block';
+
+    }
+
+    function loadItem() {
+
+      // Function to take the input number, search for a tour clip and play it
+
+      audio = document.getElementById('audio');
+      numLabel = document.getElementById('number-input');
+
+      var html = '';
+      var num = parseInt(numLabel.innerHTML).toString() // To strip and leading 0
+
+      if (isFinite(num)) { // User has entered a number
+
+        if (num in nameDict) { // Check the dict for the given number
+
+          if (mediaType == 'text') { // Build a text page
+
+            if (imageDict[num] != '') { // We have a picture
+              html = generateImageTextBlock(nameDict[num], imageDict[num], captionDict[num], textDict[num]);
+              document.getElementById('lightboxImage').src = imageDict[num];
+              document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
+            } else { // No picture
+              html = generateTextOnlyBlock(nameDict[num],textDict[num]);
+            }
+
+          } else if (mediaType == 'audio') { // Build an audio page
+
+            if (imageDict[num] != '') { // We have a picture
+              html = generateAudioImageBlock(nameDict[num], imageDict[num], captionDict[num]);
+              document.getElementById('lightboxImage').src = imageDict[num];
+              document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
+            } else { // No picture
+              html = generateAudioOnlyBlock(nameDict[num]);
+            }
+          }
+
+          document.getElementById('contentPane').innerHTML = html;
+          var objectText = document.getElementsByClassName('objectText');
+          for (i=0; i<objectText.length; i++) {
+            objectText[i].style.fontSize = fontSize + 'px';
+          }
+          var objectImageCaption = document.getElementsByClassName('objectImageCaption');
+          for (i=0; i<objectImageCaption.length; i++) {
+            objectImageCaption[i].style.fontSize = fontSize + 'px';
+          }
+
+        }
+        else {
+          document.getElementById('contentPane').innerHTML = generateTextOnlyBlock(nameDict['error'], textDict['error']);
+        }
+
+        // If the playPauseButton exists, it means that this page has an
+        // audio file. Load it and play it.
+        if (document.getElementById('playPauseButton')) {
+          audio.src = audioDict[num];
+          setAudioState('play');
+        }
+
+        document.getElementById('header').style.display = 'none';
+        document.getElementById('inputPane').style.display = 'none';
+        document.getElementById('contentPane').style.display = 'block';
+
+        // var height = 0.45*$('#contentPane').height();
+        // console.log($('.objectImage').outerHeight());
+        // $('#objectDesc').height(height);
+
+        numLabel.innerHTML = '_';
+      }
+    }
+
+    function handleAudioError() {
+
+      // Funciton called when we try to play an audio file that doesn't exist,
+      // Usually because something put in an invalid number
+
+      label = document.getElementById('clipName');
+      label.innerHTML = 'Entry not found!';
+      setAudioState('pause');
+    }
+
+    function togglePlayPause() {
+      if (audioState == 'play') {
+        setAudioState('pause');
+      } else {
+        setAudioState('play');
+      }
+    }
+
+    function setAudioState(val) {
+
+      // Set the audio state and update the interface button
+
+      audio = document.getElementById('audio');
+
+      if (val == 'play') {
+        audioState = 'play';
+        if (document.getElementById('playPauseButton')) {
+          document.getElementById('playPauseButton').innerHTML = '⏸️';
+        }
+        audio.play();
+      } else if (val == 'pause'){
+        audioState = 'pause';
+        if (document.getElementById('playPauseButton')) {
+          document.getElementById('playPauseButton').innerHTML = '▶️';
+        }
+        audio.pause();
+      } else if (val == 'reset') {
+          audio.currentTime = 0;
+      }
+    }
+
+    function pressKey(val) {
+
+      // Function to take a press from the keypad and update the number label
+
+      numLabel = document.getElementById('number-input');
+
+      if (val >= 0) {
+        if (numLabel.innerHTML == '_') {
+          numLabel.innerHTML = ''
+        }
+        numLabel.innerHTML += val
+      } else { // We've hit the back button
+        numLabel.innerHTML = numLabel.innerHTML.slice(0,-1)
+        if (numLabel.innerHTML.length == 0) {
+          numLabel.innerHTML = '_'
+        }
+      }
+    }
+
+    // Detect landscape and warn
+    $(window).resize(function() {
+      var screenAspect = $(this).width()/$(this).height();
+      var overlay = document.getElementById('rotationWarning');
+
+      if (screenAspect > 1) {
+        overlay.style.display = 'block';
+      } else {
+        overlay.style.display = 'none';
+      }
+    });
+
+    // Check for options passed from previous page
+    var queryString = decodeURIComponent(window.location.search);
+
+    var searchParams = new URLSearchParams(queryString);
+    if(searchParams.has('lang')) {
+      lang = searchParams.get('lang');
+      toggleLang(lang);
+    }
+    if(searchParams.has('mediaType')) {
+      mediaType = searchParams.get('mediaType');
+      toggleMedia(mediaType);
+    }
+    if(searchParams.has('fontSize')) {
+      fontSize = searchParams.get('fontSize');
+      changeTextSize(fontSize);
+      document.getElementById('textSizeSlider').value = fontSize;
+    }
+
+  </script>
+
+</html>
