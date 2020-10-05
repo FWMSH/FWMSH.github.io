@@ -12,7 +12,7 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>Rolling Forward</title>
+    <title>DiniDig</title>
 
     <style>
 
@@ -321,7 +321,7 @@ button:focus {outline:0;}
     </style>
   </head>
   <body>
-    <div id='header'>Rolling Forward</div>
+    <div id='header'>DinoDig</div>
     <audio id='audio' onerror="handleAudioError()" onended="setAudioState('pause')">
       <source src='' type="audio/mpeg">
     </audio>
@@ -332,7 +332,7 @@ button:focus {outline:0;}
       <div id='lightboxImageCaption' class='objectImageCaption'></div>
     </div>
     <div id='inputPane'>
-      <div id='inputLabel' class='inputLabelEN'>Select an Artifact</div>
+      <div id='inputLabel' class='inputLabelEN'>Select a Station</div>
       <div id='artifactList'>
 
       </div>
@@ -360,7 +360,7 @@ button:focus {outline:0;}
     </div>
     <div id='bottomPane'>
       <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
-      <button id='showInput' onclick="showInputPane()">New Artifact</button>
+      <button id='showInput' onclick="showInputPane()">New Station</button>
     </div>
     <div id='rotationWarning'>Please rotate your device</div>
   </body>
@@ -464,6 +464,7 @@ button:focus {outline:0;}
         audioToggle.innerHTML = 'Audio';
         homeButton.innerHTML = 'Go Home';
         showInput.innerHTML = 'New Artifact';
+        //goButton.innerHTML = 'Go';
         optionButton.innerHTML = 'Options';
         optionTitle.innerHTML = 'Options';
         textSizeLabel.innerHTML = 'Text Size';
