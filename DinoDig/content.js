@@ -34,23 +34,23 @@ var captionDict_en = {
 }
 
 var textDict_en = {
-      '1': "Here is a complete skeleton of <i>Deinonychus</i>This meat-eating dinosaur skeleton shows the effects of bleaching and weathering. It is in a relatively intact position, with the head and neck twisted backwards, suggesting it dried out enough for the tendons to shrink and contort the head and neck before it was covered and preserved from further damage.",
+      '1': "Here is a complete skeleton of <i>Deinonychus</i>. The skeleton of this meat-eating dinosaur shows the effects of bleaching and weathering. It is in a relatively intact position, with the head and neck twisted backwards, suggesting it dried out enough for the tendons to shrink, contorting the head and neck before it was covered and preserved from further damage.",
 
-      '2': "So how old is our site? Fossilized ammonites can be found in the marine limestone lying just above the Cretaceous strata in the quarry wall. They can be used as index fossils to determine that our site is around 112 million years old.\nAn <b>index fossil</b> is a fossil that is known to have lived during a particular geologic time interval and is used to date the rock layer(s) in which it is found. Typically, good index fossils are from animals that lived for a very brief time period and were geographically widespread.",
+      '2': "So how old is our site? Fossilized ammonites can be found in the marine limestone lying just above the Cretaceous strata in the quarry wall. They can be used as index fossils to determine that our site is around 112 million years old. An <b>index fossil</b> is a fossil that is known to have lived during a particular geologic time and is used to date the rock layer(s) in which it is found. Typically, good index fossils are from animals that lived for a very brief time period and were geographically widespread.",
 
-      '3': "The upper sandstone unit at our site contains both scattered and articulated remains of a large plant-eating dinosaur <i>Paluxysaurus</i>. The bones aren't all connected to other skeletal elements like the <i>Deinonychus</i> at Station 1.This is the way paleontologists typically find dinosaur bones.",
+      '3': "The upper sandstone unit at our site contains both scattered and articulated remains of a large plant-eating dinosaur, <i>Paluxysaurus</i>. The bones aren't all connected to other skeletal elements like the <i>Deinonychus</i> at Station 1. This is the way paleontologists typically find dinosaur bones.",
 
       '4': "Field jackets containing fossils from the site are transported to a laboratory for further preparation. Paleontologists carefully cut open the jacket, remove the fossils, and study them in greater detail.",
 
-      '5': "A slow-moving river once ran through our site and made this pattern by depositing sand and mud. Cross-bedding occurs when sediment is deposited on rock as water moves across it from a single direction. The sediment grains build up into piles until the reach an unstable height. The grains then avalanche down and make thin layers. Since the layers are formed in this manner, they provide us information on the direction of flow for this prehistoric stream."
+      '5': "A slow-moving river once ran through our site and made this pattern by depositing sand and mud. Crossbedding occurs when sediment is deposited on rock as water moves across it from a single direction. The sediment grains build up into piles until they reach an unstable height. The grains then avalanche down and make thin layers. Since the layers are formed in this manner, they provide us information on the direction of flow for this prehistoric stream."
     };
 
 var audioDict_en = {
-      '1': 'audio/en/',
-      '2': 'audio/en/',
-      '3': 'audio/en/',
-      '4': 'audio/en/',
-      '5': 'audtio/en/',
+      '1': 'audio/en/station_1.mp3',
+      '2': 'audio/en/station_2.mp3',
+      '3': 'audio/en/station_3.mp3',
+      '4': 'audio/en/station_4.mp3',
+      '5': 'audtio/en/station_5.mp3',
 }
 
 var nameDict_es = {
