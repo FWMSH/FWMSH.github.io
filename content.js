@@ -50,6 +50,12 @@ var steamLabActivityList_en = [
 {'name': 'Creative Art Challenge', 'desc': '', 'date': '10/11/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
 {'name': 'Recycled Magazine Art', 'desc': '', 'date': '10/11/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/11/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Plastic Bag Weaving', 'desc': '', 'date': '10/17/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Plastic Bag Weaving', 'desc': '', 'date': '10/18/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -103,4 +109,9 @@ var scienceTheaterActivityList_en = [
 {'name': 'Losing the Dark', 'desc': '', 'date': '10/10/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Losing the Dark', 'desc': '', 'date': '10/11/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
 {'name': 'Losing the Dark', 'desc': '', 'date': '10/11/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'Animal Talk - Why Sea Turtles are Endangered', 'desc': '', 'date': '10/17/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'Phenomenal Physics - Inertia and Momentum', 'desc': '', 'date': '10/17/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Animal Talk - Why Sea Turtles are Endangered', 'desc': '', 'date': '10/17/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Phenomenal Physics - Inertia and Momentum', 'desc': '', 'date': '10/18/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
+{'name': 'Animal Talk - Why Sea Turtles are Endangered', 'desc': '', 'date': '10/18/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 ];
