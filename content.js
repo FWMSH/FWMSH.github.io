@@ -51,10 +51,10 @@ var steamLabActivityList_en = [
 {'name': 'Recycled Magazine Art', 'desc': '', 'date': '10/11/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/11/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Creative Art Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
-{'name': 'Plastic Bag Weaving', 'desc': '', 'date': '10/17/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Plastic Bag Parachutes', 'desc': '', 'date': '10/17/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
 {'name': 'Creative Art Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
-{'name': 'Plastic Bag Weaving', 'desc': '', 'date': '10/18/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': 'Plastic Bag Parachutes', 'desc': '', 'date': '10/18/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
 
