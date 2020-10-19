@@ -50,12 +50,18 @@ var steamLabActivityList_en = [
 {'name': 'Creative Art Challenge', 'desc': '', 'date': '10/11/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
 {'name': 'Recycled Magazine Art', 'desc': '', 'date': '10/11/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/11/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
-{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Halloween Creative Art Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
 {'name': 'Plastic Bag Parachutes', 'desc': '', 'date': '10/17/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/17/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
-{'name': 'Creative Art Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Halloween Creative Art Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
 {'name': 'Plastic Bag Parachutes', 'desc': '', 'date': '10/18/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Recyclable STEM Challenge', 'desc': '', 'date': '10/18/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Halloween Creative Art Challenge', 'desc': '', 'date': '10/24/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Sime in a Bag', 'desc': '', 'date': '10/24/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Chemistry in a Bag', 'desc': '', 'date': '10/24/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Halloween Creative Art Challenge', 'desc': '', 'date': '10/25/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Sime in a Bag', 'desc': '', 'date': '10/25/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': 'Chemistry in a Bag', 'desc': '', 'date': '10/25/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -114,4 +120,9 @@ var scienceTheaterActivityList_en = [
 {'name': 'Animal Talk - Why Sea Turtles are Endangered', 'desc': '', 'date': '10/17/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Phenomenal Physics - Inertia and Momentum', 'desc': '', 'date': '10/18/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
 {'name': 'Animal Talk - Why Sea Turtles are Endangered', 'desc': '', 'date': '10/18/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'Elephant Toothpaste  Demo', 'desc': '', 'date': '10/24/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'How to Make a Bath Bomb', 'desc': '', 'date': '10/24/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Elephant Toothpaste  Demo', 'desc': '', 'date': '10/24/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'How to Make a Bath Bomb', 'desc': '', 'date': '10/25/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
+{'name': 'Elephant Toothpaste  Demo', 'desc': '', 'date': '10/25/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 ];
