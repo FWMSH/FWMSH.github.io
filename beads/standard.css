@@ -1,0 +1,335 @@
+@font-face {
+  font-family: Gotham-Bold;
+  src: url(Gotham-Bold.otf);
+}
+@font-face {
+  font-family: Gotham-Book;
+  src: url(Gotham-Book.otf);
+}
+
+body {
+  background-color: #003066;
+}
+#header {
+  height: 10vh;
+  font-size: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  font-family: Gotham-Bold;
+  color: white;
+}
+#rotationWarning {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0,0,0,0.9);
+  font-size: 60px;
+  color: white;
+  font-family: Gotham-Book;
+  text-align: center;
+  padding-top: 10%;
+}
+#keypad_entry {
+  display: block;
+}
+#number-input {
+  font-size: 150px;
+  text-align: center;
+  color: white;
+  font-family: Gotham-Book;
+}
+#keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.keypad-button {
+  color: white;
+  background-color: gray;
+  text-align: center;
+  font-size: 100px;
+  font-family: Gotham-Book;
+  /*border-radius: 40px;*/
+}
+#k_go {
+  background-color: #009760;
+}
+#k_back {
+  background-color: #ab0634;
+}
+#artifactList {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 80%;
+  display: none;
+}
+.artifactButton {
+  position: relative;
+  width: 98%;
+  padding: 10px;
+}
+.artifactButtonImage {
+  width: 100%;
+  opacity: 0.5;
+}
+.artifactButtonText {
+  position: absolute;
+  bottom: 8px;
+  left: 25px;
+  color: white;
+  font-family: Gotham-Book;
+  font-size: 75px;
+  padding-right: 20px;
+}
+#audioControlBar {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+#inputLabel {
+  color: white;
+  font-family: Gotham-Book;
+  padding-left: 20px;
+  text-align: center;
+  height: 15%;
+}
+.inputLabelEN {
+  font-size: 75px;
+}
+.inputLabelES {
+  font-size: 65px;
+}
+.audioControl {
+  font-size: 100px;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#homeButton {
+  color: white;
+  font-family: Gotham-Book;
+  font-size: 50px;
+  background-color: #6e298d;
+  /*border-radius: 50px;*/
+  width: 450px;
+  height: 140px;
+  text-align: center;
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#showInput {
+  color: white;
+  font-family: Gotham-Book;
+  font-size: 50px;
+  background-color: #db0961;
+  /*border-radius: 50px;*/
+  width: 450px;
+  height: 140px;
+  text-align: center;
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#optionButton {
+  color: white;
+  font-family: Gotham-Book;
+  font-size: 50px;
+  background-color: gray;
+  /*border-radius: 50px;*/
+  width: 450px;
+  height: 140px;
+  text-align: center;
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#contentPane {
+  height: 70vh;
+  display: none;
+}
+#inputPane {
+  height: 70%;
+  display: block;
+}
+#bottomPane {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+  background-color: #003066;
+}
+.objectName{
+  font-size: 75px;
+  color: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  font-family: Gotham-Bold;
+  text-align: center;
+  overflow-y: auto;
+  height: 15%;
+}
+.objectImage{
+  width: auto;
+  max-height: 40%;
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 25px;
+}
+.objectImageCaption{
+  font-size: 45px;
+  color: white;
+  font-family: Gotham-Book;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  overflow-y: auto;
+}
+.objectText {
+  font-size: 45px;
+  color: white;
+  font-family: Gotham-Book;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: auto;
+  height: 60%;
+}
+.paddingBlock{
+  height: 500px;
+  width: 100%;
+}
+#lightboxOverlay {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+  background-color: rgba(0,0,0,0.9);
+}
+#lightboxImage {
+  width: 95%;
+  padding-top: 10%;
+  display: block;
+  margin: auto;
+  max-height: 65%;
+}
+#lightboxImageCaption {
+  padding-top: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-height: 25%;
+}
+#optionsOverlay {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 80vh;
+  top: 10vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+  background-color: rgba(0,0,0,0.9);
+}
+.toggles {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  margin-top: -50px;
+}
+.toggleOn {
+  color: white;
+  font-family: Gotham-Book;
+  font-size: 50px;
+  background-color: #009760;
+  /*border-radius: 50px;*/
+  width: 300px;
+  height: 140px;
+  text-align: center;
+  margin-top: 100px;
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.toggleOff {
+  color: white;
+  font-family: Gotham-Book;
+  font-size: 50px;
+  background-color: gray;
+  /*border-radius: 50px;*/
+  width: 300px;
+  height: 140px;
+  text-align: center;
+  margin-top: 100px;
+  border: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#textSizeSlider {
+  width: 620px;
+  -webkit-appearance: none;
+  height: 15px;
+  border-radius: 5px;
+  background: gray;
+  outline: none;
+}
+
+#textSizeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #009760;
+  cursor: pointer;
+}
+
+#textSizeSlider::-moz-range-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #009760;
+  cursor: pointer;
+}
+
+* {
+  -webkit-text-size-adjust: none;
+  touch-action: manipulation;
+}
+button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {outline:0;}

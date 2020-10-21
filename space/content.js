@@ -1,3 +1,8 @@
+var use_keypad_entry = true;
+
+var title_en = 'Launchpad';
+var title_es = "Launchpad";
+
 var nameDict_en = {
       '1': 'UNIVAC 1105 Memory Core',
       '2': "Alan Bean's Slide Rule",

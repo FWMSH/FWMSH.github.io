@@ -1,3 +1,8 @@
+var use_keypad_entry = false;
+
+var title_en = 'Rolling Forward';
+var title_es = "Rooling Forward";
+
 var nameDict_en = {
       '1': 'Ford Model T',
       "2": "Italian Donkey Cart",

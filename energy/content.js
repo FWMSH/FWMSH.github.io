@@ -1,3 +1,8 @@
+var use_keypad_entry = true;
+
+var title_en = 'Energy Blast';
+var title_es = "Energy Blast";
+
 var nameDict_en = {
       '1': 'Nuclear',
       "2": "Coal",

@@ -1,3 +1,8 @@
+var use_keypad_entry = false;
+
+var title_en = 'DinoDig®';
+var title_es = "DinoDig®";
+
 var nameDict_en = {
       '1': '<i>Deinonychus</i>',
       "2": "How Do We Know<br>How Old Our Site Is?",

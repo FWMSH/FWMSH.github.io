@@ -1,3 +1,8 @@
+var use_keypad_entry = true;
+
+var title_en = 'Beads';
+var title_es = "Beads";
+
 var nameDict_en = {
       '1': 'Clay Bisque Beads',
       "2": "Prehistoric Culture Beads",
