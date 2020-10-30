@@ -14,7 +14,7 @@ function buildQuiz() {
 
   createMultiChoice("Go to the place where you can dig for bones at the Museum.  How many bones can you find?", ["One", "Two", "Three or more"], ["One", "Two", "Three or more"]);
 
-  createMultiChoice("Where can you find the pumpkin patch on the trains in the Energy Gallery?", ["Baseball field", "Dairy farm", "Aumusement park"], "Baseball field");
+  createMultiChoice("Where can you find the pumpkin patch on the trains in the Energy Gallery?", ["Baseball field", "Dairy farm", "Amusement park"], "Baseball field");
 
   createMultiChoice("Where can you find a footprint large enough to sit in?", ["STEAM Lab", "Launchpad", "DinoLabs"], "DinoLabs");
 
@@ -30,7 +30,7 @@ function buildQuiz() {
 
   createMultiChoice("Which beaded masterpiece from the <i>Beads</i> gallery would you love to add to your costume?", ["Deerskin shirt", "Cree octopus beaded pouch", "Beaded moccasins", "Ostrich feather headdress"], ["Deerskin shirt", "Cree octopus beaded pouch", "Beaded moccasins", "Ostrich feather headdress"]);
 
-  createMultiChoice("The DreamTime sculpture is on the ceiling between the Studios, can you find the following items: tricycle, red bull, dollhouse, broom, saxophone, and bumper.", ["I found one item", "I found two items", "I found three items", "I found more than three!"], ["I found one item", "I found two items", "I found three items", "I found more than three!"]);
+  createMultiChoice("The DreamTime sculpture is on the ceiling between the Studios, can you find the following items: tricycle, red bull, dollhouse, broom, saxophone, and bumper.", ["Tricyle", "Red bull", "Dollhouse", "Broom", "Saxophone", "Bumper"], ["Tricyle", "Red bull", "Dollhouse", "Broom", "Saxophone", "Bumper"]);
 
   createPaddingBlock();
 
