@@ -4,7 +4,7 @@ var title_en = 'Heritage Gallery';
 var title_es = "Rooling Forward";
 
 var nameDict_en = {
-      '1': 'Erika Anderson <br><small><i>Engineer</small></i>',
+      '1': 'Erika Anderson <br><small><i>Mechanical Engineer</small></i>',
       "2": "Bessie Coleman",
       "3": "Minerva Cordero, Ph.D.",
       "4": "Jessica Esquivel, Ph.D.",
@@ -30,7 +30,7 @@ var thumbDict_en = {
     '1': 'thumbs/1-Anderson.jpg',
     '2': 'thumbs/donkey.jpg',
     '3': 'thumbs/donkey.jpg',
-    '4': 'thumbs/donkey.jpg', 
+    '4': 'thumbs/donkey.jpg',
 }
 
 var imageDict_en = {
