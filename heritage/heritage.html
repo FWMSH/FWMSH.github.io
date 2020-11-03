@@ -50,28 +50,27 @@
       <!-- If we're using the artifact buttons, they are populared in this div -->
       <div id='artifactList'>
       </div>
-
-      <div class='toggles' style='margin-top: 50px;'>
-        <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
+    </div>
+    <div id='optionButtonPane'>
+      <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
+    </div>
+    <div id='optionsOverlay'>
+      <div id='optionTitle' class='objectName'>Options</div>
+      <div id='langToggles' class=toggles>
+        <!-- <button id='enToggle' class='toggleOn' onclick="toggleLang('en')">English</button>
+        <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button> -->
       </div>
-      <div id='optionsOverlay'>
-        <div id='optionTitle' class='objectName'>Options</div>
-        <div id='langToggles' class=toggles>
-          <!-- <button id='enToggle' class='toggleOn' onclick="toggleLang('en')">English</button>
-          <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button> -->
-        </div>
-        <div id='mediaToggles' class='toggles'>
-          <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
-          <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
-        </div>
-        <div class='toggles' style='margin-top: 100px;'>
-          <div id='textSizeLabel' style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
-        </div>
-        <div class='toggles' style='margin-top: 100px;'>
-          <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
-        </div>
-        <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
+      <div id='mediaToggles' class='toggles'>
+        <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
+        <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
       </div>
+      <div class='toggles' style='margin-top: 100px;'>
+        <div id='textSizeLabel' style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
+      </div>
+      <div class='toggles' style='margin-top: 100px;'>
+        <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
+      </div>
+      <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
     </div>
     <div id='bottomPane'>
       <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
@@ -220,6 +219,7 @@
       document.getElementById('contentPane').style.display = 'none';
       document.getElementById('inputPane').style.display = 'block';
       document.getElementById('optionsOverlay').style.display = 'none';
+      document.getElementById('optionButtonPane').style.display = 'flex';
       document.getElementById('lightboxOverlay').style.display = 'none';
     }
 

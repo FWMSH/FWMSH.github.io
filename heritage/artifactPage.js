@@ -149,6 +149,7 @@ function buildPage(num) {
 
     document.getElementById('header').style.display = 'none';
     document.getElementById('inputPane').style.display = 'none';
+    document.getElementById('optionButtonPane').style.display = 'none'
     document.getElementById('contentPane').style.display = 'block';
 
   }
