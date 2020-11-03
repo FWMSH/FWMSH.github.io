@@ -148,16 +148,6 @@ body {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* #optionButtonPane {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
-  height: 10vh;
-  bottom: 10vh;
-  background-color: #003066;
-} */
 #optionButton {
   color: white;
   font-family: Gotham-Book;
@@ -176,7 +166,7 @@ body {
   display: none;
 }
 #inputPane {
-  height: 70%;
+  height: 75%;
   display: block;
 }
 #bottomPane {

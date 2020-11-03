@@ -51,9 +51,6 @@
       <div id='artifactList'>
       </div>
     </div>
-    <!-- <div id='optionButtonPane'>
-      <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
-    </div> -->
     <div id='optionsOverlay'>
       <div id='optionTitle' class='objectName'>Options</div>
       <div id='langToggles' class=toggles>
@@ -74,7 +71,7 @@
     </div>
     <div id='bottomPane'>
       <!-- <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a> -->
-      <button id='homeButton' onclick='goHome()'>Go Home</button>
+      <button id='homeButton' onclick='goHome()'>Go Home  </button>
       <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
       <button id='showInput' onclick="showInputPane()">Choose Artifact</button>
     </div>
@@ -117,6 +114,10 @@
 
       document.getElementById('homeLink').href = '../home.html?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
 
+    }
+
+    function goHome() {
+      window.location.href='../home.html?skipAudioCheck'
     }
 
     function changeTextSize(size) {
