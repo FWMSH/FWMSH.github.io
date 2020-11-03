@@ -73,6 +73,34 @@ function generateAudioImageBlock(objName, imgName, imgCaption) {
   return(html)
 }
 
+function generateAudioYouTubeBlock(objName, link) {
+
+  // Function to return an HTML block with the artifact name, the controls
+  // for audio playback and a YouTube embed
+
+  html = "<div class='objectName'>"+objName+"</div>"
+  html += `
+  <div id='audioControlBar'>
+    <div class='audioControl' onclick='setAudioState("reset")'>⏮️</div>
+    <div class='audioControl' id='playPauseButton' onclick='togglePlayPause()'>▶️</div>
+  </div><br>
+  `
+  html += '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+
+  return(html)
+}
+
+function generateYouTubeTextBlock(objName, link, objText) {
+
+  // Function to return an HTML block with a YouTube embed and a text block.
+
+  html = "<div class='objectName'>"+objName+"</div>"
+  html += '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
+  html += "<div id='objectDesc' class='objectText'>" + objText + "<div class='paddingBlock'></div></div>"
+
+  return(html)
+}
+
 function generateAudioScriptBlock(objName, script) {
 
   // Function to return an HTML block with the artifact name, the controls
