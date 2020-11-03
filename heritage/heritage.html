@@ -51,9 +51,9 @@
       <div id='artifactList'>
       </div>
     </div>
-    <div id='optionButtonPane'>
+    <!-- <div id='optionButtonPane'>
       <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
-    </div>
+    </div> -->
     <div id='optionsOverlay'>
       <div id='optionTitle' class='objectName'>Options</div>
       <div id='langToggles' class=toggles>
@@ -73,7 +73,9 @@
       <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
     </div>
     <div id='bottomPane'>
-      <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a>
+      <!-- <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a> -->
+      <button id='homeButton' onclick='goHome()'>Go Home</button>
+      <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
       <button id='showInput' onclick="showInputPane()">Choose Artifact</button>
     </div>
     <div id='rotationWarning'>Please rotate your device</div>

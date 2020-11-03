@@ -125,7 +125,8 @@ body {
   font-size: 50px;
   background-color: #6e298d;
   /*border-radius: 50px;*/
-  width: 450px;
+  //width: 450px;
+  width: 30%;
   //height: 140px;
   height: 90%;
   text-align: center;
@@ -138,7 +139,8 @@ body {
   font-family: Gotham-Book;
   font-size: 50px;
   background-color: #db0961;
-  width: 450px;
+  width: 30%;
+  //width: 450px;
   //height: 140px;
   height: 90%;
   text-align: center;
@@ -146,7 +148,7 @@ body {
   margin-left: 10px;
   margin-right: 10px;
 }
-#optionButtonPane {
+/* #optionButtonPane {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -155,13 +157,13 @@ body {
   height: 10vh;
   bottom: 10vh;
   background-color: #003066;
-}
+} */
 #optionButton {
   color: white;
   font-family: Gotham-Book;
   font-size: 50px;
   background-color: gray;
-  width: 450px;
+  width: 30%;
   //height: 140px;
   height: 90%;
   text-align: center;
