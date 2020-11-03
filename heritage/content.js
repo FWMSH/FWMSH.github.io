@@ -1,7 +1,12 @@
 var use_keypad_entry = false;
 
-var title_en = 'Heritage Gallery';
-var title_es = "Rooling Forward";
+var title_en = 'Changemakers';
+var title_es = "Spanish Title";
+
+var show_input_button_label_en = "Choose Story";
+var inputLabel_text_en = "Choose a Story";
+//  var inputLabel_text_en = 'Use the keypad to enter a label number';
+
 
 var nameDict_en = {
       '1': 'Erika Anderson<br><small><small><i>Mechanical Engineer</small></small></i>',

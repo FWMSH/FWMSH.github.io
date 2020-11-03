@@ -92,8 +92,8 @@
     var lang = 'en';
     var fontSize = 45;
 
-    var inputLabel_text_en = "ENGLISH label text";
-    var inputLabel_text_es = "SPANISH label text";
+    //var inputLabel_text_en = "ENGLISH label text";
+    //var inputLabel_text_es = "SPANISH label text";
 
     // Set the initial language to English
     var nameDict = nameDict_en;
@@ -175,7 +175,7 @@
         textToggle.innerHTML = 'Text';
         audioToggle.innerHTML = 'Audio';
         homeButton.innerHTML = 'Go Home';
-        showInput.innerHTML = 'Choose Story';
+        showInput.innerHTML = show_input_button_label_en;
         goButton.innerHTML = 'Go';
         optionButton.innerHTML = 'Options';
         optionTitle.innerHTML = 'Options';
@@ -194,7 +194,7 @@
         textToggle.innerHTML = 'Texto';
         audioToggle.innerHTML = 'Audio';
         homeButton.innerHTML = 'Vete a Casa';
-        showInput.innerHTML = 'Nuevo Objeto';
+        showInput.innerHTML = show_input_button_label_es;
         goButton.innerHTML = 'Ir';
         optionButton.innerHTML = 'Opciones';
         optionTitle.innerHTML = 'Opciones';
@@ -221,7 +221,6 @@
       document.getElementById('inputPane').style.display = 'block';
       document.getElementById('optionsOverlay').style.display = 'none';
       document.getElementById('lightboxOverlay').style.display = 'none';
-
     }
 
     function showOptionsOverlay() {
@@ -229,48 +228,6 @@
       // When someone clicks the "Options" button, show the overlay
 
       document.getElementById('optionsOverlay').style.display = 'block';
-
-    }
-
-    function handleAudioError() {
-
-      // Funciton called when we try to play an audio file that doesn't exist,
-      // Usually because something put in an invalid number
-
-      label = document.getElementById('clipName');
-      label.innerHTML = 'Entry not found!';
-      setAudioState('pause');
-    }
-
-    function togglePlayPause() {
-      if (audioState == 'play') {
-        setAudioState('pause');
-      } else {
-        setAudioState('play');
-      }
-    }
-
-    function setAudioState(val) {
-
-      // Set the audio state and update the interface button
-
-      audio = document.getElementById('audio');
-
-      if (val == 'play') {
-        audioState = 'play';
-        if (document.getElementById('playPauseButton')) {
-          document.getElementById('playPauseButton').innerHTML = '⏸️';
-        }
-        audio.play();
-      } else if (val == 'pause'){
-        audioState = 'pause';
-        if (document.getElementById('playPauseButton')) {
-          document.getElementById('playPauseButton').innerHTML = '▶️';
-        }
-        audio.pause();
-      } else if (val == 'reset') {
-          audio.currentTime = 0;
-      }
     }
 
     // Set the page title and header with the value supplied in content.js
