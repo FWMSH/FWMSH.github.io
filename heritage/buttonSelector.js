@@ -45,10 +45,6 @@ function loadItemFromButton(num) {
   // Function to take the input number, search for a tour clip and play it
 
   audio = document.getElementById('audio');
-  // numLabel = document.getElementById('number-input');
-  //
-  // var html = '';
-  // var num = parseInt(numLabel.innerHTML).toString() // To strip and leading 0
 
   if (isFinite(num)) { // User has entered a number
 
@@ -56,15 +52,19 @@ function loadItemFromButton(num) {
 
       if (mediaType == 'text') { // Build a text page
 
+        if (typeof textDict[num] !== "undefined") {
+          text = textDict[num]
+        } else text = ""
+
         if (typeof imageDict[num] !== 'undefined' && imageDict[num] != '') { // We have a picture
-          html = generateImageTextBlock(nameDict[num], imageDict[num], captionDict[num], textDict[num]);
+          html = generateImageTextBlock(nameDict[num], imageDict[num], captionDict[num], text);
           document.getElementById('lightboxImage').src = imageDict[num];
           document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
         } else if (typeof youTubeDict[num] !== 'undefined' && youTubeDict[num] != '') { // We have a YouTube video
-          html = generateYouTubeTextBlock(nameDict[num], youTubeDict[num], textDict[num]);
+          html = generateYouTubeTextBlock(nameDict[num], youTubeDict[num], text);
         }
         else { // No picture or YouTube video
-          html = generateTextOnlyBlock(nameDict[num],textDict[num]);
+          html = generateTextOnlyBlock(nameDict[num],text);
         }
 
       } else if (mediaType == 'audio') { // Build an audio page
@@ -107,10 +107,5 @@ function loadItemFromButton(num) {
     document.getElementById('inputPane').style.display = 'none';
     document.getElementById('contentPane').style.display = 'block';
 
-    // var height = 0.45*$('#contentPane').height();
-    // console.log($('.objectImage').outerHeight());
-    // $('#objectDesc').height(height);
-
-    //numLabel.innerHTML = '_';
   }
 }
