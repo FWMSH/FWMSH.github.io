@@ -4,15 +4,30 @@ var title_en = 'Heritage Gallery';
 var title_es = "Rooling Forward";
 
 var nameDict_en = {
-      '1': 'Ford Model T',
-      "2": "Italian Donkey Cart",
-      "3": "Soap Box Derby Car",
-      "4": "Taiwanese Pedicab",
-      'error': 'Artifact Not Found!'
+      '1': 'Erika Anderson <br><small><i>Engineer</small></i>',
+      "2": "Bessie Coleman",
+      "3": "Minerva Cordero, Ph.D.",
+      "4": "Jessica Esquivel, Ph.D.",
+      "5": "Mary Keys Gipson",
+      "6": "Erika Hamden, Ph.D.",
+      "7": "Opal Lee",
+      "8": "Jenn Makins",
+      "9": "Amanda Masino, Ph.D.",
+      "10": "Julie Mirpuri-Hathiramani, M.D.",
+      "11": "Harshini Mukundan, Ph.D.",
+      "12": "Charlie Mary Noble",
+      "13": "May Owen, M.D.",
+      "14": "Myria Perez",
+      "15": "Nina Niu Sanford, M.D.",
+      "16": "Nikki Sereika",
+      "17": "Jennifer Stimpson, Ed.D.",
+      "18": "Kirsten Tulchin-Francis, Ph.D.",
+      "19": "Jeana Lee Yeager",
+      'error': 'Person Not Found!'
     };
 
 var thumbDict_en = {
-    '1': 'thumbs/donkey.jpg',
+    '1': 'thumbs/1-Anderson.jpg',
     '2': 'thumbs/donkey.jpg',
     '3': 'thumbs/donkey.jpg',
     '4': 'thumbs/donkey.jpg',
@@ -22,30 +37,19 @@ var imageDict_en = {
 }
 
 var captionDict_en = {
-      '1': 'This 1910 photograph from Salt Lake City shows a Model T with a second row of seating.',
-      '2': 'An Italian cart transporting a family around 1890.',
-      '3': 'The start of a modern Soap Box Derby Race. When the race begins, the carts are released and gravity takes over!',
-      '4': 'Modern pedicabs in use alongside cars in Dhak, Bangladesh.',
       'error': ''
 }
 
 var youTubeDict_en = {
-  '1': "https://www.youtube.com/embed/XaNXlQS7c90",
+  '1': "https://www.youtube.com/embed/569y3EEUuBo",
 }
 
 var textDict_en = {
-      '1': "In 1863, Mr. Henry Ford was born on his family's farm outside Detroit, Michigan. Early on, he showed interest in mechanics and began working at age 16 for the Michigan Car Company, eventually landing a machinist apprenticeship at another company. His interests only increased when he started learning mechanical engineering and how gasoline engines work. Ford began several models; literally \"A\" through \"S\" before landing on the most well-known \"Model T\" version produced by the Ford Motor Company from 1908 through 1927. Regarded as the first affordable car for the everyday man, it would make traveling more accessible to people, allowing them to cover a larger distance within a shorter time frame.",
-      '2': "\"Carretto Siciliano,\" or Sicilian cart, is a handmade, wooden cart that is elaborately decorated with depictions of Sicily's rich folklore. These carts were often on the smaller side, designed for a single mule or horse. They started being used in the early nineteenth century and reached the peak of their popularity by the 1920s. The carts were geared towards carrying smaller loads across Sicily's rocky terrain.<p>The craftsmanship of these carts were passed down from generation to generation and each province in Sicily has a distinct style of cart that they are known for. Using wood and metal to create the intricate details on the cart, the imagery often portrays different periods of Italian history. Even the animal would often have an elaborate harness adorned with colorful ribbons, feathers, and tassels. Nowadays, these beautiful carts are only seen during festive occasions and are no longer used for utilitarian purposes.",
-      '3': "These homemade cars were originally built from scrap pieces of wood, such as a wooden soap box—hence how they got their name. Eventually, youths started using other materials for their cars as the sport evolved. The derby's history comes out of America's Great Depression, drawing inspiration from both downhill sledding and auto racing. What began in Ohio, quickly became a nationwide racing circuit where kids could compete at a local or regional level. By the mid 1930s, those regional winners would qualify to attend the annual Derby race in Akron, Ohio.",
-      '4': 'The origins of who invented pedicabs or "rickshaws" are not completely known, but it is believed to be a Western design or concept. There are a few possible men attributed to the invention, however, these small wagons begin popping up in Asia around the mid-1800s. They become very popular as a quick form of inner-city transportation. Earlier models needed manpower, literally: runners were needed to pull the carts by hand. Later on, bicycles would be fitted to the carts, making it easier on the drivers.',
-      'error': "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!"
+  '1': "Atlanta native Erika Anderson is a self-proclaimed education enthusiast who graduated with honors with Bachelor’s degrees in Mathematics and Mechanical Engineering from Spelman College and Georgia Institute of Technology, respectively. While progressing through her college studies, Erika worked as a math tutor and teacher’s assistant, served as the Academic Excellence chair on the National Society of Black Engineers’ executive board, and performed biostatics research modeling cellular aging. Not only was she active on campus during the school year, she spent her summers gaining real industry experience, doing things like analyzing stress/strain data for liquid hydrogen tanks at NASA, performing flight data analysis on plane engines at GE Aviation, and calculating the probability of failure for heat exchangers at ExxonMobil. It was this experience that ultimately landed her a full-time job at ExxonMobil, the company for which she has now worked for the last 5 years. Being a Mechanical Engineer at ExxonMobil’s refinery in Beaumont, Texas presented plenty of opportunities to grow her technical and leadership skills. As a Fixed Equipment Strategy Facilitator, she led a cross functional team of Mechanical and Chemical Engineers, Unit Inspectors, and Process Operators to perform risk assessments on refinery equipment to identify and mitigate potential equipment failures. From small 2 inch pipe lines to 60 feet tall distillation towers and every type of process equipment in between, Erika’s team ensures that this refinery equipment is fit for service and able to safely refine crude oil to produce end products such as gasoline, diesel, jet fuel, waxes, asphalt and even plastic! As a result of her performance in that role, Erika was recently relocated to ExxonMobil’s Houston headquarters to join their Research and Engineering group as a Reliability Engineer. She now applies her refinery experience and technical expertise to provide engineering support to ExxonMobil’s refineries and chemical plants all across the globe!<p>In addition to her engineering role, she has also had the pleasure of fulfilling her passion for service by serving as the Community Outreach Chair of ExxonMobil’s Black Employee Success Team. In this role, she coordinates several of the company’s volunteer initiatives such as math tutoring at a local middle school and leading STEM design challenges for students in the Texas Alliance for Minorities in Engineering program (TAME). Inspired by a passion for education and love of music, Erika recently founded her own organization, The Math Lab, which offers an engaging alternative to traditional classroom and online teaching by presenting math lessons through a seamless combination of music and curriculum-based mathematics. In fact, The Math Lab is the brain child of she and her late husband, Wick Anderson. Even though he is no longer physically here to share in its success, Erika takes pride in knowing that she is cultivating the seeds they planted together by furthering their mission to prepare scholars for academic success.",
+  'error': "Oops, an artifact with that number does't seem to exist in this gallery. Please double check that you've selected the appropriate gallery and then try a different number!"
     };
 
 var audioDict_en = {
-      '1': 'audio/en/model-t.mp3',
-      '2': 'audio/en/donkey-cart.mp3',
-      '3': 'audio/en/soapbox.mp3',
-      '4': 'audio/en/pedicab.mp3',
 }
 
 var nameDict_es = {
