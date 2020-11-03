@@ -4,24 +4,24 @@ var title_en = 'Heritage Gallery';
 var title_es = "Rooling Forward";
 
 var nameDict_en = {
-      '1': 'Erika Anderson <br><small><i>Mechanical Engineer</small></i>',
+      '1': 'Erika Anderson<br><small><small><i>Mechanical Engineer</small></small></i>',
       "2": "Bessie Coleman",
-      "3": "Minerva Cordero, Ph.D.",
-      "4": "Jessica Esquivel, Ph.D.",
+      "3": "Minerva Cordero, Ph.D.<br><small><small><i>Mathematician</small></small></i>",
+      "4": "Jessica Esquivel, Ph.D.<br><small><small><i>Physicist</small></small></i>",
       "5": "Mary Keys Gipson",
-      "6": "Erika Hamden, Ph.D.",
+      "6": "Erika Hamden, Ph.D.<br><small><small><i>Astrophysicist</small></small></i>",
       "7": "Opal Lee",
-      "8": "Jenn Makins",
-      "9": "Amanda Masino, Ph.D.",
-      "10": "Julie Mirpuri-Hathiramani, M.D.",
-      "11": "Harshini Mukundan, Ph.D.",
+      "8": "Jenn Makins<br><small><small><i>Educator</small></small></i>",
+      "9": "Amanda Masino, Ph.D.<br><small><small><i>Geneticist</small></small></i>",
+      "10": "Julie Mirpuri-Hathiramani, M.D.<br><small><small><i>Neonatologist</small></small></i>",
+      "11": "Harshini Mukundan, Ph.D.<br><small><small><i>Chemist</small></small></i>",
       "12": "Charlie Mary Noble",
       "13": "May Owen, M.D.",
-      "14": "Myria Perez",
-      "15": "Nina Niu Sanford, M.D.",
-      "16": "Nikki Sereika",
-      "17": "Jennifer Stimpson, Ed.D.",
-      "18": "Kirsten Tulchin-Francis, Ph.D.",
+      "14": "Myria Perez<br><small><small><i>Fossil Preparator</small></small></i>",
+      "15": "Nina Niu Sanford, M.D.<br><small><small><i>Biotechnologist</small></small></i>",
+      "16": "Nikki Sereika<br><small><small><i>Aviation Technologist</small></small></i>",
+      "17": "Jennifer Stimpson, Ed.D.<br><small><small><i>Educator</small></small></i>",
+      "18": "Kirsten Tulchin-Francis, Ph.D.<br><small><small><i>Engineer</small></small></i>",
       "19": "Jeana Lee Yeager",
       'error': 'Person Not Found!'
     };
@@ -29,8 +29,18 @@ var nameDict_en = {
 var thumbDict_en = {
     '1': 'thumbs/1-Anderson.jpg',
     '2': 'thumbs/donkey.jpg',
-    '3': 'thumbs/donkey.jpg',
-    '4': 'thumbs/donkey.jpg',
+    '3': 'thumbs/3-Cordero.jpg',
+    '4': 'thumbs/4-Esquivel.jpg',
+    '6': 'thumbs/Hamden.jpg',
+    '8': 'thumbs/Makins.jpg',
+    '9': 'thumbs/Masino.jpg',
+    '10': 'thumbs/Mirpuri.jpg',
+    '11': 'thumbs/Mukundan.jpg',
+    '14': 'thumbs/Parez.jpg',
+    '15': 'thumbs/Sanford.jpg',
+    '16': 'thumbs/Sereika.jpg',
+    '17': 'thumbs/Stimpson.jpg',
+    '18': 'thumbs/Tulchin.jpg',
 }
 
 var imageDict_en = {
