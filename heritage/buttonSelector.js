@@ -46,11 +46,14 @@ function loadItemFromButton(num) {
 
       if (mediaType == 'text') { // Build a text page
 
-        if (imageDict[num] != '') { // We have a picture
+        if (typeof imageDict[num] !== 'undefined' && imageDict[num] != '') { // We have a picture
           html = generateImageTextBlock(nameDict[num], imageDict[num], captionDict[num], textDict[num]);
           document.getElementById('lightboxImage').src = imageDict[num];
           document.getElementById('lightboxImageCaption').innerHTML = captionDict[num];
-        } else { // No picture
+        } else if (typeof youTubeDict[num] !== 'undefined' && youTubeDict[num] != '') {
+          html = generateYouTubeTextBlock(nameDict[num], youTubeDict[num], textDict[num]);
+        }
+        else { // No picture or YouTube video
           html = generateTextOnlyBlock(nameDict[num],textDict[num]);
         }
 

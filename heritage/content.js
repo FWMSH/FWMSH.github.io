@@ -12,18 +12,13 @@ var nameDict_en = {
     };
 
 var thumbDict_en = {
-    '1': 'thumbs/model_t.jpg',
+    '1': 'thumbs/donkey.jpg',
     '2': 'thumbs/donkey.jpg',
-    '3': 'thumbs/soapbox.jpg',
-    '4': 'thumbs/pedicab.jpg',
+    '3': 'thumbs/donkey.jpg',
+    '4': 'thumbs/donkey.jpg',
 }
 
 var imageDict_en = {
-      '1': 'images/1910Ford-T.jpg',
-      '2': 'images/Cart.jpg',
-      '3': 'images/Modern_Derby_Cars.JPG',
-      '4': 'images/Rickshaws_Dhaka.jpg',
-      'error': ''
 }
 
 var captionDict_en = {
@@ -32,6 +27,10 @@ var captionDict_en = {
       '3': 'The start of a modern Soap Box Derby Race. When the race begins, the carts are released and gravity takes over!',
       '4': 'Modern pedicabs in use alongside cars in Dhak, Bangladesh.',
       'error': ''
+}
+
+var youTubeDict_en = {
+  '1': "https://www.youtube.com/embed/XaNXlQS7c90",
 }
 
 var textDict_en = {

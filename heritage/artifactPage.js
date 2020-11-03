@@ -94,8 +94,11 @@ function generateYouTubeTextBlock(objName, link, objText) {
 
   // Function to return an HTML block with a YouTube embed and a text block.
 
+  let width = document.getElementById("inputPane").offsetWidth; // This is the same width the contentPane will be when it is shown.
+  let height = width * 9 / 16;
+
   html = "<div class='objectName'>"+objName+"</div>"
-  html += '<iframe width="560" height="315" src="' + link + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
+  html += '<iframe width="' + width + '" height="' + height + '" src="' + link + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>'
   html += "<div id='objectDesc' class='objectText'>" + objText + "<div class='paddingBlock'></div></div>"
 
   return(html)
