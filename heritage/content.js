@@ -30,7 +30,7 @@ var thumbDict_en = {
     '1': 'thumbs/1-Anderson.jpg',
     '2': 'thumbs/donkey.jpg',
     '3': 'thumbs/donkey.jpg',
-    '4': 'thumbs/donkey.jpg',
+    '4': 'thumbs/donkey.jpg', 
 }
 
 var imageDict_en = {
