@@ -1,0 +1,281 @@
+<!DOCTYPE html/css>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169285999-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-169285999-1');
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>FWMSH gallery</title>
+    <link rel="stylesheet" href="standard.css">
+  </head>
+
+  <body>
+    <div id='header'>FWMSH gallery</div>
+    <audio id='audio' onerror="handleAudioError()" onended="setAudioState('pause')">
+      <source src='' type="audio/mpeg">
+    </audio>
+    <div id='contentPane'>
+    </div>
+    <div id='lightboxOverlay' onclick='hideLightboxOverlay()'>
+      <img id='lightboxImage'>
+      <div id='lightboxImageCaption' class='objectImageCaption'></div>
+    </div>
+    <div id='inputPane'>
+      <div id='inputLabel' class='inputLabelEN'>Use the keypad to enter a label number</div>
+       <!-- If we're using the keypad, the HTML to draw it is here -->
+      <div id='keypad_entry'>
+        <div id='number-input'>_</div>
+        <div id='keypad'>
+          <div class='keypad-button' id='k1' onclick="pressKey(1)">1</div>
+          <div class='keypad-button' id='k2' onclick="pressKey(2)">2</div>
+          <div class='keypad-button' id='k3' onclick="pressKey(3)">3</div>
+          <div class='keypad-button' id='k4' onclick="pressKey(4)">4</div>
+          <div class='keypad-button' id='k5' onclick="pressKey(5)">5</div>
+          <div class='keypad-button' id='k6' onclick="pressKey(6)">6</div>
+          <div class='keypad-button' id='k7' onclick="pressKey(7)">7</div>
+          <div class='keypad-button' id='k8' onclick="pressKey(8)">8</div>
+          <div class='keypad-button' id='k9' onclick="pressKey(9)">9</div>
+          <div class='keypad-button' id='k_back' onclick="pressKey(-1)"><--</div>
+          <div class='keypad-button' id='k0' onclick="pressKey(0)">0</div>
+          <div class='keypad-button' id='k_go' onclick="loadItemFromKeypad()">Go</div>
+        </div>
+      </div>
+      <!-- If we're using the artifact buttons, they are populared in this div -->
+      <div id='artifactList'>
+      </div>
+    </div>
+    <div id='optionsOverlay'>
+      <div id='optionTitle' class='objectName'>Options</div>
+      <div id='langToggles' class=toggles>
+        <!-- <button id='enToggle' class='toggleOn' onclick="toggleLang('en')">English</button>
+        <button id='esToggle' class='toggleOff' onclick="toggleLang('es')">Español</button> -->
+      </div>
+      <div id='mediaToggles' class='toggles'>
+        <button id='textToggle' class='toggleOn' onclick="toggleMedia('text')">Text</button>
+        <button id='audioToggle' class='toggleOff' onclick="toggleMedia('audio')">Audio</button>
+      </div>
+      <div class='toggles' style='margin-top: 100px;'>
+        <div id='textSizeLabel' style='font-family: Gotham-Book; color: white; font-size: 50px;'>Text Size</div>
+      </div>
+      <div class='toggles' style='margin-top: 100px;'>
+        <input type="range" min="25" max="100" value="45" id="textSizeSlider" onchange="changeTextSize(this.value)">
+      </div>
+      <div id='textSizeSample' class='objectText' style='padding-top: 50px;'>This is some sample text</div>
+    </div>
+    <div id='bottomPane'>
+      <!-- <a id='homeLink' href='../home.html?skipAudioCheck'><button id='homeButton'>Go Home</button></a> -->
+      <button id='homeButton' onclick='goHome()'>Go Home  </button>
+      <button id='optionButton' onclick='showOptionsOverlay()'>Options</button>
+      <button id='showInput' onclick="showInputPane()">Choose Artifact</button>
+    </div>
+    <div id='rotationWarning'>Please rotate your device</div>
+  </body>
+
+  <script type="text/javascript" src="content.js"></script>
+  <script type="text/javascript" src="keypadSelector.js"></script>
+  <script type="text/javascript" src="buttonSelector.js"></script>
+  <script type="text/javascript" src="artifactPage.js"></script>
+
+  <script>
+
+    var mediaType = 'text';
+    var audioState = 'pause';
+    var lang = 'en';
+    var fontSize = 45;
+
+    //var inputLabel_text_en = "ENGLISH label text";
+    //var inputLabel_text_es = "SPANISH label text";
+
+    // Set the initial language to English
+    var nameDict = nameDict_en;
+    var imageDict = imageDict_en;
+    var captionDict = captionDict_en;
+    var textDict = textDict_en;
+    var audioDict = audioDict_en;
+    if (typeof thumbDict_en !== 'undefined') {
+      var thumbDict = thumbDict_en;
+    }
+    if (typeof youTubeDict_en !== 'undefined') {
+      var youTubeDict = youTubeDict_en;
+    } else youTubeDict = {};
+
+
+    function updateHomeLink() {
+
+      // Function to build a new homelink based on the value of the user-selectable
+      // parameters
+
+      document.getElementById('homeLink').href = '../home.html?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
+
+    }
+
+    function goHome() {
+      window.location.href='../home.html?skipAudioCheck'
+    }
+
+    function changeTextSize(size) {
+
+      // Function to change the text size, which will then be applied to
+      // the object text and object caption elements
+
+      fontSize = size; // Set the global property
+      // Update the sample text
+      document.getElementById('textSizeSample').style.fontSize = size + 'px';
+      updateHomeLink()
+    }
+
+    function toggleMedia(type) {
+
+      // Function to switch between displaying text or the audio guide.
+
+      var textToggle = document.getElementById('textToggle');
+      var audioToggle = document.getElementById('audioToggle');
+
+      if (type == 'text') {
+        textToggle.className = 'toggleOn';
+        audioToggle.className = 'toggleOff';
+      } else if (type == 'audio') {
+        textToggle.className = 'toggleOff';
+        audioToggle.className = 'toggleOn';
+      }
+      mediaType = type;
+      updateHomeLink();
+    }
+
+    function toggleLang(newLang) {
+
+      // Function to select a langauge and switch the dictionaries over
+
+      var enToggle = document.getElementById('enToggle');
+      var esToggle = document.getElementById('esToggle');
+      var inputLabel = document.getElementById('inputLabel');
+      var textToggle = document.getElementById('textToggle');
+      var audioToggle = document.getElementById('audioToggle');
+      var homeButton = document.getElementById('homeButton');
+      var showInput = document.getElementById('showInput');
+      var goButton = document.getElementById('k_go');
+      var optionsButton = document.getElementById('optionButton');
+      var optionTitle = document.getElementById('optionTitle');
+      var textSizeLabel = document.getElementById('textSizeLabel');
+      var textSizeSample = document.getElementById('textSizeSample');
+      var rotationWarning = document.getElementById('rotationWarning');
+
+      lang = newLang;
+
+      if (lang == 'en') {
+        //enToggle.className = 'toggleOn';
+        //esToggle.className = 'toggleOff';
+        inputLabel.className = 'inputLabelEN';
+        inputLabel.innerHTML = inputLabel_text_en;
+        textToggle.innerHTML = 'Text';
+        audioToggle.innerHTML = 'Audio';
+        homeButton.innerHTML = 'Go Home';
+        showInput.innerHTML = show_input_button_label_en;
+        goButton.innerHTML = 'Go';
+        optionButton.innerHTML = 'Options';
+        optionTitle.innerHTML = 'Options';
+        textSizeLabel.innerHTML = 'Text Size';
+        textSizeSample.innerHTML = 'This is some sample text';
+        rotationWarning.innerHTML = 'Please rotate your device';
+        nameDict = nameDict_en;
+        imageDict = imageDict_en;
+        captionDict = captionDict_en;
+        textDict = textDict_en;
+      } else if (lang == 'es') {
+        enToggle.className = 'toggleOff';
+        esToggle.className = 'toggleOn';
+        inputLabel.innerHTML = inputLabel_text_es;
+        inputLabel.className = 'inputLabelES';
+        textToggle.innerHTML = 'Texto';
+        audioToggle.innerHTML = 'Audio';
+        homeButton.innerHTML = 'Vete a Casa';
+        showInput.innerHTML = show_input_button_label_es;
+        goButton.innerHTML = 'Ir';
+        optionButton.innerHTML = 'Opciones';
+        optionTitle.innerHTML = 'Opciones';
+        textSizeLabel.innerHTML = 'Tamano del Texto';
+        textSizeSample.innerHTML = 'Este es un texto de ejemplo';
+        rotationWarning.innerHTML = 'Por favor gire su dispositivo';
+        nameDict = nameDict_es;
+        imageDict = imageDict_es;
+        captionDict = captionDict_es;
+        textDict = textDict_es;
+      }
+      updateHomeLink();
+
+    }
+
+    function showInputPane() {
+
+      // When someone clicks back to the artifact selection pane, pause the current audio,
+      // hide the visible content, and show the input pane.
+
+      setAudioState('pause');
+      document.getElementById('header').style.display = 'flex';
+      document.getElementById('contentPane').style.display = 'none';
+      document.getElementById('inputPane').style.display = 'block';
+      document.getElementById('optionsOverlay').style.display = 'none';
+      document.getElementById('optionButtonPane').style.display = 'flex';
+      document.getElementById('lightboxOverlay').style.display = 'none';
+    }
+
+    function showOptionsOverlay() {
+
+      // When someone clicks the "Options" button, show the overlay
+
+      document.getElementById('optionsOverlay').style.display = 'block';
+    }
+
+    // Set the page title and header with the value supplied in content.js
+    document.title = title_en;
+    document.getElementById("header").innerHTML = title_en;
+
+    // Setup the artifact selection method
+    if (use_keypad_entry == true) { // Use the keypad
+      configureInterfaceForKeypad();
+    } else { // Populate and show a list of artifact buttons instead
+      configureInterfaceForButtons();
+    }
+
+    // Detect landscape and warn
+    $(window).resize(function() {
+      var screenAspect = $(this).width()/$(this).height();
+      var overlay = document.getElementById('rotationWarning');
+
+      if (screenAspect > 1) {
+        overlay.style.display = 'block';
+      } else {
+        overlay.style.display = 'none';
+      }
+    });
+
+    // Check for options passed from previous page
+    var queryString = decodeURIComponent(window.location.search);
+
+    var searchParams = new URLSearchParams(queryString);
+    if(searchParams.has('lang')) {
+      lang = searchParams.get('lang');
+      toggleLang(lang);
+    } else {
+      toggleLang("en");
+    }
+    if(searchParams.has('mediaType')) {
+      mediaType = searchParams.get('mediaType');
+      toggleMedia(mediaType);
+    }
+    if(searchParams.has('fontSize')) {
+      fontSize = searchParams.get('fontSize');
+      changeTextSize(fontSize);
+      document.getElementById('textSizeSlider').value = fontSize;
+    }
+
+  </script>
+
+</html>
