@@ -1,6 +1,6 @@
 let title_content = `
     <img src='Building.jpg' style='width:100%;'>
-    <h3>Can You Complete Our Spoooooky Quiz?</h3>
+    <h3>Scavenger Hunt</h3>
     Our galleries are full of cool facts and amazing ideas. Can you find the answers to these questions?
 `
 
@@ -8,29 +8,46 @@ function buildQuiz() {
 
   // Add the questions
 
-  createMultiChoice("Treat yourself to some creativity in the STEAM Lab, and make some Halloween themed art.", ["Creepy Creation", "Fantastically Frightening fun", "Spooktacular Art"], ["Creepy Creation", "Fantastically Frightening fun", "Spooktacular Art"]);
+  createHeader('General');
+  createMultiChoice('Of which state is <i>Paluxysaurus</i> the official dinosaur?', ['Oklahoma', 'New Mexico', 'Texas'], 'Texas');
+  createMultiChoice('<i>Paluxysaurus jonesi</i> is a _______ , a class of dinosaur that eats plants, has a long neck and tail, a small head, and walks on all four legs.', ['Carnivore', 'Herbivore', 'Omnivore'], 'Herbivore');
+  //createMultiChoice('Something as small as a single tooth can help to identify a dinosaur as a herbivore or a _______.', ['Theropod', 'Carnivore', 'Ceratopsian'], 'Carnivore');
+  //createMultiChoice('A _______ is a scientist that studies plants and animals that lived millions of years ago. They study fossils to learn about organisms and the environment in which they lived and what the Earth was like for them.', ['Paleontologist', 'Geologist', 'Astronomer'], 'Paleontologist');
+  createMultiChoice('A painting called “A River Runs Through It” by local artist Cindi Holt is located outside of the Museum’s Oak Rooms East and West. What well-known Museum mascot is featured in the painting?', ['Museum Bear', 'Museum School Turtle', 'Museum Lizard'], 'Museum School Turtle');
+  createMultiChoice('Where can the Heritage Tree be found? This tree was left from the original Museum building on this site.  The tree was left undisturbed and the building that you stand in today was designed and constructed around it.', ['The Oak Room', 'Stars Café', 'The courtyard'], 'The courtyard');
 
-  createMultiChoice("What do you call a scientist that studies dinosaur bones?", ["Astronomer", "Paleontologist", "Geologist "], "Paleontologist");
+  createHeader('<i>Project Planet</i>');
+  createMultiChoice('When a polar bear and a gizzly bear meet, they can sometimes mate. What is this hybrid bear called?', ['Pizzly bear', 'Yellow bear', 'Grozzly bear'], 'Pizzly bear');
+  createMultiChoice("Which kind of energy creates pollution that contributes to climate change?", ['Coal', 'Solar', 'Nuclear'], 'Coal');
+  createMultiChoice("When a meteorologist gives a weather report, what color screen do they stand in front of?", ['Red', 'White', 'Green'], 'Green');
 
-  createMultiChoice("Go to the place where you can dig for bones at the Museum.  How many bones can you find?", ["One", "Two", "Three or more"], ["One", "Two", "Three or more"]);
 
-  createMultiChoice("Where can you find the pumpkin patch on the trains in the Energy Gallery?", ["Baseball field", "Dairy farm", "Amusement park"], "Baseball field");
+  createHeader('<i>Beads: A Journey Across Cultures</i>');
+  createMultiChoice("What item from Ida Loving Turner is on display from the Chicago World's Fair?", ['Her gown', 'Her shoes', 'Her hat'], 'Her gown');
+  createMultiChoice('In the <i>Beads</i> exhibit, what egg, from the world’s largest bird, is used in the design of a necklace?', ['Penguin', 'Ostrich', 'Pterodactyl'], 'Ostrich');
 
-  createMultiChoice("Where can you find a footprint large enough to sit in?", ["STEAM Lab", "Launchpad", "DinoLabs"], "DinoLabs");
+  createHeader('<i>Natural Communities</i>');
+  createMultiChoice('What is the State Bird of Texas?', ['Bluebird', 'Mockingbird', 'Hummingbird'], 'Mockingbird');
+  createMultiChoice("Texas has two state animals, a small one and a large one. What's the smaller one?", ['Armadillo', 'Opossum', 'Racoon'], 'Armadillo');
+  createMultiChoice('What is the Texas State Reptile??', ['Bearded Dragon', 'Horned Frog', 'Alligator'], 'Horned Frog');
 
-  createMultiChoice("Which vehicle can you find in the Wheels Exhibit that debuted the same year as the first <i>Dr. Jekyll and Mr. Hyde</i> film in 1908?", ["Original Model T car", "Antique donkey cart", "Classic Soapbox Derby racer"], "Original Model T car");
+  createHeader('<i>Launchpad</i>');
+  createMultiChoice("By using infrared light, astronomers can study an object's _______.", ['Temperature', 'Weight', 'Age'], 'Temperature');
+  createMultiChoice("On which space station did astronauts use a bike like the one on display in <i>Launchpad</i>?", ['International Space Station', 'Space Shuttle', 'Skylab'], 'Skylab');
+  createMultiChoice("If you weigh 100 lbs on Earth, how much will you weigh on the Moon?", ['Less', 'About the same', 'More'], 'Less');
 
-  createMultiChoice("In which exhibit can you find out how much you would weigh on the full moon? Be sure to test out the scale!", ["Beads", "Project Planet", "Launchpad"], "Launchpad");
+  createHeader('<i>Rolling Forward</i>');
+  createMultiChoice("The Ford Model T is generally considered to be the first _______ car.", ['Electric', 'Affordable', 'Fast'], 'Affordable');
+  createMultiChoice("Which source of energy powers a Soap Box Derby car?", ['Gravity', 'Electricity', 'Gasoline'], 'Gravity');
 
-  createMultiChoice("In the <i>Texas Ecosystems</i> exhibit, which region will you find a tarantula?", ["Piney woods", "Panhandle plain", "Cowtown"], "Panhandle plain");
+  createHeader('V-DROME');
+  createMultiChoice("Which of your senses is V-DROME <i>not</i> designed to engage?", ['Smell', 'Sight', 'Sound', 'Taste'], 'Taste');
+  createMultiChoice("V-DROME will be located _______.", ['Next to the Omni', 'Where the Omni is now', 'Next to the Noble Planetarium'], 'Next to the Omni');
 
-  createMultiChoice("In the <i>Texas Ecosystems</i> exhibit, in which region will you find a nocturnal bird of prey, who has eyes that appear to glow in the night (owl)?", ["Piney woods", "Panhandle plain", "Cowtown"], "Piney woods");
-
-  createMultiChoice("Use the green screen in <i>Project Planet</i> to give a Halloween weather report. Will it be:", ["Dark and with a chance of rain?", "A full moon and clear skies?", "Misty with a chance of a dense fog warning?"], ["Dark and with a chance of rain?", "A full moon and clear skies?", "Misty with a chance of a dense fog warning?"]);
-
-  createMultiChoice("Which beaded masterpiece from the <i>Beads</i> gallery would you love to add to your costume?", ["Deerskin shirt", "Cree octopus beaded pouch", "Beaded moccasins", "Ostrich feather headdress"], ["Deerskin shirt", "Cree octopus beaded pouch", "Beaded moccasins", "Ostrich feather headdress"]);
-
-  createMultiChoice("The DreamTime sculpture is on the ceiling between the Studios, can you find the following items: tricycle, red bull, dollhouse, broom, saxophone, and bumper.", ["Tricyle", "Red bull", "Dollhouse", "Broom", "Saxophone", "Bumper"], ["Tricyle", "Red bull", "Dollhouse", "Broom", "Saxophone", "Bumper"]);
+  createHeader('Energy Blast');
+  createMultiChoice("Which technology generates the most electricity in Texas?", ['Nuclear', 'Wind', 'Natural Gas', 'Solar'], 'Natural Gas');
+  createMultiChoice("Which of these energy sources does not provide steady, consistent power?", ['Coal', 'Wind', 'Nuclear'], 'Wind');
+  createMultiChoice("Which of these energy sources is not considered renewable energy?", ['Solar', 'Wind', 'Nuclear', "Hydroelectric"], 'Nuclear');
 
   createPaddingBlock();
 
