@@ -61,7 +61,9 @@ var imageDict_en = {
 }
 
 var captionDict_en = {
-      'error': ''
+  '2': "Bessie Coleman, c. 1922. Bessie Coleman was the first African American and Native American woman to hold a pilot’s license.",
+  '5': "Mary Keys Gipson, c. 1952. Mary Keys Gipson was the first black graduate of an accredited nursing school to work in the South. She is shown here with her diploma from the Chautauqua School of Nursing."
+  'error': ''
 }
 
 var youTubeDict_en = {
