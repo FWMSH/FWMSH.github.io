@@ -86,6 +86,12 @@ var steamLabActivityList_en = [
 {'name': 'Turkey Headband', 'desc': '', 'date': '11/22/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
 {'name': 'Turkey Trap STEM Challenge', 'desc': '', 'date': '11/22/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Candy Catapult', 'desc': '', 'date': '11/22/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Colored Corn Mosaics', 'desc': '', 'date': '11/28/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Cranberry Chemistry', 'desc': '', 'date': '11/28/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Dancing Corn', 'desc': '', 'date': '11/28/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Turkey Headband', 'desc': '', 'date': '11/29/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Cranberry Chemistry', 'desc': '', 'date': '11/29/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': 'Dancing Corn', 'desc': '', 'date': '11/29/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -155,10 +161,10 @@ var scienceTheaterActivityList_en = [
 {'name': 'Monarch Butterflies and Dia de los Muertos Talk', 'desc': '', 'date': '11/1/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
 {'name': 'Spooky Van De Graff Demo', 'desc': '', 'date': '11/1/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 {'name': 'Monarch Butterflies and Dia de los Muertos Talk', 'desc': '', 'date': '11/7/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
-{'name': 'Monarch Butterfly Dance by Artes de la Rosa', 'desc': '', 'date': '11/7/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Phenomenal Physics - Inertia and Momentum', 'desc': '', 'date': '11/7/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
 {'name': 'Monarch Butterflies and Dia de los Muertos Talk', 'desc': '', 'date': '11/7/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Monarch Butterflies and Dia de los Muertos Talk', 'desc': '', 'date': '11/8/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
-{'name': 'Monarch Butterfly Dance by Artes de la Rosa', 'desc': '', 'date': '11/8/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'Phenomenal Physics - Inertia and Momentum', 'desc': '', 'date': '11/8/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 {'name': 'How Animals Prepare for Winter', 'desc': '', 'date': '11/14/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
 {'name': 'Fall Constellations', 'desc': '', 'date': '11/14/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
 {'name': 'How Animals Prepare for Winter', 'desc': '', 'date': '11/14/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
@@ -169,4 +175,9 @@ var scienceTheaterActivityList_en = [
 {'name': 'Turkey Talk', 'desc': '', 'date': '11/21/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Fall Constellations', 'desc': '', 'date': '11/22/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
 {'name': 'Turkey Talk', 'desc': '', 'date': '11/22/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'Turkey Talk', 'desc': '', 'date': '11/28/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'How Animals Prepare for Winter', 'desc': '', 'date': '11/28/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Turkey Talk', 'desc': '', 'date': '11/28/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'How Animals Prepare for Winter', 'desc': '', 'date': '11/29/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
+{'name': 'Turkey Talk', 'desc': '', 'date': '11/29/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 ];
