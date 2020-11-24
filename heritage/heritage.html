@@ -89,6 +89,7 @@
     var audioState = 'pause';
     var lang = 'en';
     var fontSize = 45;
+    var homeLink = '../home.html?skipAudioCheck';
 
     //var inputLabel_text_en = "ENGLISH label text";
     //var inputLabel_text_es = "SPANISH label text";
@@ -112,12 +113,12 @@
       // Function to build a new homelink based on the value of the user-selectable
       // parameters
 
-      document.getElementById('homeLink').href = '../home.html?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
+      homeLink = '../home.html?lang='+lang+'&mediaType='+mediaType+'&fontSize='+fontSize;
 
     }
 
     function goHome() {
-      window.location.href='../home.html?skipAudioCheck'
+      window.location.href = homeLink;
     }
 
     function changeTextSize(size) {
@@ -222,7 +223,7 @@
       document.getElementById('contentPane').style.display = 'none';
       document.getElementById('inputPane').style.display = 'block';
       document.getElementById('optionsOverlay').style.display = 'none';
-      document.getElementById('optionButtonPane').style.display = 'flex';
+      //document.getElementById('optionButtonPane').style.display = 'flex';
       document.getElementById('lightboxOverlay').style.display = 'none';
     }
 
