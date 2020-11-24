@@ -128,6 +128,25 @@ var textDict_en = {
     };
 
 var audioDict_en = {
+  '1': 'audio/en/Anderson Audio.mp3',
+  '2': 'audio/en/Coleman Audio.mp3',
+  '3': 'audio/en/Cordero Audio.mp3',
+  '4': 'audio/en/Esquivel Audio.mp3',
+  '5': 'audio/en/Gipson Audio.mp3',
+  '6': 'audio/en/Hamden Audio.mp3',
+  '7': 'audio/en/Lee Audio.mp3',
+  '8': 'audio/en/Makins Audio.mp3',
+  '9': 'audio/en/Masino Audio.mp3',
+  '10': 'audio/en/Mipuri Audio.mp3',
+  '11': 'audio/en/Mukundan Audio.mp3',
+  '12': 'audio/en/Noble Audio.mp3',
+  '13': 'audio/en/Owen Audio.mp3',
+  '14': 'audio/en/Perez Audio.mp3',
+  '15': 'audio/en/Niu Sanford Audio.mp3',
+  '16': 'audio/en/Sereika Audio.mp3',
+  '17': 'audio/en/Stimpson Audio.mp3',
+  '18': 'audio/en/Tulchin-Francis Audio.mp3',
+  '19': 'audio/en/Yeager Audio.mp3',
 }
 
 var nameDict_es = {
