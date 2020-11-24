@@ -64,7 +64,7 @@ var captionDict_en = {
   '2': "Bessie Coleman, c. 1922. Bessie Coleman was the first African American and Native American woman to hold a pilot’s license.",
   '5': "Mary Keys Gipson, c. 1952. Mary Keys Gipson was the first black graduate of an accredited nursing school to work in the South. She is shown here with her diploma from the Chautauqua School of Nursing.",
   '7': "Opal Lee, c.2020. For over 40 years, Opal Lee has been attempting to get the federal government to recognize Juneteenth as a national holiday. Since 2016, Opal Lee has led her famous “Opal’s Walk 2 DC,” a Juneteenth walk intended to raise awareness for the cause.",
-  '13': "May Owen, c. 1984. This photo was taken for the revised opening of the Dr. Louis Levy Physiology Hall. By this time Dr. Owen had already had her name on the museum’s Dr. May Owen Hall of Medical History and Health (1965) and the Dr. May Owen Hall of Medical Science (1968). Dr. Owen died in 1988, so the photo was taken approximately 4 years before her death.",
+  '13': "May Owen, c. 1984. This photo was taken for the revised opening of the Dr. Louis Levy Physiology Hall. By this time Dr. Owen had already had her name on the Museum’s Dr. May Owen Hall of Medical History and Health (1965) and the Dr. May Owen Hall of Medical Science (1968). Dr. Owen died in 1988, so the photo was taken approximately 4 years before her death.",
   'error': ''
 }
 
