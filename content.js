@@ -92,6 +92,12 @@ var steamLabActivityList_en = [
 {'name': 'Turkey Headband', 'desc': '', 'date': '11/29/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
 {'name': 'Cranberry Chemistry', 'desc': '', 'date': '11/29/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': 'Dancing Corn', 'desc': '', 'date': '11/29/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Make an Ugly Paper Holiday Sweater', 'desc': '', 'date': '12/5/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Jingle Bell Delivery STEM Challenge', 'desc': '', 'date': '12/5/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': '3D Paper Ornaments', 'desc': '', 'date': '12/5/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Make an Ugly Paper Holiday Sweater', 'desc': '', 'date': '12/6/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Jingle Bell Delivery STEM Challenge', 'desc': '', 'date': '12/6/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': '3D Paper Ornaments', 'desc': '', 'date': '12/6/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -180,4 +186,9 @@ var scienceTheaterActivityList_en = [
 {'name': 'Turkey Talk', 'desc': '', 'date': '11/28/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Fall Constellations', 'desc': '', 'date': '11/29/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
 {'name': 'Turkey Talk', 'desc': '', 'date': '11/29/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/5/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/5/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/5/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/6/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/6/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 ];
