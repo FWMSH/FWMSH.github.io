@@ -98,6 +98,18 @@ var steamLabActivityList_en = [
 {'name': 'Make an Ugly Paper Holiday Sweater', 'desc': '', 'date': '12/6/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
 {'name': 'Jingle Bell Delivery STEM Challenge', 'desc': '', 'date': '12/6/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
 {'name': '3D Paper Ornaments', 'desc': '', 'date': '12/6/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Build Your Own Borax Crystal Kit', 'desc': '', 'date': '12/12/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Decorate a Paper Gingerbread Person', 'desc': '', 'date': '12/12/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Sleigh STEM Challenge', 'desc': '', 'date': '12/12/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Build Your Own Borax Crystal Kit', 'desc': '', 'date': '12/13/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Decorate a Paper Gingerbread Person', 'desc': '', 'date': '12/13/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': 'Sleigh STEM Challenge', 'desc': '', 'date': '12/13/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Build Your Own Borax Crystal Kit', 'desc': '', 'date': '12/19/2020', 'startTime': '10:00 AM', 'endTime': '10:45 AM'},
+{'name': 'Decorate a Paper Gengerbread Person', 'desc': '', 'date': '12/19/2020', 'startTime': '11:30 AM', 'endTime': '12:00 PM'},
+{'name': 'Build a Sleigh STEM Challenge', 'desc': '', 'date': '12/19/2020', 'startTime': '1:30 PM', 'endTime': '2:30 PM'},
+{'name': 'Build Your Own Borax Crystal Kit', 'desc': '', 'date': '12/20/2020', 'startTime': '12:00 PM', 'endTime': '12:45 PM'},
+{'name': 'Decorate a Paper Gengerbread Person', 'desc': '', 'date': '12/20/2020', 'startTime': '1:30 PM', 'endTime': '2:15 PM'},
+{'name': 'Build a Sleigh STEM Challenge', 'desc': '', 'date': '12/20/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 ];
 
 var scienceTheaterActivityList_en = [
@@ -191,4 +203,14 @@ var scienceTheaterActivityList_en = [
 {'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/5/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
 {'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/6/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
 {'name': 'What is Hibernation?', 'desc': '', 'date': '12/6/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/12/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'Winter Solstice', 'desc': '', 'date': '12/12/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/12/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Winter Solstice', 'desc': '', 'date': '12/13/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/13/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
+{'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/19/2020', 'startTime': '11:00 AM', 'endTime': '11:20 AM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/19/2020', 'startTime': '12:00 PM', 'endTime': '12:30 PM'},
+{'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/19/2020', 'startTime': '3:00 PM', 'endTime': '3:30 PM'},
+{'name': 'Texas Sky at Night - December', 'desc': '', 'date': '12/20/2020', 'startTime': '1:00 PM', 'endTime': '1:30 PM'},
+{'name': 'What is Hibernation?', 'desc': '', 'date': '12/20/2020', 'startTime': '2:30 PM', 'endTime': '3:00 PM'},
 ];
