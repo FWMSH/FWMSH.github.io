@@ -11,14 +11,14 @@
 
     <style>
       body {
-        /* overflow: hidden; */
+        overflow: hidden;
       }
       #cameraPreview{
-        /* top: -200px;
-        left: 100px;
+        top: -200px;
+        left: -200px;
         width: 150vw;
         height: 150vw;
-        position: absolute; */
+        position: absolute;
         transform: rotateY(180deg);
         -webkit-transform:rotateY(180deg); /* Safari and Chrome */
         -moz-transform:rotateY(180deg); /* Firefox */
@@ -27,6 +27,8 @@
       #overlayImage{
         width: 100%;
         position: absolute;
+        left: 0px;
+        top: 0px;
       }
     </style>
   </head>
@@ -35,25 +37,22 @@
     <center>
       <video id="cameraPreview" autoplay muted playsinline></video>
     </center>
-    <!-- <center>
+    <center>
       <img id="overlayImage" src="helmet.png"></img>
-    </center> -->
+    </center>
   </body>
 
   <script>
 
-    var cameraPreview;
+    var cameraPreview = document.getElementById("cameraPreview");
+    // cameraPreview.setAttribute('playsinline', '');
+    // cameraPreview.setAttribute('autoplay', '');
+    // cameraPreview.setAttribute('muted', '');
     var webcamStream;
 
     function startWebcam() {
 
-        navigator.getUserMedia = ( navigator.getUserMedia ||
-                               navigator.webkitGetUserMedia ||
-                               navigator.mozGetUserMedia ||
-                               navigator.msGetUserMedia);
-
-        if (navigator.getUserMedia) {
-           navigator.getUserMedia (
+           navigator.mediaDevices.getUserMedia (
 
               // constraints
               {
@@ -62,22 +61,14 @@
                 },
                  audio: false
               },
+           ).then(function(localMediaStream) {
+             cameraPreview.srcObject = localMediaStream;
+             webcamStream = localMediaStream;
+           })
+           .catch(function(err) {
+                    console.log("The following error occured: " + err);
+                  })
 
-              // successCallback
-              function(localMediaStream) {
-                cameraPreview = document.getElementById("cameraPreview");
-                cameraPreview.srcObject = localMediaStream;
-                webcamStream = localMediaStream;
-              },
-
-              // errorCallback
-              function(err) {
-                 console.log("The following error occured: " + err);
-              }
-           );
-        } else {
-           console.log("getUserMedia not supported");
-        }
       }
 
       function stopWebcam() {
