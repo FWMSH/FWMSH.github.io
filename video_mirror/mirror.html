@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <meta name="description" content="">
+    <meta name="author" content="Morgan Rehnberg">
+
+    <style>
+      body {
+        overflow: hidden;
+      }
+      #cameraPreview{
+        top: -200px;
+        left: 100px;
+        width: 150vw;
+        height: 150vw;
+        position: absolute;
+        transform: rotateY(180deg);
+        -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+        -moz-transform:rotateY(180deg); /* Firefox */
+      }
+
+      #overlayImage{
+        width: 100%;
+        position: absolute;
+      }
+    </style>
+  </head>
+
+  <body>
+    <center>
+      <video id="cameraPreview" autoplay></video>
+    </center>
+    <center>
+      <img id="overlayImage" src="helmet.png"></img>
+    </center>
+  </body>
+
+  <script>
+
+    var cameraPreview;
+    var webcamStream;
+
+    function startWebcam() {
+        if (navigator.getUserMedia) {
+           navigator.getUserMedia (
+
+              // constraints
+              {
+                 video: true,
+                 audio: false
+              },
+
+              // successCallback
+              function(localMediaStream) {
+                cameraPreview = document.getElementById("cameraPreview");
+                cameraPreview.srcObject = localMediaStream;
+                webcamStream = localMediaStream;
+              },
+
+              // errorCallback
+              function(err) {
+                 console.log("The following error occured: " + err);
+              }
+           );
+        } else {
+           console.log("getUserMedia not supported");
+        }
+      }
+
+      function stopWebcam() {
+          webcamStream.stop();
+      }
+
+      startWebcam();
+
+  </script>
+
+</html>
