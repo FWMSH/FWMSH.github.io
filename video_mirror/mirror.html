@@ -33,7 +33,7 @@
 
   <body>
     <center>
-      <video id="cameraPreview" autoplay></video>
+      <video id="cameraPreview" autoplay muted playsinline></video>
     </center>
     <center>
       <img id="overlayImage" src="helmet.png"></img>
@@ -57,7 +57,9 @@
 
               // constraints
               {
-                 video: true,
+                video: {
+                  facingMode: 'user'
+                },
                  audio: false
               },
 
