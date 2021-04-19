@@ -46,6 +46,12 @@
     var webcamStream;
 
     function startWebcam() {
+
+        navigator.getUserMedia = ( navigator.getUserMedia ||
+                               navigator.webkitGetUserMedia ||
+                               navigator.mozGetUserMedia ||
+                               navigator.msGetUserMedia);
+
         if (navigator.getUserMedia) {
            navigator.getUserMedia (
 
